@@ -1,0 +1,10 @@
+PODS:
+  - KNSemiModalViewController (0.3)
+
+DEPENDENCIES:
+  - KNSemiModalViewController
+
+SPEC CHECKSUMS:
+  KNSemiModalViewController: 6fb1e2f6a4d84238b524cb705e91118b0fa6bbc9
+
+COCOAPODS: 0.33.1
