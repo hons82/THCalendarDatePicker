@@ -200,7 +200,7 @@ static int FIRST_WEEKDAY = 2;
         }
         
         NSDateComponents *comps = [_calendar components:NSDayCalendarUnit fromDate:date];
-        [day.dateButton setTitle:[NSString stringWithFormat:@"%d",[comps day]]
+        [day.dateButton setTitle:[NSString stringWithFormat:@"%ld",(long)[comps day]]
                         forState:UIControlStateNormal];
         [self.calendarDaysView addSubview:day];
         
@@ -297,7 +297,7 @@ static int FIRST_WEEKDAY = 2;
 
 - (void)setDisplayedMonthFromDate:(NSDate *)date{
     NSDateComponents* comps = [[NSCalendar currentCalendar] components:NSYearCalendarUnit|NSMonthCalendarUnit fromDate:date];
-    [self setDisplayedMonth:[comps month] year:[comps year]];
+    [self setDisplayedMonth:(int)[comps month] year:(int)[comps year]];
 }
 
 - (void)storeDateInformation{
@@ -310,18 +310,18 @@ static int FIRST_WEEKDAY = 2;
                            inUnit:NSMonthCalendarUnit
                           forDate:self.firstOfCurrentMonth];
     
-    int bufferDaysBeginning = [comps weekday]-[c firstWeekday];
+    int bufferDaysBeginning = (int)([comps weekday]-[c firstWeekday]);
     // % 7 is not working for negative numbers
     // http://stackoverflow.com/questions/989943/weird-objective-c-mod-behavior-for-negative-numbers
     if (bufferDaysBeginning < 0)
         bufferDaysBeginning += 7;
-    int daysInMonthWithBuffer = days.length + bufferDaysBeginning;
+    int daysInMonthWithBuffer = (int)(days.length + bufferDaysBeginning);
     int numberOfWeeks = daysInMonthWithBuffer / 7;
     if(daysInMonthWithBuffer % 7) numberOfWeeks++;
     
     _weeksOnCalendar = 6;
     _bufferDaysBeginning = bufferDaysBeginning;
-    _daysInMonth = days.length;
+    _daysInMonth = (int)days.length;
 }
 
 - (void)incrementMonth:(int)incrValue{
