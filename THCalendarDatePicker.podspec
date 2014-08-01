@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name         	= "THCalendarDatePicker"
   s.version      	= "0.0.1"
-  s.summary      	= "UITextView with the look of a Notebook"
+  s.summary      	= "A DatePicker based on a custom calendar view"
   s.homepage     	= "https://github.com/hons82/THCalendarDatePicker"
   s.license      	= { :type => 'MIT', :file => 'LICENSE.md' }
   s.author       	= { "Hannes Tribus" => "hons82@gmail.com" }
