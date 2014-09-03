@@ -31,5 +31,6 @@
 - (void)setDateHasItemsCallback:(BOOL (^)(NSDate * date))callback;
 - (void)setAllowClearDate:(BOOL)allow;
 - (void)setAutoCloseOnSelectDate:(BOOL)autoClose;
+- (void)setDisableFutureSelection:(BOOL)disableFutureSelection;
 
 @end

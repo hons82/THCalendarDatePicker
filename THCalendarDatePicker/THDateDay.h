@@ -28,6 +28,7 @@
 -(void)setLightText:(BOOL)light;
 - (IBAction)dateButtonTapped:(id)sender;
 -(void)setSelected:(BOOL)selected;
+-(void)setEnabled:(BOOL)enabled;
 -(void)indicateDayHasItems:(BOOL)indicate;
 @property (weak, nonatomic) IBOutlet UIImageView *hasItemsIndicator;
 

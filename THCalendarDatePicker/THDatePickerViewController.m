@@ -21,6 +21,7 @@ static int FIRST_WEEKDAY = 2;
     NSCalendar * _calendar;
     BOOL _allowClearDate;
     BOOL _autoCloseOnSelectDate;
+    BOOL _disableFutureSelection;
     BOOL (^_dateHasItemsCallback)(NSDate *);
 }
 @property (nonatomic, strong) NSDate * firstOfCurrentMonth;
@@ -57,6 +58,7 @@ static int FIRST_WEEKDAY = 2;
         // Custom initialization
         _calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
         _allowClearDate = NO;
+        _disableFutureSelection = NO;
     }
     return self;
 }
@@ -74,8 +76,14 @@ static int FIRST_WEEKDAY = 2;
 {
     [self setAllowClearDate:!autoClose];
     _autoCloseOnSelectDate = autoClose;
-    
 }
+
+- (void)setDisableFutureSelection:(BOOL)disableFutureSelection
+{
+    _disableFutureSelection = disableFutureSelection;
+}
+
+#pragma mark - View Management
 
 - (void)viewDidLoad
 {
@@ -143,10 +151,7 @@ static int FIRST_WEEKDAY = 2;
     _dateHasItemsCallback = callback;
 }
 
-
-
-// ------------------------------------------------------- //
-// -------------------- Redraw Dates ---------------------- //
+#pragma mark - Redraw Dates
 
 - (void)redraw{
     if(!self.firstOfCurrentMonth) [self setDisplayedMonthFromDate:[NSDate date]];
@@ -199,6 +204,8 @@ static int FIRST_WEEKDAY = 2;
             self.currentDay = day;
         }
         
+        [day setEnabled:![self dateInFutureAndShouldBeDisabled:date]];
+        
         NSDateComponents *comps = [_calendar components:NSDayCalendarUnit fromDate:date];
         [day.dateButton setTitle:[NSString stringWithFormat:@"%ld",(long)[comps day]]
                         forState:UIControlStateNormal];
@@ -238,11 +245,7 @@ static int FIRST_WEEKDAY = 2;
     }
 }
 
-
-
-
-// ------------------------------------------------------- //
-// -------------------- Date Set, etc. ------------------- //
+#pragma mark - Date Set, etc.
 
 - (void)setDate:(NSDate *)date{
     _date = date;
@@ -331,11 +334,7 @@ static int FIRST_WEEKDAY = 2;
     [self setDisplayedMonthFromDate:incrementedMonth];
 }
 
-
-
-
-// ------------------------------------------------------- //
-// -------------------- User Events ---------------------- //
+#pragma mark - User Events
 
 - (void)dateDayTapped:(THDateDay *)dateDay{
     if(![self dateInCurrentMonth:dateDay.date]){
@@ -416,8 +415,7 @@ static int FIRST_WEEKDAY = 2;
     [self.delegate datePickerCancelPressed:self];
 }
 
-// ------------------------------------------------------- //
-// -------------- Hide/Show Clear Button ----------------- //
+#pragma mark - Hide/Show Clear Button
 
 - (void) showClearButton {
     int width = self.view.frame.size.width;
@@ -442,8 +440,17 @@ static int FIRST_WEEKDAY = 2;
     self.okBtn.frame = CGRectMake(curX, 5, buttonWidth, buttonHeight);
 }
 
-// ------------------------------------------------------- //
-// --------------------- Date Utils ---------------------- //
+#pragma mark - Date Utils
+
+- (BOOL)dateInFutureAndShouldBeDisabled:(NSDate *)dateToCompare
+{
+    NSDate *currentDate = [NSDate date];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSInteger comps = (NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit);
+    currentDate = [calendar dateFromComponents:[calendar components:comps fromDate:currentDate]];
+    dateToCompare = [calendar dateFromComponents:[calendar components:comps fromDate:dateToCompare]];
+    return ([currentDate compare:dateToCompare] == NSOrderedAscending && _disableFutureSelection);
+}
 
 - (BOOL)dateInCurrentMonth:(NSDate *)date{
     unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
@@ -460,6 +467,7 @@ static int FIRST_WEEKDAY = 2;
     return [[NSCalendar currentCalendar] dateFromComponents:comps];
 }
 
+#pragma mark - Cleanup
 
 - (void)didReceiveMemoryWarning
 {

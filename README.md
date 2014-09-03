@@ -22,7 +22,7 @@ Install with [CocoaPods](http://cocoapods.org) by adding the following to your P
 
 ``` ruby
 platform :ios, '6.1'
-pod 'THCalendarDatePicker', '~> 0.0.1'
+pod 'THCalendarDatePicker', '~> 0.0.2'
 ```
 
 **Note**: We follow http://semver.org for versioning the public API.
@@ -31,17 +31,60 @@ pod 'THCalendarDatePicker', '~> 0.0.1'
 
 Or copy the `THCalendarDatePicker/` directory from this repo into your project.
 
+# Features
+
+### V0.1.0
+
+- Configurable if it should show future entries 
+
+### V0.0.2
+
+- Select a Date from Calendar
+- Awareness of the setting 4 the first weekday
+- Configurable Colors
+- Configurable if it should be allowed to clear the selection
+- Configurable if it should close on selection or not
+
+### Future
+
+- reduce size of control if "hasItemCallback" is not used/disabled
+
 # Usage
 
-Have a look at the Example Project.
+This is a sample initialization taken from the ExampleProject.
+
+```objective-c
+- (IBAction)touchedButton:(id)sender {
+    if(!self.datePicker)
+        self.datePicker = [THDatePickerViewController datePicker];
+    self.datePicker.date = self.curDate;
+    self.datePicker.delegate = self;
+    [self.datePicker setAllowClearDate:NO];
+    [self.datePicker setAutoCloseOnSelectDate:YES];
+    [self.datePicker setDisableFutureSelection:YES];
+    [self.datePicker setSelectedBackgroundColor:[UIColor colorWithRed:125/255.0 green:208/255.0 blue:0/255.0 alpha:1.0]];
+    [self.datePicker setCurrentDateColor:[UIColor colorWithRed:242/255.0 green:121/255.0 blue:53/255.0 alpha:1.0]];
+
+    [self.datePicker setDateHasItemsCallback:^BOOL(NSDate *date) {
+     int tmp = (arc4random() % 30)+1;
+     if(tmp % 5 == 0)
+     return YES;
+     return NO;
+     }];
+    //[self.datePicker slideUpInView:self.view withModalColor:[UIColor lightGrayColor]];
+    [self presentSemiViewController:self.datePicker withOptions:@{
+                                                                  KNSemiModalOptionKeys.pushParentBack    : @(NO),
+                                                                  KNSemiModalOptionKeys.animationDuration : @(1.0),
+                                                                  KNSemiModalOptionKeys.shadowOpacity     : @(0.3),
+                                                                  }];
+}
+
+```
 
 #Contributions
 
-...are really welcome.
-
+...are really welcome. If you have an idea just fork the library change it and if its useful for others and not affecting the functionality of the library for other users I'll insert it
 
 # License
 
 Source code of this project is available under the standard MIT license. Please see [the license file](LICENSE.md).
-
-
