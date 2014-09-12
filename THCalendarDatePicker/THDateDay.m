@@ -60,7 +60,9 @@
 -(void)setEnabled:(BOOL)enabled
 {
     [self.dateButton setEnabled:enabled];
-    [self setLightText:!enabled];
+    if (!enabled) {
+        [self setLightText:!enabled];
+    }
 }
 
 -(void)indicateDayHasItems:(BOOL)indicate {

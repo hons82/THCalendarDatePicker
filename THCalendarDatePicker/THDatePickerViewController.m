@@ -10,7 +10,7 @@
 #import "THDatePickerViewController.h"
 
 #ifdef DEBUG
-static int FIRST_WEEKDAY = 2;
+//static int FIRST_WEEKDAY = 2;
 #endif
 
 @interface THDatePickerViewController () {
@@ -194,6 +194,7 @@ static int FIRST_WEEKDAY = 2;
         if (self.selectedBackgroundColor)
             [day setSelectedBackgroundColor:self.selectedBackgroundColor];
         [day setLightText:![self dateInCurrentMonth:date]];
+        [day setEnabled:![self dateInFutureAndShouldBeDisabled:date]];
         day.frame = CGRectMake(curX, curY, cellWidth, cellHeight);
         day.delegate = self;
         day.date = [date dateByAddingTimeInterval:0];
@@ -203,8 +204,6 @@ static int FIRST_WEEKDAY = 2;
             [day setSelected:YES];
             self.currentDay = day;
         }
-        
-        [day setEnabled:![self dateInFutureAndShouldBeDisabled:date]];
         
         NSDateComponents *comps = [_calendar components:NSDayCalendarUnit fromDate:date];
         [day.dateButton setTitle:[NSString stringWithFormat:@"%ld",(long)[comps day]]
@@ -224,7 +223,7 @@ static int FIRST_WEEKDAY = 2;
         NSDateComponents * comps = [_calendar components:NSDayCalendarUnit fromDate:[NSDate date]];
         NSCalendar *c = [NSCalendar currentCalendar];
 #ifdef DEBUG
-        [c setFirstWeekday:FIRST_WEEKDAY];
+        //[c setFirstWeekday:FIRST_WEEKDAY];
 #endif
         [comps setDay:[c firstWeekday]-1];
         NSDateFormatter *df = [[NSDateFormatter alloc] init];
@@ -307,7 +306,7 @@ static int FIRST_WEEKDAY = 2;
     NSDateComponents *comps = [_calendar components:NSWeekdayCalendarUnit | NSDayCalendarUnit fromDate:self.firstOfCurrentMonth];
     NSCalendar *c = [NSCalendar currentCalendar];
 #ifdef DEBUG
-    [c setFirstWeekday:FIRST_WEEKDAY];
+    //[c setFirstWeekday:FIRST_WEEKDAY];
 #endif
     NSRange days = [c rangeOfUnit:NSDayCalendarUnit
                            inUnit:NSMonthCalendarUnit
