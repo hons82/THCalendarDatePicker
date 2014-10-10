@@ -20,7 +20,9 @@
     NSDate * _dateNoTime;
     NSCalendar * _calendar;
     BOOL _allowClearDate;
+    BOOL _clearAsToday;
     BOOL _autoCloseOnSelectDate;
+    BOOL _disableHistorySelection;
     BOOL _disableFutureSelection;
     BOOL (^_dateHasItemsCallback)(NSDate *);
 }
@@ -58,7 +60,9 @@
         // Custom initialization
         _calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
         _allowClearDate = NO;
+        _clearAsToday = NO;
         _disableFutureSelection = NO;
+        _disableHistorySelection = NO;
     }
     return self;
 }
@@ -67,19 +71,29 @@
     return [[THDatePickerViewController alloc] initWithNibName:@"THDatePickerViewController" bundle:nil];
 }
 
-- (void)setAllowClearDate:(BOOL)allow
-{
+- (void)setAllowClearDate:(BOOL)allow {
     _allowClearDate = allow;
+}
+
+- (void)setClearAsToday:(BOOL)beTodayButton {
+    if (beTodayButton) {
+        [self setAllowClearDate:beTodayButton];
+    }
+    _clearAsToday = beTodayButton;
 }
 
 - (void)setAutoCloseOnSelectDate:(BOOL)autoClose
 {
-    [self setAllowClearDate:!autoClose];
+    if (!_allowClearDate)
+        [self setAllowClearDate:!autoClose];
     _autoCloseOnSelectDate = autoClose;
 }
 
-- (void)setDisableFutureSelection:(BOOL)disableFutureSelection
-{
+- (void)setDisableHistorySelection:(BOOL)disableHistorySelection {
+    _disableHistorySelection = disableHistorySelection;
+}
+
+- (void)setDisableFutureSelection:(BOOL)disableFutureSelection {
     _disableFutureSelection = disableFutureSelection;
 }
 
@@ -352,8 +366,7 @@
     }
 }
 
-- (void)slideTransitionViewInDirection:(int)dir
-{
+- (void)slideTransitionViewInDirection:(int)dir {
     dir = dir < 1 ? -1 : 1;
     CGRect origFrame = self.calendarDaysView.frame;
     CGRect outDestFrame = origFrame;
@@ -376,14 +389,12 @@
     }];
 }
 
-- (IBAction)nextMonthPressed:(id)sender
-{
+- (IBAction)nextMonthPressed:(id)sender {
     [self incrementMonth:1];
     [self slideTransitionViewInDirection:1];
 }
 
-- (IBAction)prevMonthPressed:(id)sender
-{
+- (IBAction)prevMonthPressed:(id)sender {
     [self incrementMonth:-1];
     [self slideTransitionViewInDirection:-1];
 }
@@ -404,9 +415,14 @@
 
 - (IBAction)clearPressed:(id)sender {
     if(self.clearBtn.enabled){
-        self.internalDate = nil;
-        [self.currentDay setSelected:NO];
-        self.currentDay = nil;
+        if (_clearAsToday) {
+            [self setDate:[NSDate date]];
+            [self redraw];
+        } else {
+            self.internalDate = nil;
+            [self.currentDay setSelected:NO];
+            self.currentDay = nil;
+        }
     }
 }
 
@@ -426,6 +442,13 @@
     self.clearBtn.frame = CGRectMake(curX, 5, buttonWidth, buttonHeight);
     curX+=buttonWidth+5;
     self.okBtn.frame = CGRectMake(curX, 5, buttonWidth, buttonHeight);
+    if (_clearAsToday) {
+        [self.clearBtn setImage:nil forState:UIControlStateNormal];
+        [self.clearBtn setTitle:NSLocalizedString(@"TODAY", @"Customize this for your language") forState:UIControlStateNormal];
+    } else {
+        [self.clearBtn setImage:[UIImage imageNamed:@"dialog_clear.png"] forState:UIControlStateNormal];
+        [self.clearBtn setTitle:nil forState:UIControlStateNormal];
+    }
 }
 
 - (void) hideClearButton {
@@ -448,7 +471,8 @@
     NSInteger comps = (NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit);
     currentDate = [calendar dateFromComponents:[calendar components:comps fromDate:currentDate]];
     dateToCompare = [calendar dateFromComponents:[calendar components:comps fromDate:dateToCompare]];
-    return ([currentDate compare:dateToCompare] == NSOrderedAscending && _disableFutureSelection);
+    NSComparisonResult compResult = [currentDate compare:dateToCompare];
+    return (compResult == NSOrderedDescending && _disableHistorySelection) || (compResult == NSOrderedAscending && _disableFutureSelection);
 }
 
 - (BOOL)dateInCurrentMonth:(NSDate *)date{

@@ -61,7 +61,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		94BB85A213914F09B601B305 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		998499C5198A4BFF0087CE15 /* calendar_ok-disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar_ok-disabled.png"; sourceTree = "<group>"; };
 		998499C6198A4BFF0087CE15 /* calendar_ok-disabled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar_ok-disabled@2x.png"; sourceTree = "<group>"; };
 		998499C9198A4C080087CE15 /* calendar_clear-disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar_clear-disabled.png"; sourceTree = "<group>"; };
@@ -109,7 +108,9 @@
 		99A0258C198A49FF00764326 /* dialog_ok-disabled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dialog_ok-disabled@2x.png"; sourceTree = "<group>"; };
 		99A0258D198A49FF00764326 /* dialog_ok.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dialog_ok.png; sourceTree = "<group>"; };
 		99A0258E198A49FF00764326 /* dialog_ok@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dialog_ok@2x.png"; sourceTree = "<group>"; };
+		CEDB75581D458A4EC0A2845A /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E9D67DB8572541B2B9D13397 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F64B311BC4AD0A64A7AD3C5E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,7 +146,7 @@
 				99A02551198A40C100764326 /* THCalendarDatePickerExampleTests */,
 				99A0252B198A40C100764326 /* Frameworks */,
 				99A0252A198A40C100764326 /* Products */,
-				94BB85A213914F09B601B305 /* Pods.xcconfig */,
+				F3C613DD50AC42F47569B6B9 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -255,6 +256,15 @@
 				99A0258E198A49FF00764326 /* dialog_ok@2x.png */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		F3C613DD50AC42F47569B6B9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F64B311BC4AD0A64A7AD3C5E /* Pods.debug.xcconfig */,
+				CEDB75581D458A4EC0A2845A /* Pods.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -388,7 +398,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		484ED6B27FEF46D7A9B95F5B /* Check Pods Manifest.lock */ = {
@@ -539,7 +549,7 @@
 		};
 		99A0255C198A40C100764326 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 94BB85A213914F09B601B305 /* Pods.xcconfig */;
+			baseConfigurationReference = F64B311BC4AD0A64A7AD3C5E /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -553,7 +563,7 @@
 		};
 		99A0255D198A40C100764326 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 94BB85A213914F09B601B305 /* Pods.xcconfig */;
+			baseConfigurationReference = CEDB75581D458A4EC0A2845A /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

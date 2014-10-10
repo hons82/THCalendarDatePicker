@@ -54,7 +54,9 @@
     self.datePicker.date = self.curDate;
     self.datePicker.delegate = self;
     [self.datePicker setAllowClearDate:NO];
-    [self.datePicker setAutoCloseOnSelectDate:YES];
+    [self.datePicker setClearAsToday:YES];
+    //[self.datePicker setAutoCloseOnSelectDate:YES];
+    [self.datePicker setDisableHistorySelection:YES];
     [self.datePicker setDisableFutureSelection:NO];
     [self.datePicker setSelectedBackgroundColor:[UIColor colorWithRed:125/255.0 green:208/255.0 blue:0/255.0 alpha:1.0]];
     [self.datePicker setCurrentDateColor:[UIColor colorWithRed:242/255.0 green:121/255.0 blue:53/255.0 alpha:1.0]];

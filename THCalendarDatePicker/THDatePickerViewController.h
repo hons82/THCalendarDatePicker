@@ -29,8 +29,30 @@
 @property (strong, nonatomic) UIColor *currentDateColor;
 
 - (void)setDateHasItemsCallback:(BOOL (^)(NSDate * date))callback;
+
+/*! Enable Clear Date Button
+ * \param allow should show "clear date" button
+ */
 - (void)setAllowClearDate:(BOOL)allow;
+
+/*! Use Clear Date Button as "got to Today"
+ * \param beTodayButton should use "clear date" button as today
+ */
+- (void)setClearAsToday:(BOOL)beTodayButton;
+
+/*! Should the view be closed on selection of a date
+ * \param autoClose should close view on selection
+ */
 - (void)setAutoCloseOnSelectDate:(BOOL)autoClose;
+
+/*! Should it be possible to select dates in history
+ * \param disableHistorySelection should it be possible?
+ */
+- (void)setDisableHistorySelection:(BOOL)disableHistorySelection;
+
+/*! Should it be possible to select dates in future
+ * \param disableFutureSelection should it be possible?
+ */
 - (void)setDisableFutureSelection:(BOOL)disableFutureSelection;
 
 @end
