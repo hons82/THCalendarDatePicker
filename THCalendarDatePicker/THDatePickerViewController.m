@@ -101,12 +101,13 @@
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
     [self configureButtonAppearances];
     if(_allowClearDate) [self showClearButton];
     else [self hideClearButton];
     [self addSwipeGestures];
     self.okBtn.enabled = [self shouldOkBeEnabled];
-    [self.okBtn setImage:[UIImage imageNamed:(_autoCloseOnSelectDate ? @"dialog_clear.png" : @"dialog_ok.png")] forState:UIControlStateNormal];
+    [self.okBtn setImage:[UIImage imageNamed:(_autoCloseOnSelectDate ? @"dialog_clear" : @"dialog_ok")] forState:UIControlStateNormal];
     [self redraw];
 }
 
@@ -219,7 +220,7 @@
             self.currentDay = day;
         }
         
-        NSDateComponents *comps = [_calendar components:NSDayCalendarUnit fromDate:date];
+        NSDateComponents *comps = [_calendar components:NSCalendarUnitDay fromDate:date];
         [day.dateButton setTitle:[NSString stringWithFormat:@"%ld",(long)[comps day]]
                         forState:UIControlStateNormal];
         [self.calendarDaysView addSubview:day];
@@ -234,7 +235,7 @@
     if(!self.weekdaysView.subviews.count) {
         CGSize fullSize = self.weekdaysView.frame.size;
         int curX = (fullSize.width - 7*dayWidth)/2;
-        NSDateComponents * comps = [_calendar components:NSDayCalendarUnit fromDate:[NSDate date]];
+        NSDateComponents * comps = [_calendar components:NSCalendarUnitDay fromDate:[NSDate date]];
         NSCalendar *c = [NSCalendar currentCalendar];
 #ifdef DEBUG
         //[c setFirstWeekday:FIRST_WEEKDAY];
@@ -270,9 +271,9 @@
     if(!self.internalDate) return nil;
     else if(!_date) return self.internalDate;
     else {
-        int ymd = NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit;
+        int ymd = NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay;
         NSDateComponents* internalComps = [_calendar components:ymd fromDate:self.internalDate];
-        int time = NSHourCalendarUnit|NSMinuteCalendarUnit|NSSecondCalendarUnit|NSTimeZoneCalendarUnit;
+        int time = NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond|NSCalendarUnitTimeZone;
         NSDateComponents* origComps = [_calendar components:time fromDate:_date];
         [origComps setDay:[internalComps day]];
         [origComps setMonth:[internalComps month]];
@@ -312,18 +313,18 @@
 }
 
 - (void)setDisplayedMonthFromDate:(NSDate *)date{
-    NSDateComponents* comps = [[NSCalendar currentCalendar] components:NSYearCalendarUnit|NSMonthCalendarUnit fromDate:date];
+    NSDateComponents* comps = [[NSCalendar currentCalendar] components:NSCalendarUnitYear|NSCalendarUnitMonth fromDate:date];
     [self setDisplayedMonth:(int)[comps month] year:(int)[comps year]];
 }
 
 - (void)storeDateInformation{
-    NSDateComponents *comps = [_calendar components:NSWeekdayCalendarUnit | NSDayCalendarUnit fromDate:self.firstOfCurrentMonth];
+    NSDateComponents *comps = [_calendar components:NSCalendarUnitWeekday | NSCalendarUnitDay fromDate:self.firstOfCurrentMonth];
     NSCalendar *c = [NSCalendar currentCalendar];
 #ifdef DEBUG
     //[c setFirstWeekday:FIRST_WEEKDAY];
 #endif
-    NSRange days = [c rangeOfUnit:NSDayCalendarUnit
-                           inUnit:NSMonthCalendarUnit
+    NSRange days = [c rangeOfUnit:NSCalendarUnitDay
+                           inUnit:NSCalendarUnitMonth
                           forDate:self.firstOfCurrentMonth];
     
     int bufferDaysBeginning = (int)([comps weekday]-[c firstWeekday]);
@@ -446,7 +447,7 @@
         [self.clearBtn setImage:nil forState:UIControlStateNormal];
         [self.clearBtn setTitle:NSLocalizedString(@"TODAY", @"Customize this for your language") forState:UIControlStateNormal];
     } else {
-        [self.clearBtn setImage:[UIImage imageNamed:@"dialog_clear.png"] forState:UIControlStateNormal];
+        [self.clearBtn setImage:[UIImage imageNamed:@"dialog_clear"] forState:UIControlStateNormal];
         [self.clearBtn setTitle:nil forState:UIControlStateNormal];
     }
 }
@@ -468,7 +469,7 @@
 {
     NSDate *currentDate = [NSDate date];
     NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSInteger comps = (NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit);
+    NSInteger comps = (NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear);
     currentDate = [calendar dateFromComponents:[calendar components:comps fromDate:currentDate]];
     dateToCompare = [calendar dateFromComponents:[calendar components:comps fromDate:dateToCompare]];
     NSComparisonResult compResult = [currentDate compare:dateToCompare];
@@ -476,7 +477,7 @@
 }
 
 - (BOOL)dateInCurrentMonth:(NSDate *)date{
-    unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
+    unsigned unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth |  NSCalendarUnitDay;
     NSDateComponents* comp1 = [_calendar components:unitFlags fromDate:self.firstOfCurrentMonth];
     NSDateComponents* comp2 = [_calendar components:unitFlags fromDate:date];
     return [comp1 year]  == [comp2 year] && [comp1 month] == [comp2 month];
@@ -486,7 +487,7 @@
     if( datDate == nil ) {
         datDate = [NSDate date];
     }
-    NSDateComponents* comps = [[NSCalendar currentCalendar] components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:datDate];
+    NSDateComponents* comps = [[NSCalendar currentCalendar] components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:datDate];
     return [[NSCalendar currentCalendar] dateFromComponents:comps];
 }
 
