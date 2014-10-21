@@ -14,9 +14,16 @@
 #import "THDateDay.h"
 
 @class THDatePickerViewController;
+
 @protocol THDatePickerDelegate <NSObject>
+
 -(void)datePickerDonePressed:(THDatePickerViewController *)datePicker;
 -(void)datePickerCancelPressed:(THDatePickerViewController *)datePicker;
+
+@optional
+
+-(void)datePicker:(THDatePickerViewController *)datePicker selectedDate:(NSDate *)selectedDate;
+
 @end
 
 @interface THDatePickerViewController : UIViewController <THDateDayDelegate>

@@ -12,24 +12,27 @@
 @class THDateDay;
 
 @protocol THDateDayDelegate <NSObject>
+
 -(void)dateDayTapped:(THDateDay *)dateDay;
+
 @end
 
 @interface THDateDay : UIView
 
 @property (weak, nonatomic) id<THDateDayDelegate> delegate;
 
+@property (weak, nonatomic) IBOutlet UIImageView *hasItemsIndicator;
 @property (weak, nonatomic) IBOutlet UIButton *dateButton;
+
 @property (strong, nonatomic) NSDate *date;
 @property (strong, nonatomic) UIColor *selectedBackgroundColor;
 @property (strong, nonatomic) UIColor *currentDateColor;
 
-
--(void)setLightText:(BOOL)light;
 - (IBAction)dateButtonTapped:(id)sender;
--(void)setSelected:(BOOL)selected;
--(void)setEnabled:(BOOL)enabled;
--(void)indicateDayHasItems:(BOOL)indicate;
-@property (weak, nonatomic) IBOutlet UIImageView *hasItemsIndicator;
+
+- (void)setLightText:(BOOL)light;
+- (void)setSelected:(BOOL)selected;
+- (void)setEnabled:(BOOL)enabled;
+- (void)indicateDayHasItems:(BOOL)indicate;
 
 @end
