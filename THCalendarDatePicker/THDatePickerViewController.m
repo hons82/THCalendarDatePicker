@@ -97,7 +97,12 @@
 
 #pragma mark - View Management
 
+<<<<<<< HEAD
 - (void)viewDidLoad {
+=======
+- (void)viewDidLoad
+{
+>>>>>>> FETCH_HEAD
     [super viewDidLoad];
     [self configureButtonAppearances];
     if(_allowClearDate) [self showClearButton];
