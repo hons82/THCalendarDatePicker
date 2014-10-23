@@ -56,6 +56,7 @@
     [self.datePicker setDisableFutureSelection:NO];
     [self.datePicker setSelectedBackgroundColor:[UIColor colorWithRed:125/255.0 green:208/255.0 blue:0/255.0 alpha:1.0]];
     [self.datePicker setCurrentDateColor:[UIColor colorWithRed:242/255.0 green:121/255.0 blue:53/255.0 alpha:1.0]];
+    [self.datePicker setCurrentDateColorSelected:[UIColor yellowColor]];
     
     [self.datePicker setDateHasItemsCallback:^BOOL(NSDate *date) {
         int tmp = (arc4random() % 30)+1;

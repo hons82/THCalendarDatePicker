@@ -34,6 +34,7 @@
 @property (weak, nonatomic) id<THDatePickerDelegate> delegate;
 @property (strong, nonatomic) UIColor *selectedBackgroundColor;
 @property (strong, nonatomic) UIColor *currentDateColor;
+@property (strong, nonatomic) UIColor *currentDateColorSelected;
 
 - (void)setDateHasItemsCallback:(BOOL (^)(NSDate * date))callback;
 

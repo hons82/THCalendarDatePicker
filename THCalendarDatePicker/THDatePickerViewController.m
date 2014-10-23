@@ -52,6 +52,7 @@
 @synthesize date = _date;
 @synthesize selectedBackgroundColor = _selectedBackgroundColor;
 @synthesize currentDateColor = _currentDateColor;
+@synthesize currentDateColorSelected = _currentDateColorSelected;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -97,12 +98,7 @@
 
 #pragma mark - View Management
 
-<<<<<<< HEAD
 - (void)viewDidLoad {
-=======
-- (void)viewDidLoad
-{
->>>>>>> FETCH_HEAD
     [super viewDidLoad];
     [self configureButtonAppearances];
     if(_allowClearDate) [self showClearButton];
@@ -208,6 +204,8 @@
         THDateDay * day = [[[NSBundle mainBundle] loadNibNamed:@"THDateDay" owner:self options:nil] objectAtIndex:0];
         if (self.currentDateColor)
             [day setCurrentDateColor:self.currentDateColor];
+        if (self.currentDateColorSelected)
+            [day setCurrentDateColorSelected:self.currentDateColorSelected];
         if (self.selectedBackgroundColor)
             [day setSelectedBackgroundColor:self.selectedBackgroundColor];
         [day setLightText:![self dateInCurrentMonth:date]];

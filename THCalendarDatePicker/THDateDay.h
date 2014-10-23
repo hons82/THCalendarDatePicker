@@ -27,6 +27,7 @@
 @property (strong, nonatomic) NSDate *date;
 @property (strong, nonatomic) UIColor *selectedBackgroundColor;
 @property (strong, nonatomic) UIColor *currentDateColor;
+@property (strong, nonatomic) UIColor *currentDateColorSelected;
 
 - (IBAction)dateButtonTapped:(id)sender;
 
