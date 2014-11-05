@@ -39,6 +39,7 @@
         [self.dateButton setTitleColor:color forState:UIControlStateNormal];
         self.hasItemsIndicator.image = [UIImage imageNamed:@"calendar_littledot"];
     }
+    [self setCurrentColors];
 }
 
 - (IBAction)dateButtonTapped:(id)sender {
@@ -56,6 +57,10 @@
         [self.dateButton setSelected:NO];
         [self.dateButton setTitleColor:[UIColor colorWithWhite:.3 alpha:1] forState:UIControlStateNormal];
     }
+    [self setCurrentColors];
+}
+
+- (void)setCurrentColors {
     if (self.currentDateColor && [self isToday]) {
         [self.dateButton setTitleColor:self.currentDateColor forState:UIControlStateNormal];
     }

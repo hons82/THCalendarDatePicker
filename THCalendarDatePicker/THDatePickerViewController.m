@@ -202,29 +202,28 @@
         }
         
         THDateDay * day = [[[NSBundle mainBundle] loadNibNamed:@"THDateDay" owner:self options:nil] objectAtIndex:0];
+        day.frame = CGRectMake(curX, curY, cellWidth, cellHeight);
+        day.delegate = self;
+        day.date = [date dateByAddingTimeInterval:0];
         if (self.currentDateColor)
             [day setCurrentDateColor:self.currentDateColor];
         if (self.currentDateColorSelected)
             [day setCurrentDateColorSelected:self.currentDateColorSelected];
         if (self.selectedBackgroundColor)
             [day setSelectedBackgroundColor:self.selectedBackgroundColor];
+    
         [day setLightText:![self dateInCurrentMonth:date]];
         [day setEnabled:![self dateInFutureAndShouldBeDisabled:date]];
-        day.frame = CGRectMake(curX, curY, cellWidth, cellHeight);
-        day.delegate = self;
-        day.date = [date dateByAddingTimeInterval:0];
         [day indicateDayHasItems:(_dateHasItemsCallback && _dateHasItemsCallback(date))];
-        
-        if(_internalDate && ![date timeIntervalSinceDate:_internalDate]) {
-            [day setSelected:YES];
-            self.currentDay = day;
-        }
         
         NSDateComponents *comps = [_calendar components:NSCalendarUnitDay fromDate:date];
         [day.dateButton setTitle:[NSString stringWithFormat:@"%ld",(long)[comps day]]
                         forState:UIControlStateNormal];
         [self.calendarDaysView addSubview:day];
-        
+        if (_internalDate && ![date timeIntervalSinceDate:_internalDate]) {
+            self.currentDay = day;
+            [day setSelected:YES];
+        }
         // @end
         date = [_calendar dateByAddingComponents:offsetComponents toDate:date options:0];
         curX += cellWidth;
@@ -237,9 +236,6 @@
         int curX = (fullSize.width - 7*dayWidth)/2;
         NSDateComponents * comps = [_calendar components:NSCalendarUnitDay fromDate:[NSDate date]];
         NSCalendar *c = [NSCalendar currentCalendar];
-#ifdef DEBUG
-        //[c setFirstWeekday:FIRST_WEEKDAY];
-#endif
         [comps setDay:[c firstWeekday]-1];
         NSDateFormatter *df = [[NSDateFormatter alloc] init];
         NSDateComponents *offsetComponents = [[NSDateComponents alloc] init];
