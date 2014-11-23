@@ -282,7 +282,7 @@
     if (_autoCloseOnSelectDate)
         return YES;
     float diff = [self.internalDate timeIntervalSinceDate:_dateNoTime];
-    return (self.internalDate && _dateNoTime && diff != 0)
+    return (self.internalDate && _dateNoTime && diff >= 0)
     || (self.internalDate && !_dateNoTime)
     || (!self.internalDate && _dateNoTime);
 }
