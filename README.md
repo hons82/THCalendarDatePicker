@@ -22,7 +22,7 @@ Install with [CocoaPods](http://cocoapods.org) by adding the following to your P
 
 ``` ruby
 platform :ios, '6.1'
-pod 'THCalendarDatePicker', '~> 0.2.3'
+pod 'THCalendarDatePicker', '~> 0.2.4'
 ```
 
 **Note**: We follow http://semver.org for versioning the public API.
@@ -30,30 +30,6 @@ pod 'THCalendarDatePicker', '~> 0.2.3'
 ### Manually
 
 Or copy the `THCalendarDatePicker/` directory from this repo into your project.
-
-# Features
-
-### V0.2.X
-
-- iOS8 deprecation warnings removed
-- Fixed issue [#12](https://github.com/hons82/THCalendarDatePicker/issues/12) 
-- Fixed issue [#11](https://github.com/hons82/THCalendarDatePicker/issues/11) 
-- Fixed issue [#7](https://github.com/hons82/THCalendarDatePicker/issues/7) 
-- Fixed issue [#5](https://github.com/hons82/THCalendarDatePicker/issues/5) 
-
-### V0.1.X
-
-- Bugfix (Now it's taking the default starting day for the locale; but not the custom setting "Week starts on")
-- Configurable if it should show future entries 
-- Select a Date from Calendar
-- Awareness of the setting 4 the first weekday
-- Configurable Colors
-- Configurable if it should be allowed to clear the selection
-- Configurable if it should close on selection or not
-
-### Future
-
-- reduce size of control if "hasItemCallback" is not used/disabled
 
 # Usage
 
@@ -87,9 +63,38 @@ This is a sample initialization taken from the ExampleProject.
 
 ```
 
+# Features
+
+### V0.2.X
+
+- Pull request [#13](https://github.com/hons82/THCalendarDatePicker/pull/13)
+- iOS8 deprecation warnings removed
+- Fixed issue [#12](https://github.com/hons82/THCalendarDatePicker/issues/12) 
+- Fixed issue [#11](https://github.com/hons82/THCalendarDatePicker/issues/11) 
+- Fixed issue [#7](https://github.com/hons82/THCalendarDatePicker/issues/7) 
+- Fixed issue [#5](https://github.com/hons82/THCalendarDatePicker/issues/5) 
+
+### V0.1.X
+
+- Bugfix (Now it's taking the default starting day for the locale; but not the custom setting "Week starts on")
+- Configurable if it should show future entries 
+- Select a Date from Calendar
+- Awareness of the setting 4 the first weekday
+- Configurable Colors
+- Configurable if it should be allowed to clear the selection
+- Configurable if it should close on selection or not
+
+### Future
+
+- reduce size of control if "hasItemCallback" is not used/disabled
+
 #Contributions
 
 ...are really welcome. If you have an idea just fork the library change it and if its useful for others and not affecting the functionality of the library for other users I'll insert it
+
+###Contributors
+
+- [Mikko Koppanen](https://github.com/mkoppanen)
 
 # License
 
