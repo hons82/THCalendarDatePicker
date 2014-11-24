@@ -282,7 +282,7 @@
     if (_autoCloseOnSelectDate)
         return YES;
     float diff = [self.internalDate timeIntervalSinceDate:_dateNoTime];
-    return (self.internalDate && _dateNoTime && diff != 0)
+    return (self.internalDate && _dateNoTime && diff >= 0)
     || (self.internalDate && !_dateNoTime)
     || (!self.internalDate && _dateNoTime);
 }
@@ -464,7 +464,7 @@
 #pragma mark - Date Utils
 
 - (BOOL)dateInFutureAndShouldBeDisabled:(NSDate *)dateToCompare {
-    NSDate *currentDate = [NSDate date];
+    NSDate *currentDate = [self internalDate];
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSInteger comps = (NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear);
     currentDate = [calendar dateFromComponents:[calendar components:comps fromDate:currentDate]];
