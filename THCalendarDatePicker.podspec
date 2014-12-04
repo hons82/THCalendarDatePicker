@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         		= "THCalendarDatePicker"
-  s.version      		= "0.2.4"
+  s.version      		= "0.2.5"
   s.summary      		= "A DatePicker based on a custom calendar view"
   s.homepage     		= "https://github.com/hons82/THCalendarDatePicker"
   s.license      		= { :type => 'MIT', :file => 'LICENSE.md' }
