@@ -464,7 +464,7 @@
 #pragma mark - Date Utils
 
 - (BOOL)dateInFutureAndShouldBeDisabled:(NSDate *)dateToCompare {
-    NSDate *currentDate = [self internalDate];
+    NSDate *currentDate = [self dateWithOutTime:[NSDate date]];
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSInteger comps = (NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear);
     currentDate = [calendar dateFromComponents:[calendar components:comps fromDate:currentDate]];
@@ -481,7 +481,7 @@
 }
 
 - (NSDate *)dateWithOutTime:(NSDate *)datDate {
-    if( datDate == nil ) {
+    if(!datDate) {
         datDate = [NSDate date];
     }
     NSDateComponents* comps = [[NSCalendar currentCalendar] components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:datDate];
