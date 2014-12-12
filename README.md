@@ -22,7 +22,7 @@ Install with [CocoaPods](http://cocoapods.org) by adding the following to your P
 
 ``` ruby
 platform :ios, '6.1'
-pod 'THCalendarDatePicker', '~> 0.2.6'
+pod 'THCalendarDatePicker', '~> 0.2.8'
 ```
 
 **Note**: We follow http://semver.org for versioning the public API.
@@ -42,8 +42,11 @@ This is a sample initialization taken from the ExampleProject.
     self.datePicker.date = self.curDate;
     self.datePicker.delegate = self;
     [self.datePicker setAllowClearDate:NO];
+    [self.datePicker setClearAsToday:YES];
     [self.datePicker setAutoCloseOnSelectDate:YES];
-    [self.datePicker setDisableFutureSelection:YES];
+    [self.datePicker setAllowSelectionOfSelectedDate:YES];
+    [self.datePicker setDisableHistorySelection:YES];
+    [self.datePicker setDisableFutureSelection:NO];
     [self.datePicker setSelectedBackgroundColor:[UIColor colorWithRed:125/255.0 green:208/255.0 blue:0/255.0 alpha:1.0]];
     [self.datePicker setCurrentDateColor:[UIColor colorWithRed:242/255.0 green:121/255.0 blue:53/255.0 alpha:1.0]];
 

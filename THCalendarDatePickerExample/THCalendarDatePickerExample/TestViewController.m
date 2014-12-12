@@ -51,8 +51,8 @@
     self.datePicker.delegate = self;
     [self.datePicker setAllowClearDate:NO];
     [self.datePicker setClearAsToday:YES];
-    //[self.datePicker setAutoCloseOnSelectDate:YES];
-    //[self.datePicker setAllowSelectionOfSelectedDate:YES];
+    [self.datePicker setAutoCloseOnSelectDate:YES];
+    [self.datePicker setAllowSelectionOfSelectedDate:YES];
     [self.datePicker setDisableHistorySelection:YES];
     [self.datePicker setDisableFutureSelection:NO];
     [self.datePicker setSelectedBackgroundColor:[UIColor colorWithRed:125/255.0 green:208/255.0 blue:0/255.0 alpha:1.0]];
@@ -66,7 +66,7 @@
     //[self.datePicker slideUpInView:self.view withModalColor:[UIColor lightGrayColor]];
     [self presentSemiViewController:self.datePicker withOptions:@{
                                                                   KNSemiModalOptionKeys.pushParentBack    : @(NO),
-                                                                  KNSemiModalOptionKeys.animationDuration : @(2.0),
+                                                                  KNSemiModalOptionKeys.animationDuration : @(1.0),
                                                                   KNSemiModalOptionKeys.shadowOpacity     : @(0.3),
                                                                   }];
 }

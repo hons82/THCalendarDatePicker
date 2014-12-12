@@ -351,7 +351,7 @@
 #pragma mark - User Events
 
 - (void)dateDayTapped:(THDateDay *)dateDay {
-    if (!_internalDate || [_internalDate timeIntervalSinceDate:dateDay.date]) { // new date selected
+    if (!_internalDate || [_internalDate timeIntervalSinceDate:dateDay.date] || _allowSelectionOfSelectedDate) { // new date selected
         [self.currentDay setSelected:NO];
         [dateDay setSelected:YES];
         BOOL dateInDifferentMonth = ![self dateInCurrentMonth:dateDay.date];
