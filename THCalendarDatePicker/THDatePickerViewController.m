@@ -20,6 +20,7 @@
     NSDate * _dateNoTime;
     NSCalendar * _calendar;
     BOOL _allowClearDate;
+    BOOL _allowSelectionOfSelectedDate;
     BOOL _clearAsToday;
     BOOL _autoCloseOnSelectDate;
     BOOL _disableHistorySelection;
@@ -60,6 +61,7 @@
         // Custom initialization
         _calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
         _allowClearDate = NO;
+        _allowSelectionOfSelectedDate = NO;
         _clearAsToday = NO;
         _disableFutureSelection = NO;
         _disableHistorySelection = NO;
@@ -73,6 +75,10 @@
 
 - (void)setAllowClearDate:(BOOL)allow {
     _allowClearDate = allow;
+}
+
+- (void)setAllowSelectionOfSelectedDate:(BOOL)allow {
+    _allowSelectionOfSelectedDate = allow;
 }
 
 - (void)setClearAsToday:(BOOL)beTodayButton {
@@ -211,7 +217,7 @@
             [day setCurrentDateColorSelected:self.currentDateColorSelected];
         if (self.selectedBackgroundColor)
             [day setSelectedBackgroundColor:self.selectedBackgroundColor];
-    
+        
         [day setLightText:![self dateInCurrentMonth:date]];
         [day setEnabled:![self dateInFutureAndShouldBeDisabled:date]];
         [day indicateDayHasItems:(_dateHasItemsCallback && _dateHasItemsCallback(date))];
@@ -281,8 +287,7 @@
 - (BOOL)shouldOkBeEnabled {
     if (_autoCloseOnSelectDate)
         return YES;
-    float diff = [self.internalDate timeIntervalSinceDate:_dateNoTime];
-    return (self.internalDate && _dateNoTime && diff != 0)
+    return (self.internalDate && _dateNoTime && (_allowSelectionOfSelectedDate || [self.internalDate timeIntervalSinceDate:_dateNoTime]))
     || (self.internalDate && !_dateNoTime)
     || (!self.internalDate && _dateNoTime);
 }
@@ -345,22 +350,21 @@
 
 #pragma mark - User Events
 
-- (void)dateDayTapped:(THDateDay *)dateDay{
-    if (![self dateInCurrentMonth:dateDay.date]) {
-        double direction = [dateDay.date timeIntervalSinceDate:self.firstOfCurrentMonth];
-        self.internalDate = dateDay.date;
-        [self slideTransitionViewInDirection:direction];
-    } else if (!_internalDate || [_internalDate timeIntervalSinceDate:dateDay.date]) { // new date selected
+- (void)dateDayTapped:(THDateDay *)dateDay {
+    if (!_internalDate || [_internalDate timeIntervalSinceDate:dateDay.date]) { // new date selected
         [self.currentDay setSelected:NO];
         [dateDay setSelected:YES];
-        self.internalDate = dateDay.date;
+        BOOL dateInDifferentMonth = ![self dateInCurrentMonth:dateDay.date];
+        [self setInternalDate:dateDay.date];
+        if (dateInDifferentMonth) {
+            [self slideTransitionViewInDirection:[dateDay.date timeIntervalSinceDate:self.firstOfCurrentMonth]];
+        }
         self.currentDay = dateDay;
+        if ([self.delegate respondsToSelector:@selector(datePicker:selectedDate:)]) {
+            [self.delegate datePicker:self selectedDate:dateDay.date];
+        }
         if (_autoCloseOnSelectDate) {
             [self.delegate datePickerDonePressed:self];
-        } else {
-            if ([self.delegate respondsToSelector:@selector(datePicker:selectedDate:)]) {
-                [self.delegate datePicker:self selectedDate:self.internalDate];
-            }
         }
     }
 }

@@ -67,6 +67,8 @@ This is a sample initialization taken from the ExampleProject.
 
 ### V0.2.X
 
+- Fixed issue [#18](https://github.com/hons82/THCalendarDatePicker/issues/18) 
+- Fixed issue [#17](https://github.com/hons82/THCalendarDatePicker/issues/17) 
 - Fixed issue [#16](https://github.com/hons82/THCalendarDatePicker/issues/16) 
 - Fixed issue [#15](https://github.com/hons82/THCalendarDatePicker/issues/15) 
 - Pull request [#13](https://github.com/hons82/THCalendarDatePicker/pull/13)
@@ -97,6 +99,7 @@ This is a sample initialization taken from the ExampleProject.
 ###Contributors
 
 - [Mikko Koppanen](https://github.com/mkoppanen)
+- [Kirill Pahnev](https://github.com/pahnev)
 
 # License
 

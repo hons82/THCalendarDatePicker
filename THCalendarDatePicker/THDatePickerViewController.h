@@ -43,6 +43,11 @@
  */
 - (void)setAllowClearDate:(BOOL)allow;
 
+/*! Enable Ok Button when selected Date has already been selected
+ * \param allow should show ok button
+ */
+- (void)setAllowSelectionOfSelectedDate:(BOOL)allow;
+
 /*! Use Clear Date Button as "got to Today"
  * \param beTodayButton should use "clear date" button as today
  */
