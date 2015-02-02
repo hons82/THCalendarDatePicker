@@ -59,7 +59,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        _calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+        _calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
         _allowClearDate = NO;
         _allowSelectionOfSelectedDate = NO;
         _clearAsToday = NO;
