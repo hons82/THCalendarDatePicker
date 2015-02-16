@@ -54,6 +54,7 @@
 @synthesize selectedBackgroundColor = _selectedBackgroundColor;
 @synthesize currentDateColor = _currentDateColor;
 @synthesize currentDateColorSelected = _currentDateColorSelected;
+@synthesize autoCloseCancelDelay = _autoCloseCancelDelay;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -65,6 +66,7 @@
         _clearAsToday = NO;
         _disableFutureSelection = NO;
         _disableHistorySelection = NO;
+        _autoCloseCancelDelay = 1.0;
     }
     return self;
 }
@@ -106,9 +108,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(semiModalDidHide:)
+                                                 name:kSemiModalDidHideNotification
+                                               object:nil];
     [self configureButtonAppearances];
-    if(_allowClearDate) [self showClearButton];
-    else [self hideClearButton];
+    if(_allowClearDate)
+        [self showClearButton];
+    else
+        [self hideClearButton];
     [self addSwipeGestures];
     self.okBtn.enabled = [self shouldOkBeEnabled];
     [self.okBtn setImage:[UIImage imageNamed:(_autoCloseOnSelectDate ? @"dialog_clear" : @"dialog_ok")] forState:UIControlStateNormal];
@@ -155,7 +163,7 @@
     [self.prevBtn setBackgroundImage:img forState:UIControlStateHighlighted];
 }
 
-- (UIImage *) imageOfColor:(UIColor *)color {
+- (UIImage *)imageOfColor:(UIColor *)color {
     CGRect rect = CGRectMake(0, 0, 1, 1);
     UIGraphicsBeginImageContext(rect.size);
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -168,6 +176,14 @@
 
 - (void)setDateHasItemsCallback:(BOOL (^)(NSDate * date))callback {
     _dateHasItemsCallback = callback;
+}
+
+#pragma mark - Callbacks
+
+- (void)semiModalDidHide:(NSNotification *)notification {
+    if ([self.delegate respondsToSelector:@selector(datePickerDidHide:)]) {
+        [self.delegate datePickerDidHide:self];
+    }
 }
 
 #pragma mark - Redraw Dates
@@ -404,10 +420,6 @@
 
 - (IBAction)okPressed:(id)sender {
     if(self.okBtn.enabled) {
-        if (_autoCloseOnSelectDate) {
-            [self setDate:[NSDate date]];
-            [self redraw];
-        }
         [self.delegate datePickerDonePressed:self];
     }
 }
@@ -417,6 +429,13 @@
         if (_clearAsToday) {
             [self setDate:[NSDate date]];
             [self redraw];
+            if (_autoCloseOnSelectDate) {
+                [self.okBtn setUserInteractionEnabled:NO];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.autoCloseCancelDelay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self.delegate datePickerDonePressed:self];
+                    [self.okBtn setUserInteractionEnabled:YES];
+                });
+            }
         } else {
             self.internalDate = nil;
             [self.currentDay setSelected:NO];
@@ -492,6 +511,10 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

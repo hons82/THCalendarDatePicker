@@ -23,6 +23,7 @@
 @optional
 
 -(void)datePicker:(THDatePickerViewController *)datePicker selectedDate:(NSDate *)selectedDate;
+-(void)datePickerDidHide:(THDatePickerViewController *)datePicker;
 
 @end
 
@@ -35,6 +36,7 @@
 @property (strong, nonatomic) UIColor *selectedBackgroundColor;
 @property (strong, nonatomic) UIColor *currentDateColor;
 @property (strong, nonatomic) UIColor *currentDateColorSelected;
+@property (nonatomic) float autoCloseCancelDelay;
 
 - (void)setDateHasItemsCallback:(BOOL (^)(NSDate * date))callback;
 

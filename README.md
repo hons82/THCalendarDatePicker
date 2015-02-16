@@ -22,7 +22,7 @@ Install with [CocoaPods](http://cocoapods.org) by adding the following to your P
 
 ``` ruby
 platform :ios, '6.1'
-pod 'THCalendarDatePicker', '~> 0.2.8'
+pod 'THCalendarDatePicker', '~> 0.2.9'
 ```
 
 **Note**: We follow http://semver.org for versioning the public API.
@@ -70,16 +70,12 @@ This is a sample initialization taken from the ExampleProject.
 
 ### V0.2.X
 
-- Fixed issue [#18](https://github.com/hons82/THCalendarDatePicker/issues/18) 
-- Fixed issue [#17](https://github.com/hons82/THCalendarDatePicker/issues/17) 
-- Fixed issue [#16](https://github.com/hons82/THCalendarDatePicker/issues/16) 
-- Fixed issue [#15](https://github.com/hons82/THCalendarDatePicker/issues/15) 
+- Fixed issue [#22](https://github.com/hons82/THCalendarDatePicker/issues/22) 
+- Pull request [#21](https://github.com/hons82/THCalendarDatePicker/pull/21), [#20](https://github.com/hons82/THCalendarDatePicker/pull/20) 
+- Fixed issues [#18](https://github.com/hons82/THCalendarDatePicker/issues/18), [#17](https://github.com/hons82/THCalendarDatePicker/issues/17), [#16](https://github.com/hons82/THCalendarDatePicker/issues/16), [#15](https://github.com/hons82/THCalendarDatePicker/issues/15) 
 - Pull request [#13](https://github.com/hons82/THCalendarDatePicker/pull/13)
 - iOS8 deprecation warnings removed
-- Fixed issue [#12](https://github.com/hons82/THCalendarDatePicker/issues/12) 
-- Fixed issue [#11](https://github.com/hons82/THCalendarDatePicker/issues/11) 
-- Fixed issue [#7](https://github.com/hons82/THCalendarDatePicker/issues/7) 
-- Fixed issue [#5](https://github.com/hons82/THCalendarDatePicker/issues/5) 
+- Fixed issues [#12](https://github.com/hons82/THCalendarDatePicker/issues/12), [#11](https://github.com/hons82/THCalendarDatePicker/issues/11), [#7](https://github.com/hons82/THCalendarDatePicker/issues/7), [#5](https://github.com/hons82/THCalendarDatePicker/issues/5) 
 
 ### V0.1.X
 
