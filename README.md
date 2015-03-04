@@ -22,7 +22,7 @@ Install with [CocoaPods](http://cocoapods.org) by adding the following to your P
 
 ``` ruby
 platform :ios, '6.1'
-pod 'THCalendarDatePicker', '~> 0.2.9'
+pod 'THCalendarDatePicker', '~> 1.0.0'
 ```
 
 **Note**: We follow http://semver.org for versioning the public API.
@@ -67,6 +67,10 @@ This is a sample initialization taken from the ExampleProject.
 ```
 
 # Features
+
+### V1.0.X
+
+- Fixed issue [#23](https://github.com/hons82/THCalendarDatePicker/issues/23) 
 
 ### V0.2.X
 

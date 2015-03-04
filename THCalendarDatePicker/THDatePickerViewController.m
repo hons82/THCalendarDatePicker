@@ -252,7 +252,7 @@
     }
 }
 
-- (void)redrawWeekdays:(int)dayWidth{
+- (void)redrawWeekdays:(int)dayWidth {
     if(!self.weekdaysView.subviews.count) {
         CGSize fullSize = self.weekdaysView.frame.size;
         int curX = (fullSize.width - 7*dayWidth)/2;
@@ -314,8 +314,7 @@
     self.okBtn.enabled = [self shouldOkBeEnabled];
     if(internalDate){
         [self setDisplayedMonthFromDate:internalDate];
-    }
-    else {
+    } else {
         [self.currentDay setSelected:NO];
         self.currentDay =  nil;
     }
@@ -372,10 +371,10 @@
         [dateDay setSelected:YES];
         BOOL dateInDifferentMonth = ![self dateInCurrentMonth:dateDay.date];
         [self setInternalDate:dateDay.date];
+        [self setCurrentDay:dateDay];
         if (dateInDifferentMonth) {
             [self slideTransitionViewInDirection:[dateDay.date timeIntervalSinceDate:self.firstOfCurrentMonth]];
         }
-        self.currentDay = dateDay;
         if ([self.delegate respondsToSelector:@selector(datePicker:selectedDate:)]) {
             [self.delegate datePicker:self selectedDate:dateDay.date];
         }

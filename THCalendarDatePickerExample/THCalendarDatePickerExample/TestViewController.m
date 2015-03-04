@@ -51,7 +51,7 @@
     self.datePicker.delegate = self;
     [self.datePicker setAllowClearDate:NO];
     [self.datePicker setClearAsToday:YES];
-    [self.datePicker setAutoCloseOnSelectDate:YES];
+    [self.datePicker setAutoCloseOnSelectDate:NO];
     [self.datePicker setAllowSelectionOfSelectedDate:YES];
     [self.datePicker setDisableHistorySelection:YES];
     [self.datePicker setDisableFutureSelection:NO];
