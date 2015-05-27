@@ -32,12 +32,12 @@
     if(light) {
         UIColor * color = [UIColor colorWithWhite:.84 alpha:1];
         [self.dateButton setTitleColor:color forState:UIControlStateNormal];
-        self.hasItemsIndicator.image = [UIImage imageNamed:@"calendar_littledot-disabled"];
+        self.hasItemsIndicator.image = [UIImage imageNamed:@"calendar_littledot-disabled" inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil];
     }
     else {
         UIColor * color = [UIColor colorWithWhite:.3 alpha:1];
         [self.dateButton setTitleColor:color forState:UIControlStateNormal];
-        self.hasItemsIndicator.image = [UIImage imageNamed:@"calendar_littledot"];
+        self.hasItemsIndicator.image = [UIImage imageNamed:@"calendar_littledot" inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil];
     }
     [self setCurrentColors];
 }

@@ -72,7 +72,7 @@
 }
 
 +(THDatePickerViewController *)datePicker {
-    return [[THDatePickerViewController alloc] initWithNibName:@"THDatePickerViewController" bundle:nil];
+    return [[THDatePickerViewController alloc] initWithNibName:@"THDatePickerViewController" bundle:[NSBundle bundleForClass:self.class]];
 }
 
 - (void)setAllowClearDate:(BOOL)allow {
@@ -119,7 +119,7 @@
         [self hideClearButton];
     [self addSwipeGestures];
     self.okBtn.enabled = [self shouldOkBeEnabled];
-    [self.okBtn setImage:[UIImage imageNamed:(_autoCloseOnSelectDate ? @"dialog_clear" : @"dialog_ok")] forState:UIControlStateNormal];
+    [self.okBtn setImage:[UIImage imageNamed:(_autoCloseOnSelectDate ? @"dialog_clear" : @"dialog_ok") inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
     [self redraw];
 }
 
@@ -223,7 +223,7 @@
             curY += cellHeight;
         }
         
-        THDateDay * day = [[[NSBundle mainBundle] loadNibNamed:@"THDateDay" owner:self options:nil] objectAtIndex:0];
+        THDateDay * day = [[[NSBundle bundleForClass:self.class] loadNibNamed:@"THDateDay" owner:self options:nil] objectAtIndex:0];
         day.frame = CGRectMake(curX, curY, cellWidth, cellHeight);
         day.delegate = self;
         day.date = [date dateByAddingTimeInterval:0];
@@ -463,7 +463,7 @@
         [self.clearBtn setImage:nil forState:UIControlStateNormal];
         [self.clearBtn setTitle:NSLocalizedString(@"TODAY", @"Customize this for your language") forState:UIControlStateNormal];
     } else {
-        [self.clearBtn setImage:[UIImage imageNamed:@"dialog_clear"] forState:UIControlStateNormal];
+        [self.clearBtn setImage:[UIImage imageNamed:@"dialog_clear" inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
         [self.clearBtn setTitle:nil forState:UIControlStateNormal];
     }
 }

@@ -15,14 +15,6 @@
 
 @implementation TestViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.curDate = [NSDate date];
@@ -32,16 +24,7 @@
 }
 
 -(void)refreshTitle {
-    if(self.curDate) {
-        [self.dateButton setTitle:[_formatter stringFromDate:_curDate] forState:UIControlStateNormal];
-    } else {
-        [self.dateButton setTitle:@"No date selected" forState:UIControlStateNormal];
-    }
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self.dateButton setTitle:(self.curDate ? [_formatter stringFromDate:_curDate] : @"No date selected") forState:UIControlStateNormal];
 }
 
 - (IBAction)touchedButton:(id)sender {

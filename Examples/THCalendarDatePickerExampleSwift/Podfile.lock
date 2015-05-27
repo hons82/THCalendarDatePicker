@@ -1,0 +1,13 @@
+PODS:
+  - KNSemiModalViewController (0.3)
+  - THCalendarDatePicker (1.0.0):
+    - KNSemiModalViewController (~> 0.3)
+
+DEPENDENCIES:
+  - THCalendarDatePicker
+
+SPEC CHECKSUMS:
+  KNSemiModalViewController: 8c0056377714b5170c52c65977d540200405411f
+  THCalendarDatePicker: c93061e53a95196f8c54a5fc83f386f3fa6fb78d
+
+COCOAPODS: 0.37.1
