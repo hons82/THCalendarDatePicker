@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         		= "THCalendarDatePicker"
-  s.version      		= "1.1.0"
+  s.version      		= "1.1.1"
   s.summary      		= "A DatePicker based on a custom calendar view"
   s.homepage     		= "https://github.com/hons82/THCalendarDatePicker"
   s.license      		= { :type => 'MIT', :file => 'LICENSE.md' }
@@ -12,4 +12,11 @@ Pod::Spec.new do |s|
   s.resources 	 		= ["THCalendarDatePicker/*.xib", "THCalendarDatePicker/Images.xcassets"]
   s.frameworks   	 	=  'QuartzCore'
   s.dependency 			'KNSemiModalViewController', '~> 0.3'
+  s.prefix_header_contents = <<-EOS
+	  #define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
+	  #define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
+	  #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+	  #define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
+	  #define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
+    EOS
 end
