@@ -1,9 +1,11 @@
 THCalendarDatePicker
 ===
 
+[![Build Status](https://travis-ci.org/hons82/THCalendarDatePicker.png)](https://travis-ci.org/hons82/THCalendarDatePicker)
 [![Pod Version](http://img.shields.io/cocoapods/v/THCalendarDatePicker.svg?style=flat)](http://cocoadocs.org/docsets/THCalendarDatePicker/)
 [![Pod Platform](http://img.shields.io/cocoapods/p/THCalendarDatePicker.svg?style=flat)](http://cocoadocs.org/docsets/THCalendarDatePicker/)
 [![Pod License](http://img.shields.io/cocoapods/l/THCalendarDatePicker.svg?style=flat)](http://opensource.org/licenses/MIT)
+[![Coverage Status](https://coveralls.io/repos/hons82/THCalendarDatePicker/badge.svg)](https://coveralls.io/r/hons82/THCalendarDatePicker)
 
 This control is based on the [datepicker-ios](https://github.com/ccwasden/datepicker-ios) control combined with the [KNSemiModalViewController](https://github.com/kentnguyen/KNSemiModalViewController).
 
@@ -24,14 +26,14 @@ Install with [CocoaPods](http://cocoapods.org) by adding the following to your P
 
 ``` ruby
 platform :ios, '6.1'
-pod 'THCalendarDatePicker', '~> 1.1.1'
+pod 'THCalendarDatePicker', '~> 1.2.0'
 ```
 ####Swift
 
 ``` ruby
 platform :ios, '8.0'
 use_frameworks!
-pod 'THCalendarDatePicker', '~> 1.1.1'
+pod 'THCalendarDatePicker', '~> 1.2.0'
 ```
 
 **Note**: We follow http://semver.org for versioning the public API.
@@ -109,6 +111,11 @@ or how you could do it in Swift
 ```
 
 # Features
+
+### V1.2.X
+
+- Fixed issue [#28](https://github.com/hons82/THCalendarDatePicker/issues/28)
+- Fixed issue [#30](https://github.com/hons82/THCalendarDatePicker/issues/30)
 
 ### V1.1.X
 

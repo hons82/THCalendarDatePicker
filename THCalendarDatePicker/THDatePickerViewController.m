@@ -55,6 +55,7 @@
 @synthesize currentDateColor = _currentDateColor;
 @synthesize currentDateColorSelected = _currentDateColorSelected;
 @synthesize autoCloseCancelDelay = _autoCloseCancelDelay;
+@synthesize dateTimeZone = _dateTimeZone;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -67,6 +68,7 @@
         _disableFutureSelection = NO;
         _disableHistorySelection = NO;
         _autoCloseCancelDelay = 1.0;
+        _dateTimeZone = [NSTimeZone defaultTimeZone];
     }
     return self;
 }
@@ -124,25 +126,32 @@
 }
 
 - (void)addSwipeGestures{
-    UISwipeGestureRecognizer *swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeGesture:)];
-    swipeGesture.direction = UISwipeGestureRecognizerDirectionUp;
-    [self.calendarDaysView addGestureRecognizer:swipeGesture];
-    
-    UISwipeGestureRecognizer *swipeGesture2 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeGesture:)];
-    swipeGesture2.direction = UISwipeGestureRecognizerDirectionDown;
-    [self.calendarDaysView addGestureRecognizer:swipeGesture2];
+    UISwipeGestureRecognizer *swipeGestureUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeGesture:)];
+    swipeGestureUp.direction = UISwipeGestureRecognizerDirectionUp;
+    [self.calendarDaysView addGestureRecognizer:swipeGestureUp];
+    UISwipeGestureRecognizer *swipeGestureDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeGesture:)];
+    swipeGestureDown.direction = UISwipeGestureRecognizerDirectionDown;
+    [self.calendarDaysView addGestureRecognizer:swipeGestureDown];
+    UISwipeGestureRecognizer *swipeGestureLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeGesture:)];
+    swipeGestureLeft.direction = (UISwipeGestureRecognizerDirectionLeft);
+    [self.calendarDaysView addGestureRecognizer:swipeGestureLeft];
+    UISwipeGestureRecognizer *swipeGestureRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeGesture:)];
+    swipeGestureRight.direction = (UISwipeGestureRecognizerDirectionRight);
+    [self.calendarDaysView addGestureRecognizer:swipeGestureRight];
 }
 
 - (void)handleSwipeGesture:(UISwipeGestureRecognizer *)sender{
     //Gesture detect - swipe up/down , can be recognized direction
     if(sender.direction == UISwipeGestureRecognizerDirectionUp){
         [self incrementMonth:1];
-        [self slideTransitionViewInDirection:1];
-    }
-    else if(sender.direction == UISwipeGestureRecognizerDirectionDown){
+    } else if(sender.direction == UISwipeGestureRecognizerDirectionDown){
         [self incrementMonth:-1];
-        [self slideTransitionViewInDirection:-1];
+    } else if(sender.direction == UISwipeGestureRecognizerDirectionRight){
+        [self incrementMonth:-12];
+    } else {
+        [self incrementMonth:12];
     }
+    [self slideTransitionViewInDirection:sender.direction];
 }
 
 - (void)configureButtonAppearances {
@@ -195,7 +204,7 @@
     }
     [self redrawDays];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"MMMM yyyy"];
+    [formatter setDateFormat:@"yyyy\nMMMM"];
     NSString *monthName = [formatter stringFromDate:self.firstOfCurrentMonth];
     self.monthLabel.text = monthName;
 }
@@ -323,6 +332,7 @@
 - (void)setDisplayedMonth:(int)month year:(int)year{
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     [df setDateFormat:@"yyyy-MM"];
+    [df setTimeZone:self.dateTimeZone];
     self.firstOfCurrentMonth = [df dateFromString: [NSString stringWithFormat:@"%d-%@%d", year, (month<10?@"0":@""), month]];
     [self storeDateInformation];
 }
@@ -363,6 +373,15 @@
     [self setDisplayedMonthFromDate:incrementedMonth];
 }
 
+- (BOOL)setDateTimeZoneWithName:(NSString *)name {
+    NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:name];
+    if (timeZone) {
+        [self setDateTimeZone:timeZone];
+        return YES;
+    }
+    return NO;
+}
+
 #pragma mark - User Events
 
 - (void)dateDayTapped:(THDateDay *)dateDay {
@@ -373,7 +392,7 @@
         [self setInternalDate:dateDay.date];
         [self setCurrentDay:dateDay];
         if (dateInDifferentMonth) {
-            [self slideTransitionViewInDirection:[dateDay.date timeIntervalSinceDate:self.firstOfCurrentMonth]];
+            [self slideTransitionViewInDirection:[dateDay.date timeIntervalSinceDate:self.firstOfCurrentMonth]>0 ? UISwipeGestureRecognizerDirectionRight : UISwipeGestureRecognizerDirectionLeft];
         }
         if ([self.delegate respondsToSelector:@selector(datePicker:selectedDate:)]) {
             [self.delegate datePicker:self selectedDate:dateDay.date];
@@ -384,20 +403,35 @@
     }
 }
 
-- (void)slideTransitionViewInDirection:(int)dir {
-    dir = dir < 1 ? -1 : 1;
+- (void)slideTransitionViewInDirection:(UISwipeGestureRecognizerDirection)dir {
     CGRect origFrame = self.calendarDaysView.frame;
     CGRect outDestFrame = origFrame;
-    outDestFrame.origin.y -= 20*dir;
     CGRect inStartFrame = origFrame;
-    inStartFrame.origin.y += 20*dir;
+    switch (dir) {
+        case UISwipeGestureRecognizerDirectionUp:
+            //outDestFrame.origin.y -= self.calendarDaysView.frame.size.height;
+            inStartFrame.origin.y += self.calendarDaysView.frame.size.height;
+            break;
+        case UISwipeGestureRecognizerDirectionDown:
+            outDestFrame.origin.y += self.calendarDaysView.frame.size.height;
+            //inStartFrame.origin.y -= self.calendarDaysView.frame.size.height;
+            break;
+        case UISwipeGestureRecognizerDirectionLeft:
+            outDestFrame.origin.x -= self.calendarDaysView.frame.size.width;
+            inStartFrame.origin.x += self.calendarDaysView.frame.size.width;
+            break;
+        default:
+            outDestFrame.origin.x += self.calendarDaysView.frame.size.width;
+            inStartFrame.origin.x -= self.calendarDaysView.frame.size.width;
+            break;
+    }
     UIView *oldView = self.calendarDaysView;
     UIView *newView = self.calendarDaysView = [[UIView alloc] initWithFrame:inStartFrame];
     [oldView.superview addSubview:newView];
     [self addSwipeGestures];
     newView.alpha = 0;
     [self redraw];
-    [UIView animateWithDuration:.1 animations:^{
+    [UIView animateWithDuration:.5 animations:^{
         newView.frame = origFrame;
         newView.alpha = 1;
         oldView.frame = outDestFrame;
@@ -409,12 +443,22 @@
 
 - (IBAction)nextMonthPressed:(id)sender {
     [self incrementMonth:1];
-    [self slideTransitionViewInDirection:1];
+    [self slideTransitionViewInDirection:UISwipeGestureRecognizerDirectionUp];
 }
 
 - (IBAction)prevMonthPressed:(id)sender {
     [self incrementMonth:-1];
-    [self slideTransitionViewInDirection:-1];
+    [self slideTransitionViewInDirection:UISwipeGestureRecognizerDirectionDown];
+}
+
+- (IBAction)nextYearPressed:(id)sender {
+    [self incrementMonth:12];
+    [self slideTransitionViewInDirection:UISwipeGestureRecognizerDirectionLeft];
+}
+
+- (IBAction)prevYearPressed:(id)sender {
+    [self incrementMonth:-12];
+    [self slideTransitionViewInDirection:UISwipeGestureRecognizerDirectionRight];
 }
 
 - (IBAction)okPressed:(id)sender {

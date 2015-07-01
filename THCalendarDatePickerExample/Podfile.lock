@@ -5,6 +5,6 @@ DEPENDENCIES:
   - KNSemiModalViewController
 
 SPEC CHECKSUMS:
-  KNSemiModalViewController: 6fb1e2f6a4d84238b524cb705e91118b0fa6bbc9
+  KNSemiModalViewController: 8c0056377714b5170c52c65977d540200405411f
 
-COCOAPODS: 0.36.0
+COCOAPODS: 0.37.2

@@ -37,6 +37,8 @@
 @property (strong, nonatomic) UIColor *currentDateColor;
 @property (strong, nonatomic) UIColor *currentDateColorSelected;
 @property (nonatomic) float autoCloseCancelDelay;
+@property (strong, nonatomic) NSTimeZone *dateTimeZone;
+@property (weak, nonatomic) IBOutlet UIView *toolbarBackgroundView;
 
 - (void)setDateHasItemsCallback:(BOOL (^)(NSDate * date))callback;
 
@@ -69,5 +71,11 @@
  * \param disableFutureSelection should it be possible?
  */
 - (void)setDisableFutureSelection:(BOOL)disableFutureSelection;
+
+/*! Set the timeZone by name to be used. Valid timezones can be retrieved using [NSTimeZone knownTimeZoneNames]
+ * \param the name of the timezone to be used
+ * \return successful?
+ */
+- (BOOL)setDateTimeZoneWithName:(NSString *)name;
 
 @end

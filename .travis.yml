@@ -1,0 +1,7 @@
+language: objective-c
+before_script:
+- bundle exec pod install --project-directory=THCalendarDatePickerExample
+script:
+- set -o pipefail && bundle exec rake test | bundle exec xcpretty --test --color
+- bundle exec pod lib lint --quick
+after_success: bundle exec slather

@@ -1,0 +1,3 @@
+coverage_service: coveralls
+xcodeproj: THCalendarDatePickerExample/THCalendarDatePickerExample.xcodeproj
+source_directory: THCalendarDatePicker
