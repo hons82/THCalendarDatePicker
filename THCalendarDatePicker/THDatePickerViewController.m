@@ -106,6 +106,10 @@
     _disableFutureSelection = disableFutureSelection;
 }
 
+- (void)setDateTimeZone:(NSTimeZone *)dateTimeZone {
+    _dateTimeZone = dateTimeZone;
+}
+
 #pragma mark - View Management
 
 - (void)viewDidLoad {
@@ -396,6 +400,9 @@
         }
         if ([self.delegate respondsToSelector:@selector(datePicker:selectedDate:)]) {
             [self.delegate datePicker:self selectedDate:dateDay.date];
+        }
+        if ([self.delegate respondsToSelector:@selector(datePicker:selectedDateComponents:)]) {
+            [self.delegate datePicker:self selectedDateComponents:[[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear | NSCalendarUnitTimeZone fromDate:dateDay.date]];
         }
         if (_autoCloseOnSelectDate) {
             [self.delegate datePickerDonePressed:self];

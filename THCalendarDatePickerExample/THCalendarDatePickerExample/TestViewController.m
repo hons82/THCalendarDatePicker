@@ -38,7 +38,7 @@
     [self.datePicker setAllowSelectionOfSelectedDate:YES];
     [self.datePicker setDisableHistorySelection:YES];
     [self.datePicker setDisableFutureSelection:NO];
-    [self.datePicker setDateTimeZoneWithName:@"UTC"];
+    //[self.datePicker setDateTimeZoneWithName:@"Asia/Tokyo"];
     //[self.datePicker setAutoCloseCancelDelay:5.0];
     [self.datePicker setSelectedBackgroundColor:[UIColor colorWithRed:125/255.0 green:208/255.0 blue:0/255.0 alpha:1.0]];
     [self.datePicker setCurrentDateColor:[UIColor colorWithRed:242/255.0 green:121/255.0 blue:53/255.0 alpha:1.0]];
@@ -56,6 +56,8 @@
                                                                   }];
 }
 
+#pragma mark - THDatePickerDelegate
+
 - (void)datePickerDonePressed:(THDatePickerViewController *)datePicker {
     self.curDate = datePicker.date;
     [self refreshTitle];
@@ -71,4 +73,14 @@
 - (void)datePicker:(THDatePickerViewController *)datePicker selectedDate:(NSDate *)selectedDate {
     NSLog(@"Date selected: %@",[_formatter stringFromDate:selectedDate]);
 }
+
+- (void)datePicker:(THDatePickerViewController *)datePicker selectedDateComponents:(NSDateComponents *)selectedDateComponents {
+    NSInteger day = [selectedDateComponents day];
+    NSInteger month = [selectedDateComponents month];
+    NSInteger year = [selectedDateComponents year];
+    NSTimeZone *timeZone = [selectedDateComponents timeZone];
+    
+    NSLog(@"DateComponents selected: \nYear: %ld, Month: %ld, Day: %ld\nin Timezone: %@",(long)year, (long)month, (long)day, timeZone);
+}
+
 @end
