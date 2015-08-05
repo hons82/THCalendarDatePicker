@@ -78,4 +78,9 @@
  */
 - (BOOL)setDateTimeZoneWithName:(NSString *)name;
 
+/*! Should it be possible to fast switch the year
+ * \param disableYearSwitch should it be possible?
+ */
+- (void)setDisableYearSwitch:(BOOL)disableYearSwitch;
+
 @end
