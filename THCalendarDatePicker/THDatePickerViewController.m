@@ -134,33 +134,32 @@
     [self redraw];
 }
 
-- (void)addSwipeGestures{
-    UISwipeGestureRecognizer *swipeGestureUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeGesture:)];
-    swipeGestureUp.direction = UISwipeGestureRecognizerDirectionUp;
-    [self.calendarDaysView addGestureRecognizer:swipeGestureUp];
-    UISwipeGestureRecognizer *swipeGestureDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeGesture:)];
-    swipeGestureDown.direction = UISwipeGestureRecognizerDirectionDown;
-    [self.calendarDaysView addGestureRecognizer:swipeGestureDown];
-    UISwipeGestureRecognizer *swipeGestureLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeGesture:)];
-    swipeGestureLeft.direction = (UISwipeGestureRecognizerDirectionLeft);
-    [self.calendarDaysView addGestureRecognizer:swipeGestureLeft];
-    UISwipeGestureRecognizer *swipeGestureRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeGesture:)];
-    swipeGestureRight.direction = (UISwipeGestureRecognizerDirectionRight);
-    [self.calendarDaysView addGestureRecognizer:swipeGestureRight];
+- (void)addSwipeGestureRecognizerWithDirection:(UISwipeGestureRecognizerDirection)direction {
+    UISwipeGestureRecognizer *swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeGesture:)];
+    swipeGesture.direction = direction;
+    [self.calendarDaysView addGestureRecognizer:swipeGesture];
+}
+
+- (void)addSwipeGestures {
+    if (!_disableYearSwitch) {
+        [self addSwipeGestureRecognizerWithDirection:UISwipeGestureRecognizerDirectionUp];
+        [self addSwipeGestureRecognizerWithDirection:UISwipeGestureRecognizerDirectionDown];
+    }
+    [self addSwipeGestureRecognizerWithDirection:UISwipeGestureRecognizerDirectionLeft];
+    [self addSwipeGestureRecognizerWithDirection:UISwipeGestureRecognizerDirectionRight];
 }
 
 - (void)handleSwipeGesture:(UISwipeGestureRecognizer *)sender{
     //Gesture detect - swipe up/down , can be recognized direction
     if(sender.direction == UISwipeGestureRecognizerDirectionUp){
-        [self incrementMonth:1];
+        [self nextMonthPressed:sender];
     } else if(sender.direction == UISwipeGestureRecognizerDirectionDown){
-        [self incrementMonth:-1];
+        [self prevMonthPressed:sender];
     } else if(sender.direction == UISwipeGestureRecognizerDirectionRight){
-        [self incrementMonth:-12];
+        [self prevYearPressed:sender];
     } else {
-        [self incrementMonth:12];
+        [self nextYearPressed:sender];
     }
-    [self slideTransitionViewInDirection:sender.direction];
 }
 
 - (void)configureButtonAppearances {
@@ -476,7 +475,7 @@
 }
 
 - (IBAction)prevYearPressed:(id)sender {
-    [self incrementMonth:(_disableYearSwitch ? 1 : -12)];
+    [self incrementMonth:(_disableYearSwitch ? -1 : -12)];
     [self slideTransitionViewInDirection:UISwipeGestureRecognizerDirectionRight];
 }
 
