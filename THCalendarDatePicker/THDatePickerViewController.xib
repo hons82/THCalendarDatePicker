@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F19a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -11,9 +11,11 @@
                 <outlet property="clearBtn" destination="7" id="66"/>
                 <outlet property="closeBtn" destination="6" id="65"/>
                 <outlet property="monthLabel" destination="12" id="51"/>
-                <outlet property="nextBtn" destination="11" id="63"/>
+                <outlet property="nextMonthBtn" destination="7Cu-FS-eEE" id="aSI-OW-kKl"/>
+                <outlet property="nextYearBtn" destination="11" id="65Z-3M-xNL"/>
                 <outlet property="okBtn" destination="8" id="67"/>
-                <outlet property="prevBtn" destination="9" id="64"/>
+                <outlet property="prevMonthBtn" destination="FBs-ue-0FL" id="r1e-o5-dpK"/>
+                <outlet property="prevYearBtn" destination="9" id="eap-a6-4dN"/>
                 <outlet property="toolbarBackgroundView" destination="g6a-bo-Ej7" id="qL0-W5-WAM"/>
                 <outlet property="view" destination="5" id="48"/>
                 <outlet property="weekdaysView" destination="68" id="69"/>
@@ -130,14 +132,6 @@
                                         <action selector="clearPressed:" destination="-1" eventType="touchUpInside" id="59"/>
                                     </connections>
                                 </button>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="120" translatesAutoresizingMaskIntoConstraints="NO" id="12">
-                                    <rect key="frame" x="101" y="40" width="120" height="50"/>
-                                    <string key="text">Year
-Month</string>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8">
                                     <rect key="frame" x="270" y="3" width="50" height="36"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -153,6 +147,14 @@ Month</string>
                                         <action selector="okPressed:" destination="-1" eventType="touchUpInside" id="61"/>
                                     </connections>
                                 </button>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="12">
+                                    <rect key="frame" x="86" y="40" width="150" height="50"/>
+                                    <string key="text">Year
+Month</string>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <constraints>
                                 <constraint firstAttribute="width" constant="320" id="G5S-5U-Jba"/>

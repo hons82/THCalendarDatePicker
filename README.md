@@ -26,14 +26,14 @@ Install with [CocoaPods](http://cocoapods.org) by adding the following to your P
 
 ``` ruby
 platform :ios, '6.1'
-pod 'THCalendarDatePicker', '~> 1.2.0'
+pod 'THCalendarDatePicker', '~> 1.2.1'
 ```
 ####Swift
 
 ``` ruby
 platform :ios, '8.0'
 use_frameworks!
-pod 'THCalendarDatePicker', '~> 1.2.0'
+pod 'THCalendarDatePicker', '~> 1.2.1'
 ```
 
 **Note**: We follow http://semver.org for versioning the public API.

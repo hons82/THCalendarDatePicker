@@ -37,6 +37,7 @@
     [self.datePicker setAutoCloseOnSelectDate:NO];
     [self.datePicker setAllowSelectionOfSelectedDate:YES];
     [self.datePicker setDisableHistorySelection:YES];
+    [self.datePicker setDisableYearSwitch:YES];
     [self.datePicker setDisableFutureSelection:NO];
     //[self.datePicker setDateTimeZoneWithName:@"Asia/Tokyo"];
     //[self.datePicker setAutoCloseCancelDelay:5.0];

@@ -25,14 +25,17 @@
     BOOL _autoCloseOnSelectDate;
     BOOL _disableHistorySelection;
     BOOL _disableFutureSelection;
+    BOOL _disableYearSwitch;
     BOOL (^_dateHasItemsCallback)(NSDate *);
 }
 @property (nonatomic, strong) NSDate * firstOfCurrentMonth;
 @property (nonatomic, strong) THDateDay * currentDay;
 @property (nonatomic, strong) NSDate * internalDate;
 @property (weak, nonatomic) IBOutlet UILabel *monthLabel;
-@property (weak, nonatomic) IBOutlet UIButton *nextBtn;
-@property (weak, nonatomic) IBOutlet UIButton *prevBtn;
+@property (weak, nonatomic) IBOutlet UIButton *nextMonthBtn;
+@property (weak, nonatomic) IBOutlet UIButton *prevMonthBtn;
+@property (weak, nonatomic) IBOutlet UIButton *nextYearBtn;
+@property (weak, nonatomic) IBOutlet UIButton *prevYearBtn;
 @property (weak, nonatomic) IBOutlet UIButton *closeBtn;
 @property (weak, nonatomic) IBOutlet UIButton *clearBtn;
 @property (weak, nonatomic) IBOutlet UIButton *okBtn;
@@ -41,6 +44,8 @@
 
 - (IBAction)nextMonthPressed:(id)sender;
 - (IBAction)prevMonthPressed:(id)sender;
+- (IBAction)nextYearPressed:(id)sender;
+- (IBAction)prevYearPressed:(id)sender;
 - (IBAction)okPressed:(id)sender;
 - (IBAction)clearPressed:(id)sender;
 - (IBAction)closePressed:(id)sender;
@@ -110,6 +115,10 @@
     _dateTimeZone = dateTimeZone;
 }
 
+- (void)setDisableYearSwitch:(BOOL)disableYearSwitch {
+    _disableYearSwitch = disableYearSwitch;
+}
+
 #pragma mark - View Management
 
 - (void)viewDidLoad {
@@ -129,39 +138,40 @@
     [self redraw];
 }
 
-- (void)addSwipeGestures{
-    UISwipeGestureRecognizer *swipeGestureUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeGesture:)];
-    swipeGestureUp.direction = UISwipeGestureRecognizerDirectionUp;
-    [self.calendarDaysView addGestureRecognizer:swipeGestureUp];
-    UISwipeGestureRecognizer *swipeGestureDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeGesture:)];
-    swipeGestureDown.direction = UISwipeGestureRecognizerDirectionDown;
-    [self.calendarDaysView addGestureRecognizer:swipeGestureDown];
-    UISwipeGestureRecognizer *swipeGestureLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeGesture:)];
-    swipeGestureLeft.direction = (UISwipeGestureRecognizerDirectionLeft);
-    [self.calendarDaysView addGestureRecognizer:swipeGestureLeft];
-    UISwipeGestureRecognizer *swipeGestureRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeGesture:)];
-    swipeGestureRight.direction = (UISwipeGestureRecognizerDirectionRight);
-    [self.calendarDaysView addGestureRecognizer:swipeGestureRight];
+- (void)addSwipeGestureRecognizerWithDirection:(UISwipeGestureRecognizerDirection)direction {
+    UISwipeGestureRecognizer *swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeGesture:)];
+    swipeGesture.direction = direction;
+    [self.calendarDaysView addGestureRecognizer:swipeGesture];
+}
+
+- (void)addSwipeGestures {
+    if (!_disableYearSwitch) {
+        [self addSwipeGestureRecognizerWithDirection:UISwipeGestureRecognizerDirectionUp];
+        [self addSwipeGestureRecognizerWithDirection:UISwipeGestureRecognizerDirectionDown];
+    }
+    [self addSwipeGestureRecognizerWithDirection:UISwipeGestureRecognizerDirectionLeft];
+    [self addSwipeGestureRecognizerWithDirection:UISwipeGestureRecognizerDirectionRight];
 }
 
 - (void)handleSwipeGesture:(UISwipeGestureRecognizer *)sender{
     //Gesture detect - swipe up/down , can be recognized direction
     if(sender.direction == UISwipeGestureRecognizerDirectionUp){
-        [self incrementMonth:1];
+        [self nextMonthPressed:sender];
     } else if(sender.direction == UISwipeGestureRecognizerDirectionDown){
-        [self incrementMonth:-1];
+        [self prevMonthPressed:sender];
     } else if(sender.direction == UISwipeGestureRecognizerDirectionRight){
-        [self incrementMonth:-12];
+        [self prevYearPressed:sender];
     } else {
-        [self incrementMonth:12];
+        [self nextYearPressed:sender];
     }
-    [self slideTransitionViewInDirection:sender.direction];
 }
 
 - (void)configureButtonAppearances {
     [super viewDidLoad];
-    [[self.nextBtn imageView] setContentMode: UIViewContentModeScaleAspectFit];
-    [[self.prevBtn imageView] setContentMode: UIViewContentModeScaleAspectFit];
+    [[self.nextMonthBtn imageView] setContentMode: UIViewContentModeScaleAspectFit];
+    [[self.prevMonthBtn imageView] setContentMode: UIViewContentModeScaleAspectFit];
+    [[self.nextYearBtn imageView] setContentMode: UIViewContentModeScaleAspectFit];
+    [[self.prevYearBtn imageView] setContentMode: UIViewContentModeScaleAspectFit];
     [[self.clearBtn imageView] setContentMode: UIViewContentModeScaleAspectFit];
     [[self.closeBtn imageView] setContentMode: UIViewContentModeScaleAspectFit];
     [[self.okBtn imageView] setContentMode: UIViewContentModeScaleAspectFit];
@@ -172,8 +182,14 @@
     [self.okBtn setBackgroundImage:img forState:UIControlStateHighlighted];
     
     img = [self imageOfColor:[UIColor colorWithWhite:.94 alpha:1]];
-    [self.nextBtn setBackgroundImage:img forState:UIControlStateHighlighted];
-    [self.prevBtn setBackgroundImage:img forState:UIControlStateHighlighted];
+    [self.nextMonthBtn setBackgroundImage:img forState:UIControlStateHighlighted];
+    [self.prevMonthBtn setBackgroundImage:img forState:UIControlStateHighlighted];
+    [self.nextYearBtn setBackgroundImage:img forState:UIControlStateHighlighted];
+    [self.prevYearBtn setBackgroundImage:img forState:UIControlStateHighlighted];
+    
+    // Hide Buttons if not active
+    [self.nextMonthBtn setHidden:_disableYearSwitch];
+    [self.prevMonthBtn setHidden:_disableYearSwitch];
 }
 
 - (UIImage *)imageOfColor:(UIColor *)color {
@@ -206,11 +222,11 @@
     for(UIView * view in self.calendarDaysView.subviews){ // clean view
         [view removeFromSuperview];
     }
-    [self redrawDays];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy\nMMMM"];
+    [formatter setDateFormat:(_disableYearSwitch ? @"MMMM yyyy" : @"yyyy\nMMMM")];
     NSString *monthName = [formatter stringFromDate:self.firstOfCurrentMonth];
     self.monthLabel.text = monthName;
+    [self redrawDays];
 }
 
 - (void)redrawDays {
@@ -255,7 +271,7 @@
         [day.dateButton setTitle:[NSString stringWithFormat:@"%ld",(long)[comps day]]
                         forState:UIControlStateNormal];
         [self.calendarDaysView addSubview:day];
-        if (_internalDate && ![date timeIntervalSinceDate:_internalDate]) {
+        if (_internalDate && ![[self dateWithOutTime:date] timeIntervalSinceDate:_internalDate]) {
             self.currentDay = day;
             [day setSelected:YES];
         }
@@ -438,6 +454,7 @@
     [self addSwipeGestures];
     newView.alpha = 0;
     [self redraw];
+    [oldView.superview layoutSubviews];
     [UIView animateWithDuration:.5 animations:^{
         newView.frame = origFrame;
         newView.alpha = 1;
@@ -448,23 +465,25 @@
     }];
 }
 
+/* If _disableYearSwitch is true, then only the month switches are active, and they'll swipe left and right only */
+
 - (IBAction)nextMonthPressed:(id)sender {
     [self incrementMonth:1];
-    [self slideTransitionViewInDirection:UISwipeGestureRecognizerDirectionUp];
+    [self slideTransitionViewInDirection:(_disableYearSwitch ? UISwipeGestureRecognizerDirectionLeft : UISwipeGestureRecognizerDirectionUp)];
 }
 
 - (IBAction)prevMonthPressed:(id)sender {
     [self incrementMonth:-1];
-    [self slideTransitionViewInDirection:UISwipeGestureRecognizerDirectionDown];
+    [self slideTransitionViewInDirection:(_disableYearSwitch ? UISwipeGestureRecognizerDirectionRight : UISwipeGestureRecognizerDirectionDown)];
 }
 
 - (IBAction)nextYearPressed:(id)sender {
-    [self incrementMonth:12];
+    [self incrementMonth:(_disableYearSwitch ? 1 : 12)];
     [self slideTransitionViewInDirection:UISwipeGestureRecognizerDirectionLeft];
 }
 
 - (IBAction)prevYearPressed:(id)sender {
-    [self incrementMonth:-12];
+    [self incrementMonth:(_disableYearSwitch ? -1 : -12)];
     [self slideTransitionViewInDirection:UISwipeGestureRecognizerDirectionRight];
 }
 
