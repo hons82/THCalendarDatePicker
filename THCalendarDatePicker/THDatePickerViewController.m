@@ -447,6 +447,7 @@
     [self addSwipeGestures];
     newView.alpha = 0;
     [self redraw];
+    [oldView.superview layoutSubviews];
     [UIView animateWithDuration:.5 animations:^{
         newView.frame = origFrame;
         newView.alpha = 1;
