@@ -8,6 +8,7 @@
 //
 
 #import "THDatePickerViewController.h"
+#import "NSDate+Difference.h"
 
 #ifdef DEBUG
 //static int FIRST_WEEKDAY = 2;
@@ -23,8 +24,8 @@
     BOOL _allowSelectionOfSelectedDate;
     BOOL _clearAsToday;
     BOOL _autoCloseOnSelectDate;
-    BOOL _disableHistorySelection;
-    BOOL _disableFutureSelection;
+    NSUInteger _daysInHistory;
+    NSUInteger _daysInFuture;
     BOOL _disableYearSwitch;
     BOOL (^_dateHasItemsCallback)(NSDate *);
 }
@@ -70,8 +71,8 @@
         _allowClearDate = NO;
         _allowSelectionOfSelectedDate = NO;
         _clearAsToday = NO;
-        _disableFutureSelection = NO;
-        _disableHistorySelection = NO;
+        _daysInFuture = NO;
+        _daysInHistory = NO;
         _autoCloseCancelDelay = 1.0;
         _dateTimeZone = [NSTimeZone defaultTimeZone];
     }
@@ -104,11 +105,19 @@
 }
 
 - (void)setDisableHistorySelection:(BOOL)disableHistorySelection {
-    _disableHistorySelection = disableHistorySelection;
+    _daysInHistory = disableHistorySelection;
 }
 
 - (void)setDisableFutureSelection:(BOOL)disableFutureSelection {
-    _disableFutureSelection = disableFutureSelection;
+    _daysInFuture = disableFutureSelection;
+}
+
+- (void)setDaysInHistorySelection:(NSUInteger)daysInHistory {
+    _daysInHistory = daysInHistory;
+}
+
+- (void)setDaysInFutureSelection:(NSUInteger)daysInFuture {
+    _daysInFuture = daysInFuture;
 }
 
 - (void)setDisableYearSwitch:(BOOL)disableYearSwitch {
@@ -267,7 +276,7 @@
         [day.dateButton setTitle:[NSString stringWithFormat:@"%ld",(long)[comps day]]
                         forState:UIControlStateNormal];
         [self.calendarDaysView addSubview:day];
-        if (_internalDate && ![[self dateWithOutTime:date] timeIntervalSinceDate:_internalDate]) {
+        if (_internalDate && ![[date dateWithOutTime] timeIntervalSinceDate:_internalDate]) {
             self.currentDay = day;
             [day setSelected:YES];
         }
@@ -306,7 +315,7 @@
 
 - (void)setDate:(NSDate *)date {
     _date = date;
-    _dateNoTime = !date ? nil : [self dateWithOutTime:date];
+    _dateNoTime = !date ? nil : [date dateWithOutTime];
     self.internalDate = [_dateNoTime dateByAddingTimeInterval:0];
 }
 
@@ -544,13 +553,14 @@
 #pragma mark - Date Utils
 
 - (BOOL)dateInFutureAndShouldBeDisabled:(NSDate *)dateToCompare {
-    NSDate *currentDate = [self dateWithOutTime:[NSDate date]];
+    NSDate *currentDate = [[NSDate date] dateWithOutTime];
+    NSInteger dayDifference = [currentDate daysFromDate:dateToCompare];
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSInteger comps = (NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear);
     currentDate = [calendar dateFromComponents:[calendar components:comps fromDate:currentDate]];
     dateToCompare = [calendar dateFromComponents:[calendar components:comps fromDate:dateToCompare]];
     NSComparisonResult compResult = [currentDate compare:dateToCompare];
-    return (compResult == NSOrderedDescending && _disableHistorySelection) || (compResult == NSOrderedAscending && _disableFutureSelection);
+    return (compResult == NSOrderedDescending && _daysInHistory && _daysInHistory <= dayDifference) || (compResult == NSOrderedAscending && _daysInFuture && _daysInFuture <= dayDifference);
 }
 
 - (BOOL)dateInCurrentMonth:(NSDate *)date{
@@ -558,14 +568,6 @@
     NSDateComponents* comp1 = [_calendar components:unitFlags fromDate:self.firstOfCurrentMonth];
     NSDateComponents* comp2 = [_calendar components:unitFlags fromDate:date];
     return [comp1 year]  == [comp2 year] && [comp1 month] == [comp2 month];
-}
-
-- (NSDate *)dateWithOutTime:(NSDate *)datDate {
-    if(!datDate) {
-        datDate = [NSDate date];
-    }
-    NSDateComponents* comps = [[NSCalendar currentCalendar] components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:datDate];
-    return [[NSCalendar currentCalendar] dateFromComponents:comps];
 }
 
 #pragma mark - Cleanup

@@ -10,6 +10,8 @@
 
 #import "THDateDay.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 @implementation THDateDay
 
 @synthesize selectedBackgroundColor = _selectedBackgroundColor;
@@ -27,6 +29,20 @@
     }
     return self;
 }
+
+/*
+- (void)drawRect:(CGRect)rect {
+    self.layer.cornerRadius = MIN(self.layer.frame.size.height, self.layer.frame.size.width)/2; // this value vary as per your desire
+    self.clipsToBounds = YES;
+}*/
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    //might be #37
+    //[self addMaskToBounds:self.frame];
+}
+
+#pragma mark -
 
 -(void)setLightText:(BOOL)light {
     if(light) {
@@ -46,7 +62,7 @@
     [self.delegate dateDayTapped:self];
 }
 
--(void)setSelected:(BOOL)selected{
+-(void)setSelected:(BOOL)selected {
     if(selected) {
         [self setBackgroundColor:self.selectedBackgroundColor];
         [self.dateButton setSelected:YES];
@@ -69,8 +85,7 @@
     }
 }
 
--(void)setEnabled:(BOOL)enabled
-{
+-(void)setEnabled:(BOOL)enabled {
     [self.dateButton setEnabled:enabled];
     if (!enabled) {
         [self setLightText:!enabled];
@@ -81,14 +96,30 @@
     self.hasItemsIndicator.hidden = !indicate;
 }
 
-- (BOOL)isToday
-{
+- (BOOL)isToday {
     NSDateComponents *otherDay = [[NSCalendar currentCalendar] components:NSCalendarUnitEra|NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:self.date];
     NSDateComponents *today = [[NSCalendar currentCalendar] components:NSCalendarUnitEra|NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:[NSDate date]];
     return ([today day] == [otherDay day] &&
             [today month] == [otherDay month] &&
             [today year] == [otherDay year] &&
             [today era] == [otherDay era]);
+}
+
+#pragma mark - Circular mask
+
+- (void)addMaskToBounds:(CGRect)maskBounds {
+    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+    
+    CGPathRef maskPath = CGPathCreateWithEllipseInRect(maskBounds, NULL);
+    maskLayer.bounds = maskBounds;
+    maskLayer.path = maskPath;
+    maskLayer.fillColor = [UIColor blackColor].CGColor;
+    CGPathRelease(maskPath);
+    
+    CGPoint point = CGPointMake(maskBounds.size.width/2, maskBounds.size.height/2);
+    maskLayer.position = point;
+    
+    [self.layer setMask:maskLayer];
 }
 
 @end

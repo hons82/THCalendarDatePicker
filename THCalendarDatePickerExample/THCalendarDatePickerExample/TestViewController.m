@@ -36,9 +36,10 @@
     [self.datePicker setClearAsToday:YES];
     [self.datePicker setAutoCloseOnSelectDate:NO];
     [self.datePicker setAllowSelectionOfSelectedDate:YES];
-    [self.datePicker setDisableHistorySelection:YES];
     [self.datePicker setDisableYearSwitch:YES];
-    [self.datePicker setDisableFutureSelection:NO];
+    //[self.datePicker setDisableFutureSelection:NO];
+    [self.datePicker setDaysInHistorySelection:1];
+    [self.datePicker setDaysInFutureSelection:0];
     [self.datePicker setDateTimeZoneWithName:@"UTC"];
     //[self.datePicker setAutoCloseCancelDelay:5.0];
     [self.datePicker setSelectedBackgroundColor:[UIColor colorWithRed:125/255.0 green:208/255.0 blue:0/255.0 alpha:1.0]];

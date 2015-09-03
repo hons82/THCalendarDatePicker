@@ -72,6 +72,16 @@
  */
 - (void)setDisableFutureSelection:(BOOL)disableFutureSelection;
 
+/*! Should it be possible to select dates in history up to a number of days (including today) or 0 if any date
+ * \param daysInHistory how many days?
+ */
+- (void)setDaysInHistorySelection:(NSUInteger)daysInHistory;
+
+/*! Should it be possible to select dates in future up to a number of days (including today) or 0 if any date
+ * \param daysInFuture how many days?
+ */
+- (void)setDaysInFutureSelection:(NSUInteger)daysInFuture;
+
 /*! Set the timeZone by name to be used. Valid timezones can be retrieved using [NSTimeZone knownTimeZoneNames]
  * \param the name of the timezone to be used
  * \return successful?

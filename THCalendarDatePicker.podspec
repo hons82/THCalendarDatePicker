@@ -8,6 +8,7 @@ Pod::Spec.new do |s|
   s.source       		= { :git => "https://github.com/hons82/THCalendarDatePicker.git", :tag => "v#{s.version}" }
   s.platform     		= :ios, '6.1'
   s.requires_arc 		= true
+  s.header_mappings_dir	= 'THCalendarDatePicker'
   s.source_files 		= 'THCalendarDatePicker/*.{h,m}'
   s.resources 	 		= ["THCalendarDatePicker/*.xib", "THCalendarDatePicker/Images.xcassets"]
   s.frameworks   	 	=  'QuartzCore'
