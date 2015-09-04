@@ -58,15 +58,15 @@
                                                                   }];
 }
 
+#pragma mark - THDatePickerDelegate
+
 - (void)datePickerDonePressed:(THDatePickerViewController *)datePicker {
     self.curDate = datePicker.date;
     [self refreshTitle];
-    //[self.datePicker slideDownAndOut];
     [self dismissSemiModalView];
 }
 
 - (void)datePickerCancelPressed:(THDatePickerViewController *)datePicker {
-    //[self.datePicker slideDownAndOut];
     [self dismissSemiModalView];
 }
 

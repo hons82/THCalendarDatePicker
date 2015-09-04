@@ -1,0 +1,17 @@
+PODS:
+  - KNSemiModalViewController (0.3)
+  - THCalendarDatePicker (1.2.1):
+    - KNSemiModalViewController (~> 0.3)
+
+DEPENDENCIES:
+  - THCalendarDatePicker (from `../`)
+
+EXTERNAL SOURCES:
+  THCalendarDatePicker:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  KNSemiModalViewController: 8c0056377714b5170c52c65977d540200405411f
+  THCalendarDatePicker: 2e481afccfabe1199509872e726e4f8604e27a0c
+
+COCOAPODS: 0.38.2
