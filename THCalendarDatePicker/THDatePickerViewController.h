@@ -38,6 +38,7 @@
 @property (strong, nonatomic) UIColor *currentDateColorSelected;
 @property (nonatomic) float autoCloseCancelDelay;
 @property (strong, nonatomic) NSTimeZone *dateTimeZone;
+@property (nonatomic, getter=isRounded) BOOL rounded;
 @property (weak, nonatomic) IBOutlet UIView *toolbarBackgroundView;
 
 - (void)setDateHasItemsCallback:(BOOL (^)(NSDate * date))callback;

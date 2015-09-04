@@ -62,6 +62,7 @@
 @synthesize currentDateColorSelected = _currentDateColorSelected;
 @synthesize autoCloseCancelDelay = _autoCloseCancelDelay;
 @synthesize dateTimeZone = _dateTimeZone;
+@synthesize rounded = _rounded;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -258,7 +259,13 @@
         }
         
         THDateDay * day = [[[NSBundle bundleForClass:self.class] loadNibNamed:@"THDateDay" owner:self options:nil] objectAtIndex:0];
-        day.frame = CGRectMake(curX, curY, cellWidth, cellHeight);
+        if ([self isRounded]) {
+            [day setRounded:YES];
+            // #37 still need to move the x/y coordinates apropriately
+            day.frame = CGRectMake(curX, curY, MIN(cellWidth, cellHeight), MIN(cellWidth, cellHeight));
+        } else {
+            day.frame = CGRectMake(curX, curY, cellWidth, cellHeight);
+        }
         day.delegate = self;
         day.date = [date dateByAddingTimeInterval:0];
         if (self.currentDateColor)

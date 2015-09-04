@@ -17,15 +17,16 @@
 @synthesize selectedBackgroundColor = _selectedBackgroundColor;
 @synthesize currentDateColor = _currentDateColor;
 @synthesize currentDateColorSelected = _currentDateColorSelected;
+@synthesize rounded = _rounded;
 
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
         _selectedBackgroundColor = [UIColor colorWithRed:89/255.0 green:118/255.0 blue:169/255.0 alpha:1];
         _currentDateColor = [UIColor colorWithRed:242/255.0 green:121/255.0 blue:53/255.0 alpha:1.0];
         _currentDateColorSelected = [UIColor whiteColor];
+        _rounded = NO;
     }
     return self;
 }
@@ -38,8 +39,9 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    //might be #37
-    //[self addMaskToBounds:self.frame];
+    if ([self isRounded]) {
+        [self addMaskToBounds:self.frame];
+    }
 }
 
 #pragma mark -
