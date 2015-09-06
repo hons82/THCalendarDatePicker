@@ -8,10 +8,10 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   THCalendarDatePicker:
-    :path: "../"
+    :path: ../
 
 SPEC CHECKSUMS:
   KNSemiModalViewController: 8c0056377714b5170c52c65977d540200405411f
-  THCalendarDatePicker: 5d2b396b690796c45c30925dd0c23943141dbac6
+  THCalendarDatePicker: 2e481afccfabe1199509872e726e4f8604e27a0c
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.39.0.beta.3
