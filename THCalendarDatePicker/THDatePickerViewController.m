@@ -419,6 +419,7 @@
 - (void)dateDayTapped:(THDateDay *)dateDay {
     if (!_internalDate || [_internalDate timeIntervalSinceDate:dateDay.date] || _allowSelectionOfSelectedDate) { // new date selected
         [self.currentDay setSelected:NO];
+        [self.currentDay setLightText:![self dateInCurrentMonth:self.currentDay.date]];
         [dateDay setSelected:YES];
         BOOL dateInDifferentMonth = ![self dateInCurrentMonth:dateDay.date];
         NSDate *firstOfCurrentMonth = self.firstOfCurrentMonth;
