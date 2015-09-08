@@ -232,6 +232,7 @@
         [view removeFromSuperview];
     }
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setCalendar:[NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian]];
     [formatter setDateFormat:(_disableYearSwitch ? @"MMMM yyyy" : @"yyyy\nMMMM")];
     formatter.locale=[NSLocale currentLocale];
     NSString *monthName = [formatter stringFromDate:self.firstOfCurrentMonth];
@@ -302,13 +303,14 @@
         CGSize fullSize = self.weekdaysView.frame.size;
         int curX = (fullSize.width - 7*dayWidth)/2;
         NSDateComponents * comps = [_calendar components:NSCalendarUnitDay fromDate:[NSDate date]];
-        NSCalendar *c = [NSCalendar currentCalendar];
+        NSCalendar *c = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
         [comps setDay:[c firstWeekday]-1];
         NSDateFormatter *df = [[NSDateFormatter alloc] init];
         NSDateComponents *offsetComponents = [[NSDateComponents alloc] init];
         [offsetComponents setDay:1];
         [df setDateFormat:@"EE"];
         df.locale = [NSLocale currentLocale];
+        [df setCalendar:[NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian]];
         NSDate * date = [_calendar dateFromComponents:comps];
         for(int i = 0; i < 7; i++){
             UILabel * dayLabel = [[UILabel alloc] initWithFrame:CGRectMake(curX, 0, dayWidth, fullSize.height)];
@@ -370,18 +372,19 @@
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     [df setDateFormat:@"yyyy-MM"];
     [df setTimeZone:self.dateTimeZone];
+    [df setCalendar:[NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian]];
     self.firstOfCurrentMonth = [df dateFromString: [NSString stringWithFormat:@"%d-%@%d", year, (month<10?@"0":@""), month]];
     [self storeDateInformation];
 }
 
 - (void)setDisplayedMonthFromDate:(NSDate *)date{
-    NSDateComponents* comps = [[NSCalendar currentCalendar] components:NSCalendarUnitYear|NSCalendarUnitMonth fromDate:date];
+    NSDateComponents* comps = [[NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian] components:NSCalendarUnitYear|NSCalendarUnitMonth fromDate:date];
     [self setDisplayedMonth:(int)[comps month] year:(int)[comps year]];
 }
 
 - (void)storeDateInformation{
     NSDateComponents *comps = [_calendar components:NSCalendarUnitWeekday | NSCalendarUnitDay fromDate:self.firstOfCurrentMonth];
-    NSCalendar *c = [NSCalendar currentCalendar];
+    NSCalendar *c = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
 #ifdef DEBUG
     //[c setFirstWeekday:FIRST_WEEKDAY];
 #endif
@@ -569,7 +572,7 @@
 - (BOOL)dateInFutureAndShouldBeDisabled:(NSDate *)dateToCompare {
     NSDate *currentDate = [[NSDate date] dateWithOutTime];
     NSInteger dayDifference = [currentDate daysFromDate:dateToCompare];
-    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
     NSInteger comps = (NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear);
     currentDate = [calendar dateFromComponents:[calendar components:comps fromDate:currentDate]];
     dateToCompare = [calendar dateFromComponents:[calendar components:comps fromDate:dateToCompare]];

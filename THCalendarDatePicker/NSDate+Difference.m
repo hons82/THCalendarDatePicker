@@ -11,8 +11,8 @@
 @implementation NSDate (Difference)
 
 - (NSDate *)dateWithOutTime {
-    NSDateComponents* comps = [[NSCalendar currentCalendar] components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:self];
-    return [[NSCalendar currentCalendar] dateFromComponents:comps];
+    NSDateComponents* comps = [[NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian] components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:self];
+    return [[NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian] dateFromComponents:comps];
 }
 
 - (NSInteger)daysFromDate:(NSDate *)pDate {
