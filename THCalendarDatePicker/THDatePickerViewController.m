@@ -419,12 +419,14 @@
 - (void)dateDayTapped:(THDateDay *)dateDay {
     if (!_internalDate || [_internalDate timeIntervalSinceDate:dateDay.date] || _allowSelectionOfSelectedDate) { // new date selected
         [self.currentDay setSelected:NO];
+        [self.currentDay setLightText:![self dateInCurrentMonth:self.currentDay.date]];
         [dateDay setSelected:YES];
         BOOL dateInDifferentMonth = ![self dateInCurrentMonth:dateDay.date];
+        NSDate *firstOfCurrentMonth = self.firstOfCurrentMonth;
         [self setInternalDate:dateDay.date];
         [self setCurrentDay:dateDay];
         if (dateInDifferentMonth) {
-            [self slideTransitionViewInDirection:[dateDay.date timeIntervalSinceDate:self.firstOfCurrentMonth]>0 ? UISwipeGestureRecognizerDirectionRight : UISwipeGestureRecognizerDirectionLeft];
+            [self slideTransitionViewInDirection:[dateDay.date timeIntervalSinceDate:firstOfCurrentMonth]<0 ? UISwipeGestureRecognizerDirectionRight : UISwipeGestureRecognizerDirectionLeft];
         }
         if ([self.delegate respondsToSelector:@selector(datePicker:selectedDate:)]) {
             [self.delegate datePicker:self selectedDate:dateDay.date];
