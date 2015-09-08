@@ -28,6 +28,7 @@
     NSUInteger _daysInFuture;
     BOOL _disableYearSwitch;
     BOOL (^_dateHasItemsCallback)(NSDate *);
+    float _slideAnimationDuration;
 }
 @property (nonatomic, strong) NSDate * firstOfCurrentMonth;
 @property (nonatomic, strong) THDateDay * currentDay;
@@ -63,6 +64,7 @@
 @synthesize autoCloseCancelDelay = _autoCloseCancelDelay;
 @synthesize dateTimeZone = _dateTimeZone;
 @synthesize rounded = _rounded;
+@synthesize slideAnimationDuration = _slideAnimationDuration;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -76,6 +78,7 @@
         _daysInHistory = NO;
         _autoCloseCancelDelay = 1.0;
         _dateTimeZone = [NSTimeZone defaultTimeZone];
+        _slideAnimationDuration = .5;
     }
     return self;
 }
@@ -464,7 +467,7 @@
     newView.alpha = 0;
     [self redraw];
     [oldView.superview layoutSubviews];
-    [UIView animateWithDuration:.5 animations:^{
+    [UIView animateWithDuration:self.slideAnimationDuration animations:^{
         newView.frame = origFrame;
         newView.alpha = 1;
         oldView.frame = outDestFrame;
