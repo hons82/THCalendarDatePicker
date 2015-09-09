@@ -233,6 +233,7 @@
     }
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:(_disableYearSwitch ? @"MMMM yyyy" : @"yyyy\nMMMM")];
+    formatter.locale=[NSLocale currentLocale];
     NSString *monthName = [formatter stringFromDate:self.firstOfCurrentMonth];
     self.monthLabel.text = monthName;
     [self redrawDays];
@@ -307,6 +308,7 @@
         NSDateComponents *offsetComponents = [[NSDateComponents alloc] init];
         [offsetComponents setDay:1];
         [df setDateFormat:@"EE"];
+        df.locale = [NSLocale currentLocale];
         NSDate * date = [_calendar dateFromComponents:comps];
         for(int i = 0; i < 7; i++){
             UILabel * dayLabel = [[UILabel alloc] initWithFrame:CGRectMake(curX, 0, dayWidth, fullSize.height)];
