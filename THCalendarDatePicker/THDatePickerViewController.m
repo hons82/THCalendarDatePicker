@@ -265,11 +265,8 @@
         THDateDay * day = [[[NSBundle bundleForClass:self.class] loadNibNamed:@"THDateDay" owner:self options:nil] objectAtIndex:0];
         if ([self isRounded]) {
             [day setRounded:YES];
-            // #37 still need to move the x/y coordinates apropriately
-            day.frame = CGRectMake(curX, curY, MIN(cellWidth, cellHeight), MIN(cellWidth, cellHeight));
-        } else {
-            day.frame = CGRectMake(curX, curY, cellWidth, cellHeight);
         }
+        day.frame = CGRectMake(curX, curY, cellWidth, cellHeight);
         day.delegate = self;
         day.date = [date dateByAddingTimeInterval:0];
         if (self.currentDateColor)

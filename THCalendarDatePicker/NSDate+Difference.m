@@ -16,12 +16,12 @@
 }
 
 - (NSInteger)daysFromDate:(NSDate *)pDate {
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    NSInteger startDay=[calendar ordinalityOfUnit:NSDayCalendarUnit
-                                           inUnit:NSEraCalendarUnit
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSInteger startDay=[calendar ordinalityOfUnit:NSCalendarUnitDay
+                                           inUnit:NSCalendarUnitEra
                                           forDate:self];
-    NSInteger endDay=[calendar ordinalityOfUnit:NSDayCalendarUnit
-                                         inUnit:NSEraCalendarUnit
+    NSInteger endDay=[calendar ordinalityOfUnit:NSCalendarUnitDay
+                                         inUnit:NSCalendarUnitEra
                                         forDate:pDate];
     return labs(endDay-startDay);
 }

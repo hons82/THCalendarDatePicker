@@ -110,10 +110,13 @@
 #pragma mark - Circular mask
 
 - (void)addMaskToBounds:(CGRect)maskBounds {
-    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+    int minWidthHeight = MIN(maskBounds.size.width, maskBounds.size.height);
+    CGRect newFrame = CGRectMake(maskBounds.origin.x + ceil((maskBounds.size.width - minWidthHeight)/2.0), maskBounds.origin.y + ceil((maskBounds.size.height - minWidthHeight)/2.0), minWidthHeight, minWidthHeight);
+    NSLog(@"x: %f, y: %f, width: %f, height: %f", newFrame.origin.x, newFrame.origin.y, newFrame.size.width, newFrame.size.height);
     
-    CGPathRef maskPath = CGPathCreateWithEllipseInRect(maskBounds, NULL);
-    maskLayer.bounds = maskBounds;
+    CGPathRef maskPath = CGPathCreateWithEllipseInRect(newFrame, NULL);
+    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+    maskLayer.bounds = newFrame;
     maskLayer.path = maskPath;
     maskLayer.fillColor = [UIColor blackColor].CGColor;
     CGPathRelease(maskPath);

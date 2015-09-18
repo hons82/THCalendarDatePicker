@@ -62,11 +62,11 @@ class ViewController: UIViewController, THDatePickerDelegate {
             let tmp = (arc4random() % 30)+1
             return (tmp % 5 == 0)
         }
-        presentSemiViewController(datePicker, withOptions: [
-            KNSemiModalOptionKeys.pushParentBack    : false,
-            KNSemiModalOptionKeys.animationDuration : 1.0,
-            KNSemiModalOptionKeys.shadowOpacity     : 0.3
-            ])
+        presentSemiViewController(datePicker, withOptions:nil/* [
+            KNSemiModalOptionKeys.shadowOpacity     : 0.3 as Float,
+            KNSemiModalOptionKeys.animationDuration : 1.0 as Float,
+            KNSemiModalOptionKeys.pushParentBack    : false as Bool
+            ]*/)
     }
 
     // MARK: THDatePickerDelegate
@@ -82,7 +82,7 @@ class ViewController: UIViewController, THDatePickerDelegate {
     }
     
     func datePicker(datePicker: THDatePickerViewController!, selectedDate: NSDate!) {
-        println("Date selected: ", formatter.stringFromDate(selectedDate))
+        print("Date selected: ", formatter.stringFromDate(selectedDate))
     }
 }
 
