@@ -64,6 +64,7 @@
 @synthesize autoCloseCancelDelay = _autoCloseCancelDelay;
 @synthesize dateTimeZone = _dateTimeZone;
 @synthesize rounded = _rounded;
+@synthesize historyFutureBasedOnInternal = _historyFutureBasedOnInternal;
 @synthesize slideAnimationDuration = _slideAnimationDuration;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -76,6 +77,7 @@
         _clearAsToday = NO;
         _daysInFuture = NO;
         _daysInHistory = NO;
+        _historyFutureBasedOnInternal = NO;
         _autoCloseCancelDelay = 1.0;
         _dateTimeZone = [NSTimeZone defaultTimeZone];
         _slideAnimationDuration = .5;
@@ -122,6 +124,18 @@
 
 - (void)setDaysInFutureSelection:(NSUInteger)daysInFuture {
     _daysInFuture = daysInFuture;
+}
+
+- (void)setDateRangeFrom:(NSDate *)fromDate toDate:(NSDate *)toDate {
+    if (!self.internalDate)
+        return;
+    
+    NSDate *intFromDate = [(fromDate ? fromDate : self.internalDate) dateWithOutTime];
+    NSDate *intToDate = [(toDate ? toDate : self.internalDate) dateWithOutTime];
+    [self setDaysInHistorySelection:[[self.internalDate dateWithOutTime] daysFromDate:intFromDate]];
+    [self setDaysInFutureSelection:[intToDate daysFromDate:[self.internalDate dateWithOutTime]]];
+    
+    //TODO: refresh view & set reference date
 }
 
 - (void)setDisableYearSwitch:(BOOL)disableYearSwitch {
@@ -567,7 +581,8 @@
 #pragma mark - Date Utils
 
 - (BOOL)dateInFutureAndShouldBeDisabled:(NSDate *)dateToCompare {
-    NSDate *currentDate = [[NSDate date] dateWithOutTime];
+    NSDate *currentDate = [(self.isHistoryFutureBasedOnInternal ?
+                            self.internalDate : [NSDate date]) dateWithOutTime];
     NSInteger dayDifference = [currentDate daysFromDate:dateToCompare];
     NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
     NSInteger comps = (NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear);

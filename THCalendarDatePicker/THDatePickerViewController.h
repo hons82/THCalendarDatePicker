@@ -39,6 +39,7 @@
 @property (nonatomic) float autoCloseCancelDelay;
 @property (strong, nonatomic) NSTimeZone *dateTimeZone;
 @property (nonatomic, getter=isRounded) BOOL rounded;
+@property (nonatomic, getter=isHistoryFutureBasedOnInternal) BOOL historyFutureBasedOnInternal;
 @property (weak, nonatomic) IBOutlet UIView *toolbarBackgroundView;
 @property (nonatomic) float slideAnimationDuration;
 
@@ -94,5 +95,7 @@
  * \param disableYearSwitch should it be possible?
  */
 - (void)setDisableYearSwitch:(BOOL)disableYearSwitch;
+
+- (void)setDateRangeFrom:(NSDate *)fromDate toDate:(NSDate *)toDate;
 
 @end
