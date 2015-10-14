@@ -41,6 +41,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *closeBtn;
 @property (weak, nonatomic) IBOutlet UIButton *clearBtn;
 @property (weak, nonatomic) IBOutlet UIButton *okBtn;
+@property (unsafe_unretained, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) IBOutlet UIView *calendarDaysView;
 @property (weak, nonatomic) IBOutlet UIView *weekdaysView;
 
@@ -64,8 +65,8 @@
 @synthesize autoCloseCancelDelay = _autoCloseCancelDelay;
 @synthesize dateTimeZone = _dateTimeZone;
 @synthesize rounded = _rounded;
-@synthesize historyFutureBasedOnInternal = _historyFutureBasedOnInternal;
 @synthesize slideAnimationDuration = _slideAnimationDuration;
+@synthesize dateTitle;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -77,7 +78,6 @@
         _clearAsToday = NO;
         _daysInFuture = NO;
         _daysInHistory = NO;
-        _historyFutureBasedOnInternal = NO;
         _autoCloseCancelDelay = 1.0;
         _dateTimeZone = [NSTimeZone defaultTimeZone];
         _slideAnimationDuration = .5;
@@ -126,18 +126,6 @@
     _daysInFuture = daysInFuture;
 }
 
-- (void)setDateRangeFrom:(NSDate *)fromDate toDate:(NSDate *)toDate {
-    if (!self.internalDate)
-        return;
-    
-    NSDate *intFromDate = [(fromDate ? fromDate : self.internalDate) dateWithOutTime];
-    NSDate *intToDate = [(toDate ? toDate : self.internalDate) dateWithOutTime];
-    [self setDaysInHistorySelection:[[self.internalDate dateWithOutTime] daysFromDate:intFromDate]];
-    [self setDaysInFutureSelection:[intToDate daysFromDate:[self.internalDate dateWithOutTime]]];
-    
-    [self setHistoryFutureBasedOnInternal:YES];
-}
-
 - (void)setDisableYearSwitch:(BOOL)disableYearSwitch {
     _disableYearSwitch = disableYearSwitch;
 }
@@ -150,6 +138,9 @@
                                              selector:@selector(semiModalDidHide:)
                                                  name:kSemiModalDidHideNotification
                                                object:nil];
+    
+    self.titleLabel.hidden = YES;
+    
     [self configureButtonAppearances];
     if(_allowClearDate)
         [self showClearButton];
@@ -158,10 +149,6 @@
     [self addSwipeGestures];
     self.okBtn.enabled = [self shouldOkBeEnabled];
     [self.okBtn setImage:(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0") ? [UIImage imageNamed:(_autoCloseOnSelectDate ? @"dialog_clear" : @"dialog_ok") inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil] : [UIImage imageNamed:(_autoCloseOnSelectDate ? @"dialog_clear" : @"dialog_ok")]) forState:UIControlStateNormal];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
     [self redraw];
 }
 
@@ -250,11 +237,20 @@
         [view removeFromSuperview];
     }
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setCalendar:[NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian]];
     [formatter setDateFormat:(_disableYearSwitch ? @"MMMM yyyy" : @"yyyy\nMMMM")];
     formatter.locale=[NSLocale currentLocale];
     NSString *monthName = [formatter stringFromDate:self.firstOfCurrentMonth];
     self.monthLabel.text = monthName;
+    
+    if (self.dateTitle != nil)
+    {
+        if (_allowClearDate == NO)
+        {
+            self.titleLabel.text = self.dateTitle;
+            self.titleLabel.hidden = NO;
+        }
+    }
+    
     [self redrawDays];
 }
 
@@ -284,8 +280,11 @@
         THDateDay * day = [[[NSBundle bundleForClass:self.class] loadNibNamed:@"THDateDay" owner:self options:nil] objectAtIndex:0];
         if ([self isRounded]) {
             [day setRounded:YES];
+            // #37 still need to move the x/y coordinates apropriately
+            day.frame = CGRectMake(curX, curY, MIN(cellWidth, cellHeight), MIN(cellWidth, cellHeight));
+        } else {
+            day.frame = CGRectMake(curX, curY, cellWidth, cellHeight);
         }
-        day.frame = CGRectMake(curX, curY, cellWidth, cellHeight);
         day.delegate = self;
         day.date = [date dateByAddingTimeInterval:0];
         if (self.currentDateColor)
@@ -318,14 +317,13 @@
         CGSize fullSize = self.weekdaysView.frame.size;
         int curX = (fullSize.width - 7*dayWidth)/2;
         NSDateComponents * comps = [_calendar components:NSCalendarUnitDay fromDate:[NSDate date]];
-        NSCalendar *c = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
+        NSCalendar *c = [NSCalendar currentCalendar];
         [comps setDay:[c firstWeekday]-1];
         NSDateFormatter *df = [[NSDateFormatter alloc] init];
         NSDateComponents *offsetComponents = [[NSDateComponents alloc] init];
         [offsetComponents setDay:1];
         [df setDateFormat:@"EE"];
         df.locale = [NSLocale currentLocale];
-        [df setCalendar:[NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian]];
         NSDate * date = [_calendar dateFromComponents:comps];
         for(int i = 0; i < 7; i++){
             UILabel * dayLabel = [[UILabel alloc] initWithFrame:CGRectMake(curX, 0, dayWidth, fullSize.height)];
@@ -387,19 +385,18 @@
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     [df setDateFormat:@"yyyy-MM"];
     [df setTimeZone:self.dateTimeZone];
-    [df setCalendar:[NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian]];
     self.firstOfCurrentMonth = [df dateFromString: [NSString stringWithFormat:@"%d-%@%d", year, (month<10?@"0":@""), month]];
     [self storeDateInformation];
 }
 
 - (void)setDisplayedMonthFromDate:(NSDate *)date{
-    NSDateComponents* comps = [[NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian] components:NSCalendarUnitYear|NSCalendarUnitMonth fromDate:date];
+    NSDateComponents* comps = [[NSCalendar currentCalendar] components:NSCalendarUnitYear|NSCalendarUnitMonth fromDate:date];
     [self setDisplayedMonth:(int)[comps month] year:(int)[comps year]];
 }
 
 - (void)storeDateInformation{
     NSDateComponents *comps = [_calendar components:NSCalendarUnitWeekday | NSCalendarUnitDay fromDate:self.firstOfCurrentMonth];
-    NSCalendar *c = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
+    NSCalendar *c = [NSCalendar currentCalendar];
 #ifdef DEBUG
     //[c setFirstWeekday:FIRST_WEEKDAY];
 #endif
@@ -585,10 +582,9 @@
 #pragma mark - Date Utils
 
 - (BOOL)dateInFutureAndShouldBeDisabled:(NSDate *)dateToCompare {
-    NSDate *currentDate = [(self.isHistoryFutureBasedOnInternal ?
-                            self.internalDate : [NSDate date]) dateWithOutTime];
+    NSDate *currentDate = [[NSDate date] dateWithOutTime];
     NSInteger dayDifference = [currentDate daysFromDate:dateToCompare];
-    NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
     NSInteger comps = (NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear);
     currentDate = [calendar dateFromComponents:[calendar components:comps fromDate:currentDate]];
     dateToCompare = [calendar dateFromComponents:[calendar components:comps fromDate:dateToCompare]];

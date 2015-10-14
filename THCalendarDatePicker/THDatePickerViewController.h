@@ -9,7 +9,7 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
-#import <KNSemiModalViewController_hons82/UIViewController+KNSemiModal.h>
+#import <KNSemiModalViewController/UIViewController+KNSemiModal.h>
 
 #import "THDateDay.h"
 
@@ -39,7 +39,6 @@
 @property (nonatomic) float autoCloseCancelDelay;
 @property (strong, nonatomic) NSTimeZone *dateTimeZone;
 @property (nonatomic, getter=isRounded) BOOL rounded;
-@property (nonatomic, getter=isHistoryFutureBasedOnInternal) BOOL historyFutureBasedOnInternal;
 @property (weak, nonatomic) IBOutlet UIView *toolbarBackgroundView;
 @property (nonatomic) float slideAnimationDuration;
 
@@ -96,6 +95,11 @@
  */
 - (void)setDisableYearSwitch:(BOOL)disableYearSwitch;
 
-- (void)setDateRangeFrom:(NSDate *)fromDate toDate:(NSDate *)toDate;
+/*! Set calendar title
+ * \param dateTitle     calendar title
+ */
+- (void)setDateTitle:(NSString*)dateTitle;
+
+@property (strong, nonatomic) NSString* dateTitle;
 
 @end
