@@ -14,24 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "99A02528198A40C100764326"
-               BuildableName = "THCalendarDatePickerExample.app"
-               BlueprintName = "THCalendarDatePickerExample"
-               ReferencedContainer = "container:THCalendarDatePickerExample.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "99A02549198A40C100764326"
-               BuildableName = "THCalendarDatePickerExampleTests.xctest"
-               BlueprintName = "THCalendarDatePickerExampleTests"
-               ReferencedContainer = "container:THCalendarDatePickerExample.xcodeproj">
+               BlueprintIdentifier = "998E96731B99CFAF0099AC4F"
+               BuildableName = "THCalendarDatePickerSwiftExample.app"
+               BlueprintName = "THCalendarDatePickerSwiftExample"
+               ReferencedContainer = "container:THCalendarDatePickerFromToSwiftExample.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -46,20 +32,20 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "99A02549198A40C100764326"
-               BuildableName = "THCalendarDatePickerExampleTests.xctest"
-               BlueprintName = "THCalendarDatePickerExampleTests"
-               ReferencedContainer = "container:THCalendarDatePickerExample.xcodeproj">
+               BlueprintIdentifier = "998E96881B99CFAF0099AC4F"
+               BuildableName = "THCalendarDatePickerSwiftExampleTests.xctest"
+               BlueprintName = "THCalendarDatePickerSwiftExampleTests"
+               ReferencedContainer = "container:THCalendarDatePickerFromToSwiftExample.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "99A02528198A40C100764326"
-            BuildableName = "THCalendarDatePickerExample.app"
-            BlueprintName = "THCalendarDatePickerExample"
-            ReferencedContainer = "container:THCalendarDatePickerExample.xcodeproj">
+            BlueprintIdentifier = "998E96731B99CFAF0099AC4F"
+            BuildableName = "THCalendarDatePickerSwiftExample.app"
+            BlueprintName = "THCalendarDatePickerSwiftExample"
+            ReferencedContainer = "container:THCalendarDatePickerFromToSwiftExample.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -79,10 +65,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "99A02528198A40C100764326"
-            BuildableName = "THCalendarDatePickerExample.app"
-            BlueprintName = "THCalendarDatePickerExample"
-            ReferencedContainer = "container:THCalendarDatePickerExample.xcodeproj">
+            BlueprintIdentifier = "998E96731B99CFAF0099AC4F"
+            BuildableName = "THCalendarDatePickerSwiftExample.app"
+            BlueprintName = "THCalendarDatePickerSwiftExample"
+            ReferencedContainer = "container:THCalendarDatePickerFromToSwiftExample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -98,10 +84,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "99A02528198A40C100764326"
-            BuildableName = "THCalendarDatePickerExample.app"
-            BlueprintName = "THCalendarDatePickerExample"
-            ReferencedContainer = "container:THCalendarDatePickerExample.xcodeproj">
+            BlueprintIdentifier = "998E96731B99CFAF0099AC4F"
+            BuildableName = "THCalendarDatePickerSwiftExample.app"
+            BlueprintName = "THCalendarDatePickerSwiftExample"
+            ReferencedContainer = "container:THCalendarDatePickerFromToSwiftExample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

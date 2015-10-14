@@ -214,7 +214,7 @@
 		99A02521198A40C100764326 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = 3Bus;
 				TargetAttributes = {
 					99A02549198A40C100764326 = {
@@ -370,6 +370,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
@@ -436,6 +437,7 @@
 				GCC_PREFIX_HEADER = "THCalendarDatePickerExample/THCalendarDatePickerExample-Prefix.pch";
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
 				INFOPLIST_FILE = "THCalendarDatePickerExample/THCalendarDatePickerExample-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "it.3bus.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -451,6 +453,7 @@
 				GCC_PREFIX_HEADER = "THCalendarDatePickerExample/THCalendarDatePickerExample-Prefix.pch";
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
 				INFOPLIST_FILE = "THCalendarDatePickerExample/THCalendarDatePickerExample-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "it.3bus.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -472,6 +475,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "THCalendarDatePickerExampleTests/THCalendarDatePickerExampleTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "it.3bus.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -490,6 +494,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "THCalendarDatePickerExample/THCalendarDatePickerExample-Prefix.pch";
 				INFOPLIST_FILE = "THCalendarDatePickerExampleTests/THCalendarDatePickerExampleTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "it.3bus.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;

@@ -63,12 +63,24 @@ class ViewController: UIViewController, THDatePickerDelegate {
             return (tmp % 5 == 0)
         }
         presentSemiViewController(datePicker, withOptions: [
-            KNSemiModalOptionKeys.pushParentBack    : false,
-            KNSemiModalOptionKeys.animationDuration : 1.0,
-            KNSemiModalOptionKeys.shadowOpacity     : 0.3
+            convertCfTypeToString(KNSemiModalOptionKeys.shadowOpacity) as String! : 0.3 as Float,
+            convertCfTypeToString(KNSemiModalOptionKeys.animationDuration) as String! : 1.0 as Float,
+            convertCfTypeToString(KNSemiModalOptionKeys.pushParentBack) as String! : false as Bool
             ])
     }
 
+    /* https://vandadnp.wordpress.com/2014/07/07/swift-convert-unmanaged-to-string/ */
+    func convertCfTypeToString(cfValue: Unmanaged<NSString>!) -> String?{
+        /* Coded by Vandad Nahavandipoor */
+        let value = Unmanaged<CFStringRef>.fromOpaque(
+            cfValue.toOpaque()).takeUnretainedValue() as CFStringRef
+        if CFGetTypeID(value) == CFStringGetTypeID(){
+            return value as String
+        } else {
+            return nil
+        }
+    }
+    
     // MARK: THDatePickerDelegate
     
     func datePickerDonePressed(datePicker: THDatePickerViewController!) {
@@ -82,7 +94,7 @@ class ViewController: UIViewController, THDatePickerDelegate {
     }
     
     func datePicker(datePicker: THDatePickerViewController!, selectedDate: NSDate!) {
-        println("Date selected: ", formatter.stringFromDate(selectedDate))
+        print("Date selected: ", formatter.stringFromDate(selectedDate))
     }
 }
 

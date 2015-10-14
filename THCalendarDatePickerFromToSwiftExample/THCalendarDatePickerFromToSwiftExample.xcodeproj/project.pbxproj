@@ -79,7 +79,7 @@
 		998E966B1B99CFAF0099AC4F = {
 			isa = PBXGroup;
 			children = (
-				998E96761B99CFAF0099AC4F /* THCalendarDatePickerSwiftExample */,
+				998E96761B99CFAF0099AC4F /* THCalendarDatePickerFromToSwiftExample */,
 				998E968C1B99CFAF0099AC4F /* THCalendarDatePickerSwiftExampleTests */,
 				998E96751B99CFAF0099AC4F /* Products */,
 				69A4F43B5F3437B3AE01CFE3 /* Pods */,
@@ -96,7 +96,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		998E96761B99CFAF0099AC4F /* THCalendarDatePickerSwiftExample */ = {
+		998E96761B99CFAF0099AC4F /* THCalendarDatePickerFromToSwiftExample */ = {
 			isa = PBXGroup;
 			children = (
 				998E96791B99CFAF0099AC4F /* AppDelegate.swift */,
@@ -105,7 +105,7 @@
 				998E96801B99CFAF0099AC4F /* Images.xcassets */,
 				998E96771B99CFAF0099AC4F /* Supporting Files */,
 			);
-			path = THCalendarDatePickerSwiftExample;
+			path = THCalendarDatePickerFromToSwiftExample;
 			sourceTree = "<group>";
 		};
 		998E96771B99CFAF0099AC4F /* Supporting Files */ = {
@@ -122,7 +122,8 @@
 				998E968F1B99CFAF0099AC4F /* THCalendarDatePickerSwiftExampleTests.swift */,
 				998E968D1B99CFAF0099AC4F /* Supporting Files */,
 			);
-			path = THCalendarDatePickerSwiftExampleTests;
+			name = THCalendarDatePickerSwiftExampleTests;
+			path = THCalendarDatePickerFromToSwiftExampleTests;
 			sourceTree = "<group>";
 		};
 		998E968D1B99CFAF0099AC4F /* Supporting Files */ = {
@@ -193,7 +194,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 998E966F1B99CFAF0099AC4F /* Build configuration list for PBXProject "THCalendarDatePickerSwiftExample" */;
+			buildConfigurationList = 998E966F1B99CFAF0099AC4F /* Build configuration list for PBXProject "THCalendarDatePickerFromToSwiftExample" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -407,7 +408,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				INFOPLIST_FILE = THCalendarDatePickerSwiftExample/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/THCalendarDatePickerFromToSwiftExample/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "it.3bus.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -420,7 +421,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				INFOPLIST_FILE = THCalendarDatePickerSwiftExample/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/THCalendarDatePickerFromToSwiftExample/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "it.3bus.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -466,7 +467,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		998E966F1B99CFAF0099AC4F /* Build configuration list for PBXProject "THCalendarDatePickerSwiftExample" */ = {
+		998E966F1B99CFAF0099AC4F /* Build configuration list for PBXProject "THCalendarDatePickerFromToSwiftExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				998E96911B99CFAF0099AC4F /* Debug */,
