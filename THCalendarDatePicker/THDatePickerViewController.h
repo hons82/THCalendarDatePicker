@@ -98,4 +98,14 @@
 
 - (void)setDateRangeFrom:(NSDate *)fromDate toDate:(NSDate *)toDate;
 
+/*! Set calendar title
+ * \param dateTitle     calendar title
+ */
+- (void)setDateTitle:(NSString*)dateTitle;
+
+/**
+ * Calendar date title
+ */
+@property (strong, nonatomic) NSString* dateTitle;
+
 @end
