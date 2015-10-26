@@ -41,6 +41,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *closeBtn;
 @property (weak, nonatomic) IBOutlet UIButton *clearBtn;
 @property (weak, nonatomic) IBOutlet UIButton *okBtn;
+@property (unsafe_unretained, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) IBOutlet UIView *calendarDaysView;
 @property (weak, nonatomic) IBOutlet UIView *weekdaysView;
 
@@ -150,6 +151,9 @@
                                              selector:@selector(semiModalDidHide:)
                                                  name:kSemiModalDidHideNotification
                                                object:nil];
+    
+    self.titleLabel.hidden = YES;
+    
     [self configureButtonAppearances];
     if(_allowClearDate)
         [self showClearButton];
@@ -255,6 +259,16 @@
     formatter.locale=[NSLocale currentLocale];
     NSString *monthName = [formatter stringFromDate:self.firstOfCurrentMonth];
     self.monthLabel.text = monthName;
+    
+    if (self.dateTitle != nil)
+    {
+        if (_allowClearDate == NO)
+        {
+            self.titleLabel.text = self.dateTitle;
+            self.titleLabel.hidden = NO;
+        }
+    }
+    
     [self redrawDays];
 }
 

@@ -16,6 +16,7 @@
                 <outlet property="okBtn" destination="8" id="67"/>
                 <outlet property="prevMonthBtn" destination="FBs-ue-0FL" id="r1e-o5-dpK"/>
                 <outlet property="prevYearBtn" destination="9" id="eap-a6-4dN"/>
+                <outlet property="titleLabel" destination="wv9-lp-lWG" id="6HO-dW-hLB"/>
                 <outlet property="toolbarBackgroundView" destination="g6a-bo-Ej7" id="qL0-W5-WAM"/>
                 <outlet property="view" destination="5" id="48"/>
                 <outlet property="weekdaysView" destination="68" id="69"/>
@@ -155,9 +156,18 @@ Month</string>
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wv9-lp-lWG">
+                                    <rect key="frame" x="143" y="11" width="34" height="21"/>
+                                    <animations/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <constraints>
+                                <constraint firstItem="wv9-lp-lWG" firstAttribute="top" secondItem="s0u-MY-tL4" secondAttribute="top" constant="11" id="BsT-EG-lC5"/>
                                 <constraint firstAttribute="width" constant="320" id="G5S-5U-Jba"/>
+                                <constraint firstItem="wv9-lp-lWG" firstAttribute="centerX" secondItem="s0u-MY-tL4" secondAttribute="centerX" id="q0h-ME-a8Z"/>
                             </constraints>
                         </view>
                     </subviews>
