@@ -25,8 +25,8 @@ class ViewController: UIViewController, THDatePickerDelegate {
         picker.delegate = self
         picker.date = self.curDate
         picker.setAllowClearDate(false)
-        picker.setClearAsToday(true)
-        picker.setAutoCloseOnSelectDate(false)
+        picker.setClearAsToday(false)
+        picker.setAutoCloseOnSelectDate(true)
         picker.setAllowSelectionOfSelectedDate(true)
         picker.setDisableYearSwitch(true)
         //picker.setDisableFutureSelection(false)
@@ -35,6 +35,7 @@ class ViewController: UIViewController, THDatePickerDelegate {
         picker.setDateTimeZoneWithName("UTC")
         picker.autoCloseCancelDelay = 5.0
         picker.rounded = true
+        picker.dateTitle = "My DatePicker"
         picker.selectedBackgroundColor = UIColor(red: 125.0/255.0, green: 208.0/255.0, blue: 0.0/255.0, alpha: 1.0)
         picker.currentDateColor = UIColor(red: 242.0/255.0, green: 121.0/255.0, blue: 53.0/255.0, alpha: 1.0)
         picker.currentDateColorSelected = UIColor.yellowColor()

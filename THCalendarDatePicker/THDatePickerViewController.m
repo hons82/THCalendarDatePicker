@@ -260,13 +260,9 @@
     NSString *monthName = [formatter stringFromDate:self.firstOfCurrentMonth];
     self.monthLabel.text = monthName;
     
-    if (self.dateTitle != nil)
-    {
-        if (_allowClearDate == NO)
-        {
-            self.titleLabel.text = self.dateTitle;
-            self.titleLabel.hidden = NO;
-        }
+    if (self.dateTitle != nil && _allowClearDate == NO) {
+        self.titleLabel.text = self.dateTitle;
+        self.titleLabel.hidden = NO;
     }
     
     [self redrawDays];

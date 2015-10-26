@@ -42,6 +42,7 @@
 @property (nonatomic, getter=isHistoryFutureBasedOnInternal) BOOL historyFutureBasedOnInternal;
 @property (weak, nonatomic) IBOutlet UIView *toolbarBackgroundView;
 @property (nonatomic) float slideAnimationDuration;
+@property (strong, nonatomic) NSString* dateTitle;
 
 - (void)setDateHasItemsCallback:(BOOL (^)(NSDate * date))callback;
 
@@ -96,16 +97,15 @@
  */
 - (void)setDisableYearSwitch:(BOOL)disableYearSwitch;
 
+/*! Set date range
+ * \param fromDate      range from
+ * \param toDate        range to
+ */
 - (void)setDateRangeFrom:(NSDate *)fromDate toDate:(NSDate *)toDate;
 
 /*! Set calendar title
  * \param dateTitle     calendar title
  */
 - (void)setDateTitle:(NSString*)dateTitle;
-
-/**
- * Calendar date title
- */
-@property (strong, nonatomic) NSString* dateTitle;
 
 @end
