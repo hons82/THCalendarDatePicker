@@ -12,7 +12,7 @@
 		998E967F1B99CFAF0099AC4F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 998E967D1B99CFAF0099AC4F /* Main.storyboard */; };
 		998E96811B99CFAF0099AC4F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 998E96801B99CFAF0099AC4F /* Images.xcassets */; };
 		998E96901B99CFAF0099AC4F /* THCalendarDatePickerSwiftExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998E968F1B99CFAF0099AC4F /* THCalendarDatePickerSwiftExampleTests.swift */; };
-		C57A0F49603FBB8AF834821C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F487D3F673E6589527F65294 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		C57A0F49603FBB8AF834821C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F487D3F673E6589527F65294 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
