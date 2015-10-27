@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.source_files 		= 'THCalendarDatePicker/*.{h,m}'
   s.resources 	 		= ["THCalendarDatePicker/*.xib", "THCalendarDatePicker/Images.xcassets"]
   s.frameworks   	 	=  'QuartzCore'
-  s.dependency 			'KNSemiModalViewController_hons82', '~> 0.4.2'
+  s.dependency 			'KNSemiModalViewController_hons82', '~> 0.4.3'
   s.prefix_header_contents = <<-EOS
 	  #define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
 	  #define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
