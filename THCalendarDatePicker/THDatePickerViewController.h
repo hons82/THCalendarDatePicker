@@ -108,4 +108,12 @@
  */
 - (void)setDateTitle:(NSString*)dateTitle;
 
+/*!
+ * Always enable OK button, even if validate on selected date
+ *
+ * \param enabled   if true, ok button always enabled
+ */
+- (void)setOkButtonAlwaysEnabled:(BOOL)enabled;
+
+
 @end
