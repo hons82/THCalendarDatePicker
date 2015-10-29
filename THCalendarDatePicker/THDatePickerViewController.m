@@ -29,6 +29,7 @@
     BOOL _disableYearSwitch;
     BOOL (^_dateHasItemsCallback)(NSDate *);
     float _slideAnimationDuration;
+    BOOL _okButtonAlwaysEnabled;
 }
 @property (nonatomic, strong) NSDate * firstOfCurrentMonth;
 @property (nonatomic, strong) THDateDay * currentDay;
@@ -161,7 +162,17 @@
         [self hideClearButton];
     [self addSwipeGestures];
     self.okBtn.enabled = [self shouldOkBeEnabled];
-    [self.okBtn setImage:(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0") ? [UIImage imageNamed:(_autoCloseOnSelectDate ? @"dialog_clear" : @"dialog_ok") inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil] : [UIImage imageNamed:(_autoCloseOnSelectDate ? @"dialog_clear" : @"dialog_ok")]) forState:UIControlStateNormal];
+    UIImage* okBtnImage;
+    if (_okButtonAlwaysEnabled)
+    {
+        okBtnImage = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0") ? [UIImage imageNamed:@"dialog_ok" inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil] : [UIImage imageNamed:@"dialog_ok"];
+    }
+    else
+    {
+        okBtnImage = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0") ? [UIImage imageNamed:(_autoCloseOnSelectDate ? @"dialog_clear" : @"dialog_ok") inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil] : [UIImage imageNamed:(_autoCloseOnSelectDate ? @"dialog_clear" : @"dialog_ok")];
+    }
+    
+    [self.okBtn setImage:okBtnImage forState:UIControlStateNormal];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -374,6 +385,10 @@
 }
 
 - (BOOL)shouldOkBeEnabled {
+    if (_okButtonAlwaysEnabled)
+    {
+        return YES;
+    }
     if (_autoCloseOnSelectDate)
         return YES;
     return (self.internalDate && _dateNoTime && (_allowSelectionOfSelectedDate || [self.internalDate timeIntervalSinceDate:_dateNoTime]))
@@ -445,6 +460,11 @@
         return YES;
     }
     return NO;
+}
+
+- (void)setOkButtonAlwaysEnabled:(BOOL)enabled
+{
+    _okButtonAlwaysEnabled = enabled;
 }
 
 #pragma mark - User Events
