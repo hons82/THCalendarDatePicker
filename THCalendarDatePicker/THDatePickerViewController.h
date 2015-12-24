@@ -38,7 +38,10 @@
 @property (strong, nonatomic) UIColor *currentDateColorSelected;
 @property (nonatomic) float autoCloseCancelDelay;
 @property (strong, nonatomic) NSTimeZone *dateTimeZone;
+@property (nonatomic, getter=isRounded) BOOL rounded;
 @property (weak, nonatomic) IBOutlet UIView *toolbarBackgroundView;
+@property (nonatomic) float slideAnimationDuration;
+@property (strong, nonatomic) NSArray * selectedDates;
 
 - (void)setDateHasItemsCallback:(BOOL (^)(NSDate * date))callback;
 
@@ -46,6 +49,11 @@
  * \param allow should show "clear date" button
  */
 - (void)setAllowClearDate:(BOOL)allow;
+
+/*! Enable Multi Day Selection
+ * \param allow selection of multiple days
+ */
+- (void)setAllowMultiDaySelection:(BOOL)allow;
 
 /*! Enable Ok Button when selected Date has already been selected
  * \param allow should show ok button
