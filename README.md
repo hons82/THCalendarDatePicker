@@ -117,6 +117,7 @@ or how you could do it in Swift
 - Fixed issue [#28](https://github.com/hons82/THCalendarDatePicker/issues/28)
 - Fixed issue [#30](https://github.com/hons82/THCalendarDatePicker/issues/30)
 - Fixed issue [#69](https://github.com/hons82/THCalendarDatePicker/issues/69)
+- Fixed issue [#71](https://github.com/hons82/THCalendarDatePicker/issues/71)
 - Pull request [#40](https://github.com/hons82/THCalendarDatePicker/pull/40)
 - Pull request [#41](https://github.com/hons82/THCalendarDatePicker/pull/41)
 - Pull request [#53](https://github.com/hons82/THCalendarDatePicker/pull/53) 

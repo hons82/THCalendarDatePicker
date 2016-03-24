@@ -98,8 +98,9 @@
 }
 
 -(void)setAllowMultiDaySelection:(BOOL)allow {
-    [self setAutoCloseOnSelectDate:!allow]; // Caution possible endless loop
     _allowMultiDaySelection = allow;
+    if (_allowMultiDaySelection)
+        [self setAutoCloseOnSelectDate:!allow]; // Caution possible endless loop
 }
 
 - (void)setAllowClearDate:(BOOL)allow {
@@ -120,8 +121,9 @@
 - (void)setAutoCloseOnSelectDate:(BOOL)autoClose {
     if (!_allowClearDate)
         [self setAllowClearDate:!autoClose];
-    _allowMultiDaySelection = !autoClose;
     _autoCloseOnSelectDate = autoClose;
+    if (_autoCloseOnSelectDate)
+        _allowMultiDaySelection = NO;
 }
 
 - (void)setDisableHistorySelection:(BOOL)disableHistorySelection {
