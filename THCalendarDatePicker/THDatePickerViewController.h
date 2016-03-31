@@ -18,7 +18,7 @@
 #import "THDateDay.h"
 
 typedef NS_ENUM(NSInteger, THDatePickerSelectionType) {
-    THDatePickerSelectionTypeSignle,
+    THDatePickerSelectionTypeSingle,
     THDatePickerSelectionTypeMulti,
     THDatePickerSelectionTypeRange
 };
