@@ -30,15 +30,14 @@
 - (IBAction)touchedButton:(id)sender {
     if(!self.datePicker)
         self.datePicker = [THDatePickerViewController datePicker];
-    self.datePicker.date = self.curDate;
+    
     self.datePicker.delegate = self;
     [self.datePicker setAllowClearDate:NO];
     [self.datePicker setClearAsToday:YES];
     [self.datePicker setAutoCloseOnSelectDate:NO];
     [self.datePicker setAllowSelectionOfSelectedDate:YES];
-    [self.datePicker setDisableYearSwitch:YES];
-    //[self.datePicker setDisableFutureSelection:NO];
-    [self.datePicker setDaysInHistorySelection:1];
+    [self.datePicker setDisableYearSwitch:NO];
+    [self.datePicker setDaysInHistorySelection:45];
     [self.datePicker setDaysInFutureSelection:0];
 //    [self.datePicker setAllowMultiDaySelection:YES];
 //    [self.datePicker setDateTimeZoneWithName:@"UTC"];
@@ -46,6 +45,7 @@
     [self.datePicker setSelectedBackgroundColor:[UIColor colorWithRed:125/255.0 green:208/255.0 blue:0/255.0 alpha:1.0]];
     [self.datePicker setCurrentDateColor:[UIColor colorWithRed:242/255.0 green:121/255.0 blue:53/255.0 alpha:1.0]];
     [self.datePicker setCurrentDateColorSelected:[UIColor yellowColor]];
+    self.datePicker.date = self.curDate;
     
     [self.datePicker setDateHasItemsCallback:^BOOL(NSDate *date) {
         int tmp = (arc4random() % 30)+1;
@@ -54,7 +54,7 @@
     //[self.datePicker slideUpInView:self.view withModalColor:[UIColor lightGrayColor]];
     [self presentSemiViewController:self.datePicker withOptions:@{
                                                                   KNSemiModalOptionKeys.pushParentBack    : @(NO),
-                                                                  KNSemiModalOptionKeys.animationDuration : @(1.0),
+                                                                  KNSemiModalOptionKeys.animationDuration : @(0.3),
                                                                   KNSemiModalOptionKeys.shadowOpacity     : @(0.3),
                                                                   }];
 }
