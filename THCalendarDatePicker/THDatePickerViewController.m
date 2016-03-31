@@ -88,7 +88,7 @@
         _slideAnimationDuration = .5;
         _selectedDates = [[NSMutableArray alloc] init];
         _selectedDateViews = [[NSMutableArray alloc] init];
-        _selectionType = THDatePickerSelectionTypeSignle;
+        _selectionType = THDatePickerSelectionTypeSingle;
     }
     return self;
 }
@@ -99,7 +99,7 @@
 
 -(void)setSelectionType:(THDatePickerSelectionType)type{
     _selectionType = type;
-    if (type == THDatePickerSelectionTypeSignle){
+    if (type == THDatePickerSelectionTypeSingle){
         [self setAutoCloseOnSelectDate:true];
     }
 }
@@ -123,8 +123,8 @@
     if (!_allowClearDate)
         [self setAllowClearDate:!autoClose];
     _autoCloseOnSelectDate = autoClose;
-    if (_autoCloseOnSelectDate && _selectionType != THDatePickerSelectionTypeSignle){
-        _selectionType = THDatePickerSelectionTypeSignle;
+    if (_autoCloseOnSelectDate && _selectionType != THDatePickerSelectionTypeSingle){
+        _selectionType = THDatePickerSelectionTypeSingle;
     }
     
 }
@@ -324,7 +324,7 @@
             [day setSelectedBackgroundColor:self.selectedBackgroundColor];
         
         switch (_selectionType) {
-            case THDatePickerSelectionTypeSignle:
+            case THDatePickerSelectionTypeSingle:
                 if (_internalDate && ![[self dateWithOutTime:date] timeIntervalSinceDate:_internalDate]) {
                     self.currentDay = day;
                     [day setSelected:YES];
@@ -425,7 +425,7 @@
         int ymd = NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay;
         NSDateComponents* internalComps = [_calendar components:ymd fromDate:self.internalDate];
         int time = NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond|NSCalendarUnitTimeZone;
-        NSDateComponents* origComps = [_calendar components:time fromDate:((_selectionType != THDatePickerSelectionTypeSignle) && [_selectedDates count] > 0 ? [_selectedDates lastObject] : _date)];
+        NSDateComponents* origComps = [_calendar components:time fromDate:((_selectionType != THDatePickerSelectionTypeSingle) && [_selectedDates count] > 0 ? [_selectedDates lastObject] : _date)];
         [origComps setDay:[internalComps day]];
         [origComps setMonth:[internalComps month]];
         [origComps setYear:[internalComps year]];
@@ -435,7 +435,7 @@
 
 - (BOOL)shouldOkBeEnabled {
     switch (_selectionType) {
-        case THDatePickerSelectionTypeSignle:
+        case THDatePickerSelectionTypeSingle:
             if (_autoCloseOnSelectDate)
                 return YES;
             NSLog(@"interval %f",[self.internalDate timeIntervalSinceDate:_dateNoTime]);
@@ -524,7 +524,7 @@
     BOOL dateInDifferentMonth = ![self dateInCurrentMonth:dateDay.date];
     NSDate *firstOfCurrentMonth = self.firstOfCurrentMonth;
     switch (_selectionType) {
-        case THDatePickerSelectionTypeSignle:
+        case THDatePickerSelectionTypeSingle:
             if (!_internalDate || [_internalDate timeIntervalSinceDate:dateDay.date] || _allowSelectionOfSelectedDate) { // new date selected
                 [self.currentDay setSelected:NO];
                 [self.currentDay setLightText:![self dateInCurrentMonth:self.currentDay.date]];
