@@ -17,6 +17,12 @@
 
 #import "THDateDay.h"
 
+typedef NS_ENUM(NSInteger, THDatePickerSelectionType) {
+    THDatePickerSelectionTypeSignle,
+    THDatePickerSelectionTypeMulti,
+    THDatePickerSelectionTypeRange
+};
+
 @class THDatePickerViewController;
 
 @protocol THDatePickerDelegate <NSObject>
@@ -60,7 +66,7 @@
 /*! Enable Multi Day Selection
  * \param allow selection of multiple days
  */
-- (void)setAllowMultiDaySelection:(BOOL)allow;
+- (void)setSelectionType:(THDatePickerSelectionType)type;
 
 /*! Enable Ok Button when selected Date has already been selected
  * \param allow should show ok button
