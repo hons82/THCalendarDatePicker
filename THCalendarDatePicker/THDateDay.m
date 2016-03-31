@@ -88,9 +88,7 @@
 
 -(void)setEnabled:(BOOL)enabled {
     [self.dateButton setEnabled:enabled];
-    if (!enabled) {
-        [self setLightText:!enabled];
-    }
+    [self setLightText:!enabled];
 }
 
 -(void)indicateDayHasItems:(BOOL)indicate {

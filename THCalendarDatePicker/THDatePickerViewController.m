@@ -674,7 +674,10 @@
     currentDate = [calendar dateFromComponents:[calendar components:comps fromDate:currentDate]];
     dateToCompare = [calendar dateFromComponents:[calendar components:comps fromDate:dateToCompare]];
     NSComparisonResult compResult = [currentDate compare:dateToCompare];
-    return (compResult == NSOrderedDescending && _daysInHistory && _daysInHistory <= dayDifference) || (compResult == NSOrderedAscending && _daysInFuture && _daysInFuture <= dayDifference);
+    
+    BOOL retValue = (compResult == NSOrderedDescending && (!_daysInHistory || _daysInHistory <= dayDifference)) || (compResult == NSOrderedAscending && (!_daysInFuture || _daysInFuture <= dayDifference));
+    
+    return retValue;
 }
 
 - (BOOL)dateInCurrentMonth:(NSDate *)date{
