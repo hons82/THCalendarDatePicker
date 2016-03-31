@@ -26,14 +26,14 @@ Install with [CocoaPods](http://cocoapods.org) by adding the following to your P
 
 ``` ruby
 platform :ios, '6.1'
-pod 'THCalendarDatePicker', '~> 1.2.5'
+pod 'THCalendarDatePicker', '~> 1.2.6'
 ```
 ####Swift
 
 ``` ruby
 platform :ios, '8.0'
 use_frameworks!
-pod 'THCalendarDatePicker', '~> 1.2.5'
+pod 'THCalendarDatePicker', '~> 1.2.6'
 ```
 
 **Note**: We follow http://semver.org for versioning the public API.
@@ -116,9 +116,12 @@ or how you could do it in Swift
 
 - Fixed issue [#28](https://github.com/hons82/THCalendarDatePicker/issues/28)
 - Fixed issue [#30](https://github.com/hons82/THCalendarDatePicker/issues/30)
+- Fixed issue [#69](https://github.com/hons82/THCalendarDatePicker/issues/69)
+- Fixed issue [#71](https://github.com/hons82/THCalendarDatePicker/issues/71)
 - Pull request [#40](https://github.com/hons82/THCalendarDatePicker/pull/40)
 - Pull request [#41](https://github.com/hons82/THCalendarDatePicker/pull/41)
 - Pull request [#53](https://github.com/hons82/THCalendarDatePicker/pull/53) 
+- Pull request [#70](https://github.com/hons82/THCalendarDatePicker/pull/70) 
 
 ### V1.1.X
 
@@ -157,6 +160,7 @@ or how you could do it in Swift
 - [jeremiescheer](https://github.com/jeremiescheer)
 - [powfulhong](https://github.com/powfulhong)
 - [sparkdreamstudio](https://github.com/sparkdreamstudio)
+- [Ignacio pascualin](https://github.com/pascualin)
 
 # License
 

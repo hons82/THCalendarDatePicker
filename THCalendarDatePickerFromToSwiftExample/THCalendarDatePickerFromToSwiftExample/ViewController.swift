@@ -47,9 +47,9 @@ class ViewController: UIViewController, THDatePickerDelegate {
         let picker = THDatePickerViewController.datePicker()
         picker.delegate = self
         picker.date = self.curToDate
-        picker.selectedBackgroundColor = UIColor.brownColor()
-        picker.currentDateColor = UIColor.orangeColor()
-        picker.currentDateColorSelected = UIColor.yellowColor()
+        picker.selectedBackgroundColor = UIColor.yellowColor()
+        picker.currentDateColor = UIColor.greenColor()
+        picker.currentDateColorSelected = UIColor.brownColor()
         return picker
         }()
     
