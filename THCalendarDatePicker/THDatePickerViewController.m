@@ -447,7 +447,7 @@
             return ([_selectedDates count] > 0);
             break;
         case THDatePickerSelectionTypeRange:
-            return ([_selectedDates count] == 2);
+            return ([_selectedDates count] > 0);
             break;
     }
 }
