@@ -25,6 +25,7 @@
 -(void)datePicker:(THDatePickerViewController *)datePicker selectedDate:(NSDate *)selectedDate;
 -(void)datePicker:(THDatePickerViewController *)datePicker deselectedDate:(NSDate *)deselectedDate;
 -(void)datePickerDidHide:(THDatePickerViewController *)datePicker;
+-(void)datePicker:(THDatePickerViewController *)datePicker changedMonth:(NSInteger)month year:(NSInteger)year;
 
 @end
 
@@ -115,4 +116,7 @@
  */
 - (void)setDateTitle:(NSString*)dateTitle;
 
+/*! Redraw the calendar to update the dot indicators
+ */
+- (void)redraw;
 @end

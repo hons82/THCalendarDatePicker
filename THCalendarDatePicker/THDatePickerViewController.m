@@ -56,8 +56,6 @@
 - (IBAction)clearPressed:(id)sender;
 - (IBAction)closePressed:(id)sender;
 
-- (void)redraw;
-
 @end
 
 @implementation THDatePickerViewController
@@ -450,6 +448,10 @@
     [df setCalendar:[NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian]];
     self.firstOfCurrentMonth = [df dateFromString: [NSString stringWithFormat:@"%d-%@%d", year, (month<10?@"0":@""), month]];
     [self storeDateInformation];
+    
+    if ([self.delegate respondsToSelector:@selector(datePicker:changedMonth:year:)]) {
+        [self.delegate datePicker:self changedMonth:month year:year];
+    }
 }
 
 - (void)setDisplayedMonthFromDate:(NSDate *)date{
