@@ -56,8 +56,6 @@
 - (IBAction)clearPressed:(id)sender;
 - (IBAction)closePressed:(id)sender;
 
-- (void)redraw;
-
 @end
 
 @implementation THDatePickerViewController

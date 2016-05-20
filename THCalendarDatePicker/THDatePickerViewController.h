@@ -116,4 +116,7 @@
  */
 - (void)setDateTitle:(NSString*)dateTitle;
 
+/*! Redraw the calendar to update the dot indicators
+ */
+- (void)redraw;
 @end
