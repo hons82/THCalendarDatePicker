@@ -10,9 +10,17 @@
 
 @implementation NSDate (Difference)
 
+
+
 - (NSDate *)dateWithOutTime {
-    NSDateComponents* comps = [[NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian] components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:self];
-    return [[NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian] dateFromComponents:comps];
+    static NSCalendar* calendar;
+
+    if (!calendar) {
+        calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    }
+    
+    NSDateComponents* comps = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:self];
+    return [calendar dateFromComponents:comps];
 }
 
 - (NSInteger)daysFromDate:(NSDate *)pDate {
