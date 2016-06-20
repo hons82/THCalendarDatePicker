@@ -12,7 +12,8 @@
 		998E967F1B99CFAF0099AC4F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 998E967D1B99CFAF0099AC4F /* Main.storyboard */; };
 		998E96811B99CFAF0099AC4F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 998E96801B99CFAF0099AC4F /* Images.xcassets */; };
 		998E96901B99CFAF0099AC4F /* THCalendarDatePickerSwiftExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998E968F1B99CFAF0099AC4F /* THCalendarDatePickerSwiftExampleTests.swift */; };
-		C57A0F49603FBB8AF834821C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F487D3F673E6589527F65294 /* Pods.framework */; };
+		C8122AD2EED8E5D92351C725 /* Pods_THCalendarDatePickerSwiftExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DFE831455B701681FB12F71 /* Pods_THCalendarDatePickerSwiftExample.framework */; };
+		EFCBE4D4815FC3E3219986E3 /* Pods_THCalendarDatePickerSwiftExampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7E289F408F9746890720024 /* Pods_THCalendarDatePickerSwiftExampleTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,8 +27,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1BFD0E6B39EBC9642CC62CAD /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		433B99155CFEC891A9BF2D8B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		0DFE831455B701681FB12F71 /* Pods_THCalendarDatePickerSwiftExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_THCalendarDatePickerSwiftExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		85D2D22A819C0969B773EF58 /* Pods-THCalendarDatePickerSwiftExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-THCalendarDatePickerSwiftExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-THCalendarDatePickerSwiftExample/Pods-THCalendarDatePickerSwiftExample.debug.xcconfig"; sourceTree = "<group>"; };
 		998E96741B99CFAF0099AC4F /* THCalendarDatePickerSwiftExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = THCalendarDatePickerSwiftExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		998E96781B99CFAF0099AC4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		998E96791B99CFAF0099AC4F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -37,6 +38,10 @@
 		998E96891B99CFAF0099AC4F /* THCalendarDatePickerSwiftExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = THCalendarDatePickerSwiftExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		998E968E1B99CFAF0099AC4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		998E968F1B99CFAF0099AC4F /* THCalendarDatePickerSwiftExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THCalendarDatePickerSwiftExampleTests.swift; sourceTree = "<group>"; };
+		C1D57C37175C52C0D88200FC /* Pods-THCalendarDatePickerSwiftExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-THCalendarDatePickerSwiftExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-THCalendarDatePickerSwiftExample/Pods-THCalendarDatePickerSwiftExample.release.xcconfig"; sourceTree = "<group>"; };
+		CF541021F4F53E3162874A6D /* Pods-THCalendarDatePickerSwiftExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-THCalendarDatePickerSwiftExampleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-THCalendarDatePickerSwiftExampleTests/Pods-THCalendarDatePickerSwiftExampleTests.release.xcconfig"; sourceTree = "<group>"; };
+		E7E289F408F9746890720024 /* Pods_THCalendarDatePickerSwiftExampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_THCalendarDatePickerSwiftExampleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED5C6CE01927353546113FFA /* Pods-THCalendarDatePickerSwiftExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-THCalendarDatePickerSwiftExampleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-THCalendarDatePickerSwiftExampleTests/Pods-THCalendarDatePickerSwiftExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F487D3F673E6589527F65294 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -45,7 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C57A0F49603FBB8AF834821C /* Pods.framework in Frameworks */,
+				C8122AD2EED8E5D92351C725 /* Pods_THCalendarDatePickerSwiftExample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFCBE4D4815FC3E3219986E3 /* Pods_THCalendarDatePickerSwiftExampleTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,15 +69,19 @@
 			isa = PBXGroup;
 			children = (
 				F487D3F673E6589527F65294 /* Pods.framework */,
+				0DFE831455B701681FB12F71 /* Pods_THCalendarDatePickerSwiftExample.framework */,
+				E7E289F408F9746890720024 /* Pods_THCalendarDatePickerSwiftExampleTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		69A4F43B5F3437B3AE01CFE3 /* Pods */ = {
+		602306076AB0B88B3ECB0460 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				433B99155CFEC891A9BF2D8B /* Pods.debug.xcconfig */,
-				1BFD0E6B39EBC9642CC62CAD /* Pods.release.xcconfig */,
+				85D2D22A819C0969B773EF58 /* Pods-THCalendarDatePickerSwiftExample.debug.xcconfig */,
+				C1D57C37175C52C0D88200FC /* Pods-THCalendarDatePickerSwiftExample.release.xcconfig */,
+				ED5C6CE01927353546113FFA /* Pods-THCalendarDatePickerSwiftExampleTests.debug.xcconfig */,
+				CF541021F4F53E3162874A6D /* Pods-THCalendarDatePickerSwiftExampleTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -82,8 +92,8 @@
 				998E96761B99CFAF0099AC4F /* THCalendarDatePickerSwiftExample */,
 				998E968C1B99CFAF0099AC4F /* THCalendarDatePickerSwiftExampleTests */,
 				998E96751B99CFAF0099AC4F /* Products */,
-				69A4F43B5F3437B3AE01CFE3 /* Pods */,
 				49BA059B132D6D6E07FBFA48 /* Frameworks */,
+				602306076AB0B88B3ECB0460 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -140,12 +150,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 998E96931B99CFAF0099AC4F /* Build configuration list for PBXNativeTarget "THCalendarDatePickerSwiftExample" */;
 			buildPhases = (
-				80FF76B30BF75F356F4BCE8C /* Check Pods Manifest.lock */,
+				1CCEC20988322626398D4E04 /* [CP] Check Pods Manifest.lock */,
 				998E96701B99CFAF0099AC4F /* Sources */,
 				998E96711B99CFAF0099AC4F /* Frameworks */,
 				998E96721B99CFAF0099AC4F /* Resources */,
-				72B9BAA1BFCB428CC1550506 /* Embed Pods Frameworks */,
-				1AF8189396557EC45F38BE94 /* Copy Pods Resources */,
+				31141269613A69AFC81ED31A /* [CP] Embed Pods Frameworks */,
+				75B27C1E84C2022B211896A3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -160,9 +170,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 998E96961B99CFAF0099AC4F /* Build configuration list for PBXNativeTarget "THCalendarDatePickerSwiftExampleTests" */;
 			buildPhases = (
+				B99A942E667797732B83F529 /* [CP] Check Pods Manifest.lock */,
 				998E96851B99CFAF0099AC4F /* Sources */,
 				998E96861B99CFAF0099AC4F /* Frameworks */,
 				998E96871B99CFAF0099AC4F /* Resources */,
+				22A411397AEAFAF5251B0755 /* [CP] Embed Pods Frameworks */,
+				F2BCD4C12B126B99BD633290 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -232,49 +245,94 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1AF8189396557EC45F38BE94 /* Copy Pods Resources */ = {
+		1CCEC20988322626398D4E04 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		72B9BAA1BFCB428CC1550506 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		80FF76B30BF75F356F4BCE8C /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		22A411397AEAFAF5251B0755 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-THCalendarDatePickerSwiftExampleTests/Pods-THCalendarDatePickerSwiftExampleTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		31141269613A69AFC81ED31A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-THCalendarDatePickerSwiftExample/Pods-THCalendarDatePickerSwiftExample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		75B27C1E84C2022B211896A3 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-THCalendarDatePickerSwiftExample/Pods-THCalendarDatePickerSwiftExample-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B99A942E667797732B83F529 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F2BCD4C12B126B99BD633290 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-THCalendarDatePickerSwiftExampleTests/Pods-THCalendarDatePickerSwiftExampleTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -403,7 +461,7 @@
 		};
 		998E96941B99CFAF0099AC4F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 433B99155CFEC891A9BF2D8B /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 85D2D22A819C0969B773EF58 /* Pods-THCalendarDatePickerSwiftExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -416,7 +474,7 @@
 		};
 		998E96951B99CFAF0099AC4F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1BFD0E6B39EBC9642CC62CAD /* Pods.release.xcconfig */;
+			baseConfigurationReference = C1D57C37175C52C0D88200FC /* Pods-THCalendarDatePickerSwiftExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -429,6 +487,7 @@
 		};
 		998E96971B99CFAF0099AC4F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED5C6CE01927353546113FFA /* Pods-THCalendarDatePickerSwiftExampleTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -449,6 +508,7 @@
 		};
 		998E96981B99CFAF0099AC4F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CF541021F4F53E3162874A6D /* Pods-THCalendarDatePickerSwiftExampleTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (

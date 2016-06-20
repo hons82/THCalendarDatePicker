@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		941C7F9F69517B9D5E57671A /* libPods-THCalendarDatePickerExampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 677D66A3018B9BEF37DB9F0E /* libPods-THCalendarDatePickerExampleTests.a */; };
 		99A0252D198A40C100764326 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99A0252C198A40C100764326 /* Foundation.framework */; };
 		99A0252F198A40C100764326 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99A0252E198A40C100764326 /* CoreGraphics.framework */; };
 		99A02531198A40C100764326 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99A02530198A40C100764326 /* UIKit.framework */; };
@@ -21,7 +22,7 @@
 		99A02556198A40C100764326 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 99A02554198A40C100764326 /* InfoPlist.strings */; };
 		99A02558198A40C100764326 /* THCalendarDatePickerExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A02557198A40C100764326 /* THCalendarDatePickerExampleTests.m */; };
 		99A02570198A41C800764326 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A0256E198A41C800764326 /* TestViewController.m */; };
-		E313B47EB7D7401AA048CD63 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9D67DB8572541B2B9D13397 /* libPods.a */; };
+		F65AF2E948008B4E16F26438 /* libPods-THCalendarDatePickerExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F291CD638B62E29EB38BACF /* libPods-THCalendarDatePickerExample.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +36,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5F291CD638B62E29EB38BACF /* libPods-THCalendarDatePickerExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-THCalendarDatePickerExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		677D66A3018B9BEF37DB9F0E /* libPods-THCalendarDatePickerExampleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-THCalendarDatePickerExampleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		836574914BD99A352AD0B5AE /* Pods-THCalendarDatePickerExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-THCalendarDatePickerExampleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-THCalendarDatePickerExampleTests/Pods-THCalendarDatePickerExampleTests.release.xcconfig"; sourceTree = "<group>"; };
 		99A02529198A40C100764326 /* THCalendarDatePickerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = THCalendarDatePickerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99A0252C198A40C100764326 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		99A0252E198A40C100764326 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -54,9 +58,9 @@
 		99A02557198A40C100764326 /* THCalendarDatePickerExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = THCalendarDatePickerExampleTests.m; sourceTree = "<group>"; };
 		99A0256D198A41C800764326 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		99A0256E198A41C800764326 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; wrapsLines = 0; };
-		CEDB75581D458A4EC0A2845A /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		E9D67DB8572541B2B9D13397 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		F64B311BC4AD0A64A7AD3C5E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		DDA025CCD5718EAD2081CA8F /* Pods-THCalendarDatePickerExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-THCalendarDatePickerExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-THCalendarDatePickerExample/Pods-THCalendarDatePickerExample.release.xcconfig"; sourceTree = "<group>"; };
+		F7C74BA03006F869409FB687 /* Pods-THCalendarDatePickerExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-THCalendarDatePickerExampleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-THCalendarDatePickerExampleTests/Pods-THCalendarDatePickerExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F9C5FA3E04C3D191C673D006 /* Pods-THCalendarDatePickerExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-THCalendarDatePickerExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-THCalendarDatePickerExample/Pods-THCalendarDatePickerExample.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,7 +71,7 @@
 				99A0252F198A40C100764326 /* CoreGraphics.framework in Frameworks */,
 				99A02531198A40C100764326 /* UIKit.framework in Frameworks */,
 				99A0252D198A40C100764326 /* Foundation.framework in Frameworks */,
-				E313B47EB7D7401AA048CD63 /* libPods.a in Frameworks */,
+				F65AF2E948008B4E16F26438 /* libPods-THCalendarDatePickerExample.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +82,7 @@
 				99A0254C198A40C100764326 /* XCTest.framework in Frameworks */,
 				99A0254E198A40C100764326 /* UIKit.framework in Frameworks */,
 				99A0254D198A40C100764326 /* Foundation.framework in Frameworks */,
+				941C7F9F69517B9D5E57671A /* libPods-THCalendarDatePickerExampleTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,7 +96,7 @@
 				99A02551198A40C100764326 /* THCalendarDatePickerExampleTests */,
 				99A0252B198A40C100764326 /* Frameworks */,
 				99A0252A198A40C100764326 /* Products */,
-				F3C613DD50AC42F47569B6B9 /* Pods */,
+				FD0C3D9CA81DBAAF3E79AEF8 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -111,7 +116,8 @@
 				99A0252E198A40C100764326 /* CoreGraphics.framework */,
 				99A02530198A40C100764326 /* UIKit.framework */,
 				99A0254B198A40C100764326 /* XCTest.framework */,
-				E9D67DB8572541B2B9D13397 /* libPods.a */,
+				5F291CD638B62E29EB38BACF /* libPods-THCalendarDatePickerExample.a */,
+				677D66A3018B9BEF37DB9F0E /* libPods-THCalendarDatePickerExampleTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -159,11 +165,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		F3C613DD50AC42F47569B6B9 /* Pods */ = {
+		FD0C3D9CA81DBAAF3E79AEF8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				F64B311BC4AD0A64A7AD3C5E /* Pods.debug.xcconfig */,
-				CEDB75581D458A4EC0A2845A /* Pods.release.xcconfig */,
+				F9C5FA3E04C3D191C673D006 /* Pods-THCalendarDatePickerExample.debug.xcconfig */,
+				DDA025CCD5718EAD2081CA8F /* Pods-THCalendarDatePickerExample.release.xcconfig */,
+				F7C74BA03006F869409FB687 /* Pods-THCalendarDatePickerExampleTests.debug.xcconfig */,
+				836574914BD99A352AD0B5AE /* Pods-THCalendarDatePickerExampleTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -175,12 +183,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 99A0255B198A40C100764326 /* Build configuration list for PBXNativeTarget "THCalendarDatePickerExample" */;
 			buildPhases = (
-				484ED6B27FEF46D7A9B95F5B /* Check Pods Manifest.lock */,
+				850F33054E84ED082B06183D /* [CP] Check Pods Manifest.lock */,
 				99A02525198A40C100764326 /* Sources */,
 				99A02526198A40C100764326 /* Frameworks */,
 				99A02527198A40C100764326 /* Resources */,
-				3B9528BC8BFC4F09859BAB72 /* Copy Pods Resources */,
-				2B50D8D2B50EB3EAB05FB4B7 /* Embed Pods Frameworks */,
+				BB550DF4038AB14A00654CAF /* [CP] Embed Pods Frameworks */,
+				F742ECA5C013025F5471B55D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -195,9 +203,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 99A0255E198A40C100764326 /* Build configuration list for PBXNativeTarget "THCalendarDatePickerExampleTests" */;
 			buildPhases = (
+				1A6941CDC378EA63A925CE48 /* [CP] Check Pods Manifest.lock */,
 				99A02546198A40C100764326 /* Sources */,
 				99A02547198A40C100764326 /* Frameworks */,
 				99A02548198A40C100764326 /* Resources */,
+				B347ACB42792231004753236 /* [CP] Embed Pods Frameworks */,
+				5D0C8E7419208FF702B7FED5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -264,49 +275,94 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2B50D8D2B50EB3EAB05FB4B7 /* Embed Pods Frameworks */ = {
+		1A6941CDC378EA63A925CE48 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3B9528BC8BFC4F09859BAB72 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		484ED6B27FEF46D7A9B95F5B /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		5D0C8E7419208FF702B7FED5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-THCalendarDatePickerExampleTests/Pods-THCalendarDatePickerExampleTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		850F33054E84ED082B06183D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B347ACB42792231004753236 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-THCalendarDatePickerExampleTests/Pods-THCalendarDatePickerExampleTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BB550DF4038AB14A00654CAF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-THCalendarDatePickerExample/Pods-THCalendarDatePickerExample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F742ECA5C013025F5471B55D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-THCalendarDatePickerExample/Pods-THCalendarDatePickerExample-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -403,7 +459,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -437,7 +493,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -445,7 +501,7 @@
 		};
 		99A0255C198A40C100764326 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F64B311BC4AD0A64A7AD3C5E /* Pods.debug.xcconfig */;
+			baseConfigurationReference = F9C5FA3E04C3D191C673D006 /* Pods-THCalendarDatePickerExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -461,7 +517,7 @@
 		};
 		99A0255D198A40C100764326 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CEDB75581D458A4EC0A2845A /* Pods.release.xcconfig */;
+			baseConfigurationReference = DDA025CCD5718EAD2081CA8F /* Pods-THCalendarDatePickerExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -477,6 +533,7 @@
 		};
 		99A0255F198A40C100764326 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F7C74BA03006F869409FB687 /* Pods-THCalendarDatePickerExampleTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/THCalendarDatePickerExample.app/THCalendarDatePickerExample";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -500,6 +557,7 @@
 		};
 		99A02560198A40C100764326 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 836574914BD99A352AD0B5AE /* Pods-THCalendarDatePickerExampleTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/THCalendarDatePickerExample.app/THCalendarDatePickerExample";
 				FRAMEWORK_SEARCH_PATHS = (

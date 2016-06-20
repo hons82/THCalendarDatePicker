@@ -3,4 +3,9 @@ platform :ios, '8.0'
 
 use_frameworks!
 
-pod 'THCalendarDatePicker', :path=> '../../THCalendarDatePicker'
+target 'THCalendarDatePickerSwiftExample' do
+	pod 'THCalendarDatePicker', :path=> './../../THCalendarDatePicker'
+	target 'THCalendarDatePickerSwiftExampleTests' do
+		inherit! :search_paths
+	end
+end

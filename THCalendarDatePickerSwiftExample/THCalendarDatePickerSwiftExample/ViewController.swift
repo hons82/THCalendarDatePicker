@@ -30,7 +30,7 @@ class ViewController: UIViewController, THDatePickerDelegate {
         picker.setAllowSelectionOfSelectedDate(true)
         picker.setDisableYearSwitch(true)
         //picker.setDisableFutureSelection(false)
-        picker.setDaysInHistorySelection(1)
+        picker.setDaysInHistorySelection(45)
         picker.setDaysInFutureSelection(0)
         picker.setDateTimeZoneWithName("UTC")
         picker.autoCloseCancelDelay = 5.0

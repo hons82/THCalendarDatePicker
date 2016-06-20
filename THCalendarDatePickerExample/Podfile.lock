@@ -1,7 +1,7 @@
 PODS:
-  - KNSemiModalViewController_hons82 (0.4.4)
-  - THCalendarDatePicker (1.2.6):
-    - KNSemiModalViewController_hons82 (~> 0.4.4)
+  - KNSemiModalViewController_hons82 (0.4.5)
+  - THCalendarDatePicker (1.2.8):
+    - KNSemiModalViewController_hons82 (~> 0.4.5)
 
 DEPENDENCIES:
   - THCalendarDatePicker (from `./../../THCalendarDatePicker`)
@@ -11,7 +11,9 @@ EXTERNAL SOURCES:
     :path: "./../../THCalendarDatePicker"
 
 SPEC CHECKSUMS:
-  KNSemiModalViewController_hons82: 22aead5ef5d8ca749bc1babb43fa7d6f14b030a3
-  THCalendarDatePicker: 809e0c11affecb7087eee08ca55a9a7ab083829b
+  KNSemiModalViewController_hons82: 0ef0ef5ed7c3814ddd0fa9c884ab74d5495de16b
+  THCalendarDatePicker: fd1a1103ae0d1d1f2d0f9a1463a3f628a23a25a5
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 53916919d26ad90572d8ac43f650f470ea185a9a
+
+COCOAPODS: 1.0.1

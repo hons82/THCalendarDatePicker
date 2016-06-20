@@ -38,7 +38,7 @@
     [self.datePicker setAllowSelectionOfSelectedDate:YES];
     [self.datePicker setDisableYearSwitch:YES];
     //[self.datePicker setDisableFutureSelection:NO];
-    [self.datePicker setDaysInHistorySelection:1];
+    [self.datePicker setDaysInHistorySelection:12];
     [self.datePicker setDaysInFutureSelection:0];
 //    [self.datePicker setAllowMultiDaySelection:YES];
 //    [self.datePicker setDateTimeZoneWithName:@"UTC"];
