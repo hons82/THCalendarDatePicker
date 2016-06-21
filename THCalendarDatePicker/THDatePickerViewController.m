@@ -84,9 +84,9 @@
         _autoCloseCancelDelay = 1.0;
         _dateTimeZone = [NSTimeZone defaultTimeZone];
         _slideAnimationDuration = .5;
-        _selectedDates = [[NSMutableArray alloc] init];
         _selectedDateViews = [[NSMutableArray alloc] init];
         _allowMultiDaySelection = NO;
+        [self setDate:[NSDate date]];
     }
     return self;
 }
