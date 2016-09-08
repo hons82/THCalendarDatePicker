@@ -177,7 +177,7 @@
         [self hideClearButton];
     [self addSwipeGestures];
     self.okBtn.enabled = [self shouldOkBeEnabled];
-    [self.okBtn setImage:(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0") ? [UIImage imageNamed:(_autoCloseOnSelectDate ? @"dialog_clear" : @"dialog_ok") inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil] : [UIImage imageNamed:(_autoCloseOnSelectDate ? @"dialog_clear" : @"dialog_ok")]) forState:UIControlStateNormal];
+    [self.okBtn setImage:([[[UIDevice currentDevice] systemVersion] floatValue] >= 8 ? [UIImage imageNamed:(_autoCloseOnSelectDate ? @"dialog_clear" : @"dialog_ok") inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil] : [UIImage imageNamed:(_autoCloseOnSelectDate ? @"dialog_clear" : @"dialog_ok")]) forState:UIControlStateNormal];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -270,7 +270,7 @@
         [view removeFromSuperview];
     }
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setCalendar:[NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian]];
+    [formatter setCalendar:_calendar];
     [formatter setDateFormat:(_disableYearSwitch ? @"MMMM yyyy" : @"yyyy\nMMMM")];
     formatter.locale=[NSLocale currentLocale];
     NSString *monthName = [formatter stringFromDate:self.firstOfCurrentMonth];
@@ -368,14 +368,14 @@
         CGSize fullSize = self.weekdaysView.frame.size;
         int curX = (fullSize.width - 7*dayWidth)/2;
         NSDateComponents * comps = [_calendar components:NSCalendarUnitDay fromDate:[NSDate date]];
-        NSCalendar *c = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
+        NSCalendar *c = _calendar;
         [comps setDay:[c firstWeekday]-1];
         NSDateFormatter *df = [[NSDateFormatter alloc] init];
         NSDateComponents *offsetComponents = [[NSDateComponents alloc] init];
         [offsetComponents setDay:1];
         [df setDateFormat:@"EE"];
         df.locale = [NSLocale currentLocale];
-        [df setCalendar:[NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian]];
+        [df setCalendar:_calendar];
         NSDate * date = [_calendar dateFromComponents:comps];
         for(int i = 0; i < 7; i++){
             UILabel * dayLabel = [[UILabel alloc] initWithFrame:CGRectMake(curX, 0, dayWidth, fullSize.height)];
@@ -463,10 +463,11 @@
 }
 
 - (void)setDisplayedMonth:(int)month year:(int)year{
+    
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     [df setDateFormat:@"yyyy-MM"];
     [df setTimeZone:self.dateTimeZone];
-    [df setCalendar:[NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian]];
+    [df setCalendar:_calendar];
     self.firstOfCurrentMonth = [df dateFromString: [NSString stringWithFormat:@"%d-%@%d", year, (month<10?@"0":@""), month]];
     [self storeDateInformation];
     
@@ -476,13 +477,13 @@
 }
 
 - (void)setDisplayedMonthFromDate:(NSDate *)date{
-    NSDateComponents* comps = [[NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian] components:NSCalendarUnitYear|NSCalendarUnitMonth fromDate:date];
+    NSDateComponents* comps = [_calendar components:NSCalendarUnitYear|NSCalendarUnitMonth fromDate:date];
     [self setDisplayedMonth:(int)[comps month] year:(int)[comps year]];
 }
 
 - (void)storeDateInformation{
     NSDateComponents *comps = [_calendar components:NSCalendarUnitWeekday | NSCalendarUnitDay fromDate:self.firstOfCurrentMonth];
-    NSCalendar *c = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
+    NSCalendar *c = _calendar;
 #ifdef DEBUG
     //[c setFirstWeekday:FIRST_WEEKDAY];
 #endif
@@ -697,7 +698,7 @@
         [self.clearBtn setImage:nil forState:UIControlStateNormal];
         [self.clearBtn setTitle:NSLocalizedString(@"TODAY", @"Customize this for your language") forState:UIControlStateNormal];
     } else {
-        [self.clearBtn setImage:(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0") ? [UIImage imageNamed:@"dialog_clear" inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil] : [UIImage imageNamed:@"dialog_clear"]) forState:UIControlStateNormal];
+        [self.clearBtn setImage:([[[UIDevice currentDevice] systemVersion] floatValue] >= 8 ? [UIImage imageNamed:@"dialog_clear" inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil] : [UIImage imageNamed:@"dialog_clear"]) forState:UIControlStateNormal];
     }
 }
 
@@ -718,7 +719,7 @@
     NSDate *currentDate = [(self.isHistoryFutureBasedOnInternal ?
                             self.internalDate : [NSDate date]) dateWithOutTime];
     NSInteger dayDifference = [currentDate daysFromDate:dateToCompare];
-    NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
+    NSCalendar *calendar = _calendar;
     NSInteger comps = (NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear);
     currentDate = [calendar dateFromComponents:[calendar components:comps fromDate:currentDate]];
     dateToCompare = [calendar dateFromComponents:[calendar components:comps fromDate:dateToCompare]];
