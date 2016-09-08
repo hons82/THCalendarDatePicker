@@ -31,7 +31,7 @@
     float _slideAnimationDuration;
     NSMutableArray * _selectedDates;
     NSMutableArray * _selectedDateViews;
-    BOOL _allowMultiDaySelection;
+    THDatePickerSelectionType _selectionType;
 }
 @property (nonatomic, strong) NSDate * firstOfCurrentMonth;
 @property (nonatomic, strong) THDateDay * currentDay;
@@ -86,7 +86,7 @@
         _slideAnimationDuration = .5;
         _selectedDates = [[NSMutableArray alloc] init];
         _selectedDateViews = [[NSMutableArray alloc] init];
-        _allowMultiDaySelection = NO;
+        _selectionType = THDatePickerSelectionTypeSingle;
     }
     return self;
 }
@@ -95,10 +95,11 @@
     return [[THDatePickerViewController alloc] initWithNibName:@"THDatePickerViewController" bundle:[NSBundle bundleForClass:self.class]];
 }
 
--(void)setAllowMultiDaySelection:(BOOL)allow {
-    _allowMultiDaySelection = allow;
-    if (_allowMultiDaySelection)
-        [self setAutoCloseOnSelectDate:!allow]; // Caution possible endless loop
+-(void)setSelectionType:(THDatePickerSelectionType)type{
+    _selectionType = type;
+    if (type == THDatePickerSelectionTypeSingle){
+        [self setAutoCloseOnSelectDate:true];
+    }
 }
 
 - (void)setAllowClearDate:(BOOL)allow {
@@ -120,8 +121,10 @@
     if (!_allowClearDate)
         [self setAllowClearDate:!autoClose];
     _autoCloseOnSelectDate = autoClose;
-    if (_autoCloseOnSelectDate)
-        _allowMultiDaySelection = NO;
+    if (_autoCloseOnSelectDate && _selectionType != THDatePickerSelectionTypeSingle){
+        _selectionType = THDatePickerSelectionTypeSingle;
+    }
+    
 }
 
 - (void)setDisableHistorySelection:(BOOL)disableHistorySelection {
@@ -318,20 +321,32 @@
         if (self.selectedBackgroundColor)
             [day setSelectedBackgroundColor:self.selectedBackgroundColor];
         
-        if(!_allowMultiDaySelection) {
-            if (_internalDate && ![[self dateWithOutTime:date] timeIntervalSinceDate:_internalDate]) {
-                self.currentDay = day;
-                [day setSelected:YES];
-            }
-        } else {
-            if ([_selectedDates containsObject:date]) {
-                if ([_selectedDates lastObject] == date) {
-                    _internalDate = date;
+        switch (_selectionType) {
+            case THDatePickerSelectionTypeSingle:
+                if (_internalDate && ![[self dateWithOutTime:date] timeIntervalSinceDate:_internalDate]) {
+                    self.currentDay = day;
+                    [day setSelected:YES];
                 }
-                [day setSelected:YES];
-            } else {
-                [day setSelected:NO];
-            }
+                break;
+            case THDatePickerSelectionTypeMulti:
+                if ([_selectedDates containsObject:date]) {
+                    if ([_selectedDates lastObject] == date) {
+                        _internalDate = date;
+                    }
+                    [day setSelected:YES];
+                } else {
+                    [day setSelected:NO];
+                }
+                break;
+            case THDatePickerSelectionTypeRange:
+                if ([_selectedDates containsObject:date]) {
+                    [day setSelected:YES];
+                } else if ([date timeIntervalSinceDate:[_selectedDates firstObject]] > 0 && [date timeIntervalSinceDate:[_selectedDates lastObject]] < 0){
+                    [day setIsDayInRange];
+                }else {
+                    [day setSelected:NO];
+                }
+                break;
         }
         
         [day setLightText:![self dateInCurrentMonth:date]];
@@ -408,7 +423,7 @@
         int ymd = NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay;
         NSDateComponents* internalComps = [_calendar components:ymd fromDate:self.internalDate];
         int time = NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond|NSCalendarUnitTimeZone;
-        NSDateComponents* origComps = [_calendar components:time fromDate:(_allowMultiDaySelection && [_selectedDates count] > 0 ? [_selectedDates lastObject] : _date)];
+        NSDateComponents* origComps = [_calendar components:time fromDate:((_selectionType != THDatePickerSelectionTypeSingle) && [_selectedDates count] > 0 ? [_selectedDates lastObject] : _date)];
         [origComps setDay:[internalComps day]];
         [origComps setMonth:[internalComps month]];
         [origComps setYear:[internalComps year]];
@@ -417,15 +432,21 @@
 }
 
 - (BOOL)shouldOkBeEnabled {
-    if (!_allowMultiDaySelection) {
-        if (_autoCloseOnSelectDate)
-            return YES;
-        NSLog(@"interval %f",[self.internalDate timeIntervalSinceDate:_dateNoTime]);
-        return (self.internalDate && _dateNoTime && (_allowSelectionOfSelectedDate || [self.internalDate timeIntervalSinceDate:_dateNoTime]))
-        || (self.internalDate && !_dateNoTime)
-        || (!self.internalDate && _dateNoTime);
-    } else {
-        return ([_selectedDates count] > 0);
+    switch (_selectionType) {
+        case THDatePickerSelectionTypeSingle:
+            if (_autoCloseOnSelectDate)
+                return YES;
+            NSLog(@"interval %f",[self.internalDate timeIntervalSinceDate:_dateNoTime]);
+            return (self.internalDate && _dateNoTime && (_allowSelectionOfSelectedDate || [self.internalDate timeIntervalSinceDate:_dateNoTime]))
+            || (self.internalDate && !_dateNoTime)
+            || (!self.internalDate && _dateNoTime);
+            break;
+        case THDatePickerSelectionTypeMulti:
+            return ([_selectedDates count] > 0);
+            break;
+        case THDatePickerSelectionTypeRange:
+            return ([_selectedDates count] > 0);
+            break;
     }
 }
 
@@ -504,37 +525,63 @@
 - (void)dateDayTapped:(THDateDay *)dateDay {
     BOOL dateInDifferentMonth = ![self dateInCurrentMonth:dateDay.date];
     NSDate *firstOfCurrentMonth = self.firstOfCurrentMonth;
-    if (!_allowMultiDaySelection) {
-        if (!_internalDate || [_internalDate timeIntervalSinceDate:dateDay.date] || _allowSelectionOfSelectedDate) { // new date selected
-            [self.currentDay setSelected:NO];
-            [self.currentDay setLightText:![self dateInCurrentMonth:self.currentDay.date]];
-            [dateDay setSelected:YES];
+    switch (_selectionType) {
+        case THDatePickerSelectionTypeSingle:
+            if (!_internalDate || [_internalDate timeIntervalSinceDate:dateDay.date] || _allowSelectionOfSelectedDate) { // new date selected
+                [self.currentDay setSelected:NO];
+                [self.currentDay setLightText:![self dateInCurrentMonth:self.currentDay.date]];
+                [dateDay setSelected:YES];
+                [self setInternalDate:dateDay.date];
+                [self setCurrentDay:dateDay];
+                [_selectedDates removeAllObjects];
+                [_selectedDates addObject:[self dateWithOutTime:dateDay.date]];
+                if ([self.delegate respondsToSelector:@selector(datePicker:selectedDate:)]) {
+                    [self.delegate datePicker:self selectedDate:dateDay.date];
+                }
+            }
+            break;
+        case THDatePickerSelectionTypeMulti:
             [self setInternalDate:dateDay.date];
-            [self setCurrentDay:dateDay];
-            [_selectedDates removeAllObjects];
+            if (![_selectedDates containsObject:[self dateWithOutTime:dateDay.date]]){
+                [_selectedDates addObject:[self dateWithOutTime:dateDay.date]];
+                [dateDay setSelected:YES];
+                if ([self.delegate respondsToSelector:@selector(datePicker:selectedDate:)]) {
+                    [self.delegate datePicker:self selectedDate:dateDay.date];
+                }
+            } else {
+                if ([self.delegate respondsToSelector:@selector(datePicker:deselectedDate:)]) {
+                    [self.delegate datePicker:self deselectedDate:dateDay.date];
+                }
+                [dateDay setLightText:dateInDifferentMonth];
+                [dateDay setSelected:NO];
+                [_selectedDates removeObject:dateDay.date];
+            }
+            self.okBtn.enabled = [self shouldOkBeEnabled];
+            break;
+        case THDatePickerSelectionTypeRange:
+            [self setInternalDate:dateDay.date];
+            if ([_selectedDates count] > 1){
+                for (NSUInteger i = 0; i < [_selectedDates count]; i++){
+                    NSDate *date = [_selectedDates objectAtIndex:i];
+                    if ([self.delegate respondsToSelector:@selector(datePicker:deselectedDate:)]) {
+                        [self.delegate datePicker:self deselectedDate:date];
+                    }
+                }
+                [_selectedDates removeAllObjects];
+            }
             [_selectedDates addObject:[self dateWithOutTime:dateDay.date]];
             if ([self.delegate respondsToSelector:@selector(datePicker:selectedDate:)]) {
                 [self.delegate datePicker:self selectedDate:dateDay.date];
             }
-        }
-    } else {
-        [self setInternalDate:dateDay.date];
-        if (![_selectedDates containsObject:[self dateWithOutTime:dateDay.date]]){
-            [_selectedDates addObject:[self dateWithOutTime:dateDay.date]];
             [dateDay setSelected:YES];
-            if ([self.delegate respondsToSelector:@selector(datePicker:selectedDate:)]) {
-                [self.delegate datePicker:self selectedDate:dateDay.date];
+            if ([_selectedDates count] > 1){
+                [_selectedDates sortUsingSelector:@selector(compare:)];
             }
-        } else {
-            if ([self.delegate respondsToSelector:@selector(datePicker:deselectedDate:)]) {
-                [self.delegate datePicker:self deselectedDate:dateDay.date];
-            }
-            [dateDay setLightText:dateInDifferentMonth];
-            [dateDay setSelected:NO];
-            [_selectedDates removeObject:dateDay.date];
-        }
-        self.okBtn.enabled = [self shouldOkBeEnabled];
+            [self redrawDays];
+            self.okBtn.enabled = [self shouldOkBeEnabled];
+            break;
     }
+    
     if (_autoCloseOnSelectDate) {
         [self.delegate datePickerDonePressed:self];
     }

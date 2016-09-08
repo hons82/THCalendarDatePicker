@@ -63,6 +63,11 @@
     [self.delegate dateDayTapped:self];
 }
 
+-(void)setIsDayInRange{
+    [self setBackgroundColor:[self.selectedBackgroundColor colorWithAlphaComponent:0.5]];
+    [self.dateButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+}
+
 -(void)setSelected:(BOOL)selected {
     if(selected) {
         [self setBackgroundColor:self.selectedBackgroundColor];
