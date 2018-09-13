@@ -22,13 +22,13 @@ The original controller was not aware of orientation changes and was missing som
 
 Install with [CocoaPods](http://cocoapods.org) by adding the following to your Podfile:
 
-####Objective-C
+#### Objective-C
 
 ``` ruby
 platform :ios, '6.1'
 pod 'THCalendarDatePicker', '~> 1.2.6'
 ```
-####Swift
+#### Swift
 
 ``` ruby
 platform :ios, '8.0'
@@ -149,11 +149,11 @@ or how you could do it in Swift
 
 - reduce size of control if "hasItemCallback" is not used/disabled
 
-#Contributions
+# Contributions
 
 ...are really welcome. If you have an idea just fork the library change it and if its useful for others and not affecting the functionality of the library for other users I'll insert it
 
-###Contributors
+### Contributors
 
 - [Mikko Koppanen](https://github.com/mkoppanen)
 - [Kirill Pahnev](https://github.com/pahnev)
