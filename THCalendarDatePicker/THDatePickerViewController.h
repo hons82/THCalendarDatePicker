@@ -9,11 +9,7 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
-#if __has_feature(modules)
-@import KNSemiModalViewController_hons82.UIViewController_KNSemiModal;
-#else
 #import <KNSemiModalViewController_hons82/UIViewController+KNSemiModal.h>
-#endif
 
 #import "THDateDay.h"
 

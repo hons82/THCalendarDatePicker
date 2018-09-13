@@ -10,7 +10,10 @@ Pod::Spec.new do |s|
   s.requires_arc 		= true
   s.header_mappings_dir	= 'THCalendarDatePicker'
   s.source_files 		= 'THCalendarDatePicker/*.{h,m}'
-  s.resources 	 		= ["THCalendarDatePicker/*.xib", "THCalendarDatePicker/Images.xcassets"]
+  s.resources 	 		= ["THCalendarDatePicker/*.xib"]
+  s.resource_bundles = {
+    'THCalendarDatePicker' => ['THCalendarDatePicker/Assets/*.png']
+  }
   s.frameworks   	 	=  'QuartzCore'
   s.dependency 			'KNSemiModalViewController_hons82', '~> 0.4.5'
   s.prefix_header_contents = <<-EOS
