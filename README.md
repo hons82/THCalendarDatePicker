@@ -25,15 +25,15 @@ Install with [CocoaPods](http://cocoapods.org) by adding the following to your P
 #### Objective-C
 
 ``` ruby
-platform :ios, '6.1'
-pod 'THCalendarDatePicker', '~> 1.2.6'
+platform :ios, '8.0'
+pod 'THCalendarDatePicker', '~> 1.2.9'
 ```
 #### Swift
 
 ``` ruby
 platform :ios, '8.0'
 use_frameworks!
-pod 'THCalendarDatePicker', '~> 1.2.6'
+pod 'THCalendarDatePicker', '~> 1.2.9'
 ```
 
 **Note**: We follow http://semver.org for versioning the public API.
@@ -151,7 +151,11 @@ or how you could do it in Swift
 
 # Contributions
 
-...are really welcome. If you have an idea just fork the library change it and if its useful for others and not affecting the functionality of the library for other users I'll insert it
+...are really welcome. 
+
+I'm bot using this component anymore in my projects, so the time I can dedicate to its maintainance is really limited. 
+
+If you have an idea just fork the library change it and if its useful for others and not affecting the functionality of the library for other users I'll insert it
 
 ### Contributors
 

@@ -14,9 +14,9 @@ class ViewController: UIViewController, THDatePickerDelegate {
 
     @IBOutlet weak var dateButton: UIButton!
     
-    var curDate : NSDate? = NSDate()
-    lazy var formatter: NSDateFormatter = {
-        var tmpFormatter = NSDateFormatter()
+    var curDate : Date = Date()
+    lazy var formatter: DateFormatter = {
+        var tmpFormatter = DateFormatter()
         tmpFormatter.dateFormat = "dd/MM/yyyy --- HH:mm"
         return tmpFormatter
     }()
@@ -34,11 +34,11 @@ class ViewController: UIViewController, THDatePickerDelegate {
         picker.setDaysInFutureSelection(0)
         picker.setDateTimeZoneWithName("UTC")
         picker.autoCloseCancelDelay = 5.0
-        picker.rounded = true
+        picker.isRounded = true
         picker.dateTitle = "My DatePicker"
         picker.selectedBackgroundColor = UIColor(red: 125.0/255.0, green: 208.0/255.0, blue: 0.0/255.0, alpha: 1.0)
         picker.currentDateColor = UIColor(red: 242.0/255.0, green: 121.0/255.0, blue: 53.0/255.0, alpha: 1.0)
-        picker.currentDateColorSelected = UIColor.yellowColor()
+        picker.currentDateColorSelected = .yellow
         return picker
     }()
     
@@ -54,27 +54,27 @@ class ViewController: UIViewController, THDatePickerDelegate {
     }
 
     func refreshTitle() {
-        dateButton.setTitle((curDate != nil ? formatter.stringFromDate(curDate!) : "No date selected"), forState: UIControlState.Normal)
+        dateButton.setTitle(formatter.string(from: curDate), for: .normal)
     }
     
     @IBAction func touchedButton(sender: AnyObject) {
         datePicker.date = self.curDate
-        datePicker.setDateHasItemsCallback { (date: NSDate!) -> Bool in
+        datePicker.setDateHasItemsCallback { (date: Date?) -> Bool in
             let tmp = (arc4random() % 30)+1
             return (tmp % 5 == 0)
         }
         presentSemiViewController(datePicker, withOptions: [
-            convertCfTypeToString(KNSemiModalOptionKeys.shadowOpacity) as String! : 0.3 as Float,
-            convertCfTypeToString(KNSemiModalOptionKeys.animationDuration) as String! : 1.0 as Float,
-            convertCfTypeToString(KNSemiModalOptionKeys.pushParentBack) as String! : false as Bool
+            convertCfTypeToString(cfValue: KNSemiModalOptionKeys.shadowOpacity) ?? "Error_0" : 0.3 as Float,
+            convertCfTypeToString(cfValue: KNSemiModalOptionKeys.animationDuration) ?? "Error_1" : 1.0 as Float,
+            convertCfTypeToString(cfValue: KNSemiModalOptionKeys.pushParentBack) ?? "Error_2" : false as Bool
             ])
     }
 
     /* https://vandadnp.wordpress.com/2014/07/07/swift-convert-unmanaged-to-string/ */
     func convertCfTypeToString(cfValue: Unmanaged<NSString>!) -> String?{
         /* Coded by Vandad Nahavandipoor */
-        let value = Unmanaged<CFStringRef>.fromOpaque(
-            cfValue.toOpaque()).takeUnretainedValue() as CFStringRef
+        let value = Unmanaged<CFString>.fromOpaque(
+            cfValue.toOpaque()).takeUnretainedValue() as CFString
         if CFGetTypeID(value) == CFStringGetTypeID(){
             return value as String
         } else {
@@ -84,18 +84,18 @@ class ViewController: UIViewController, THDatePickerDelegate {
     
     // MARK: THDatePickerDelegate
     
-    func datePickerDonePressed(datePicker: THDatePickerViewController!) {
+    func datePickerDonePressed(_ datePicker: THDatePickerViewController!) {
         curDate = datePicker.date
         refreshTitle()
         dismissSemiModalView()
     }
     
-    func datePickerCancelPressed(datePicker: THDatePickerViewController!) {
+    func datePickerCancelPressed(_ datePicker: THDatePickerViewController!) {
         dismissSemiModalView()
     }
     
     func datePicker(datePicker: THDatePickerViewController!, selectedDate: NSDate!) {
-        print("Date selected: ", formatter.stringFromDate(selectedDate))
+        print("Date selected: ", formatter.string(from: selectedDate as Date))
     }
 }
 

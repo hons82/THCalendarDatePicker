@@ -37,7 +37,7 @@ typedef NS_ENUM(NSInteger, THDatePickerSelectionType) {
 
 @interface THDatePickerViewController : UIViewController <THDateDayDelegate>
 
-+(THDatePickerViewController *)datePicker;
++(THDatePickerViewController * __nonnull)datePicker;
 
 @property (strong, nonatomic) NSDate * date;
 @property (weak, nonatomic) id<THDatePickerDelegate> delegate;
@@ -61,7 +61,7 @@ typedef NS_ENUM(NSInteger, THDatePickerSelectionType) {
 - (void)setAllowClearDate:(BOOL)allow;
 
 /*! Enable Multi Day Selection
- * \param allow selection of multiple days
+ * \param type selection of multiple days
  */
 - (void)setSelectionType:(THDatePickerSelectionType)type;
 
@@ -101,7 +101,7 @@ typedef NS_ENUM(NSInteger, THDatePickerSelectionType) {
 - (void)setDaysInFutureSelection:(NSUInteger)daysInFuture;
 
 /*! Set the timeZone by name to be used. Valid timezones can be retrieved using [NSTimeZone knownTimeZoneNames]
- * \param the name of the timezone to be used
+ * \param name the name of the timezone to be used
  * \return successful?
  */
 - (BOOL)setDateTimeZoneWithName:(NSString *)name;
