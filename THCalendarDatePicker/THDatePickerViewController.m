@@ -370,12 +370,10 @@
     if(!self.weekdaysView.subviews.count) {
         CGSize fullSize = self.weekdaysView.frame.size;
         int curX = (fullSize.width - 7*dayWidth)/2;
-        NSDateComponents * comps = [_calendar components:NSCalendarUnitDay fromDate:[NSDate date]];
         //NSCalendar *c = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
         NSCalendar* c =[NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
         [c setLocale:[NSLocale currentLocale]];
 
-        [comps setDay:[c firstWeekday]-1];
         NSDateFormatter *df = [[NSDateFormatter alloc] init];
         NSDateComponents *offsetComponents = [[NSDateComponents alloc] init];
         [offsetComponents setDay:1];
@@ -385,7 +383,11 @@
         [cal setLocale:[NSLocale currentLocale]];
 
         [df setCalendar:cal];
-        NSDate * date = [_calendar dateFromComponents:comps];
+        
+        NSDateComponents *firstDayOffsetComponents = [[NSDateComponents alloc] init];
+        [firstDayOffsetComponents setDay:-_bufferDaysBeginning];
+        NSDate * date = [_calendar dateByAddingComponents:firstDayOffsetComponents toDate:self.firstOfCurrentMonth options:0];
+        
         for(int i = 0; i < 7; i++){
             UILabel * dayLabel = [[UILabel alloc] initWithFrame:CGRectMake(curX, 0, dayWidth, fullSize.height)];
             dayLabel.textAlignment = NSTextAlignmentCenter;
