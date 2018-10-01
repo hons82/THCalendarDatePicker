@@ -385,15 +385,14 @@
         [cal setLocale:[NSLocale currentLocale]];
 
         [df setCalendar:cal];
-        NSDate * date = [_calendar dateFromComponents:comps];
+        NSArray *daySymbols = df.veryShortWeekdaySymbols;
         for(int i = 0; i < 7; i++){
             UILabel * dayLabel = [[UILabel alloc] initWithFrame:CGRectMake(curX, 0, dayWidth, fullSize.height)];
             dayLabel.textAlignment = NSTextAlignmentCenter;
             dayLabel.font = [UIFont systemFontOfSize:12];
             [self.weekdaysView addSubview:dayLabel];
-            dayLabel.text = [df stringFromDate:date];
+            dayLabel.text = daySymbols[i % 7];
             dayLabel.textColor = [UIColor grayColor];
-            date = [_calendar dateByAddingComponents:offsetComponents toDate:date options:0];
             curX+=dayWidth;
         }
     }
