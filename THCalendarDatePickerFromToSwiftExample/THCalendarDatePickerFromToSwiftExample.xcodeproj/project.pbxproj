@@ -197,6 +197,7 @@
 				TargetAttributes = {
 					998E96731B99CFAF0099AC4F = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = QWP2E983M5;
 					};
 					998E96881B99CFAF0099AC4F = {
 						CreatedOnToolsVersion = 6.4;
@@ -452,6 +453,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = QWP2E983M5;
 				INFOPLIST_FILE = "$(SRCROOT)/THCalendarDatePickerFromToSwiftExample/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "it.3bus.$(PRODUCT_NAME:rfc1034identifier)";
@@ -465,6 +467,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = QWP2E983M5;
 				INFOPLIST_FILE = "$(SRCROOT)/THCalendarDatePickerFromToSwiftExample/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "it.3bus.$(PRODUCT_NAME:rfc1034identifier)";

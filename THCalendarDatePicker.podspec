@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         		= "THCalendarDatePicker"
-  s.version      		= "1.2.9"
+  s.version      		= "1.3.0"
   s.summary      		= "A DatePicker based on a custom calendar view"
   s.homepage     		= "https://github.com/hons82/THCalendarDatePicker"
   s.license      		= { :type => 'MIT', :file => 'LICENSE.md' }
@@ -10,10 +10,7 @@ Pod::Spec.new do |s|
   s.requires_arc 		= true
   s.header_mappings_dir	= 'THCalendarDatePicker'
   s.source_files 		= 'THCalendarDatePicker/*.{h,m}'
-  s.resources 	 		= ["THCalendarDatePicker/*.xib"]
-  s.resource_bundles = {
-    'THCalendarDatePicker' => ['THCalendarDatePicker/Assets/*.png']
-  }
+  s.resources 	 		= ['THCalendarDatePicker/*.xib', 'THCalendarDatePicker/Media.xcassets']
   s.frameworks   	 	=  'QuartzCore'
   s.dependency 			'KNSemiModalViewController_hons82', '~> 0.4.6'
   s.prefix_header_contents = <<-EOS

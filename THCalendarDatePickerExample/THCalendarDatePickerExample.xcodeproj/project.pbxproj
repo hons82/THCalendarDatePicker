@@ -317,13 +317,13 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-THCalendarDatePickerExample/Pods-THCalendarDatePickerExample-resources.sh",
 				"${PODS_ROOT}/../../THCalendarDatePicker/THDateDay.xib",
 				"${PODS_ROOT}/../../THCalendarDatePicker/THDatePickerViewController.xib",
-				"${PODS_CONFIGURATION_BUILD_DIR}/THCalendarDatePicker/THCalendarDatePicker.bundle",
+				"${PODS_ROOT}/../../THCalendarDatePicker/Media.xcassets",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/THDateDay.nib",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/THDatePickerViewController.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/THCalendarDatePicker.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Assets.car",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

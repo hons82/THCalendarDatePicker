@@ -32,6 +32,7 @@
         self.datePicker = [THDatePickerViewController datePicker];
     self.datePicker.date = self.curDate;
     self.datePicker.delegate = self;
+    [self.datePicker setDateTimeZoneWithName:@"UTC"];
     [self.datePicker setAllowClearDate:NO];
     [self.datePicker setClearAsToday:YES];
     [self.datePicker setAutoCloseOnSelectDate:NO];
