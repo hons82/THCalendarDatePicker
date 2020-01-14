@@ -1,8 +1,9 @@
-source 'https://github.com/CocoaPods/Specs.git'
+source 'https://cdn.cocoapods.org/'
 platform :ios, '8.0'
 
 use_frameworks!
 
-pod 'THCalendarDatePicker'
-#, :path => './../THCalendarDatePicker' 
-
+target 'THCalendarDatePickerExampleSwift' do
+    pod 'THCalendarDatePicker'
+    #, :path => './../THCalendarDatePicker' 
+end

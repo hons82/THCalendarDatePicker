@@ -23,37 +23,37 @@ typedef NS_ENUM(NSInteger, THDatePickerSelectionType) {
 
 @protocol THDatePickerDelegate <NSObject>
 
--(void)datePickerDonePressed:(THDatePickerViewController *)datePicker;
--(void)datePickerCancelPressed:(THDatePickerViewController *)datePicker;
+-(void)datePickerDonePressed:(THDatePickerViewController * _Nonnull)datePicker;
+-(void)datePickerCancelPressed:(THDatePickerViewController * _Nonnull)datePicker;
 
 @optional
 
--(void)datePicker:(THDatePickerViewController *)datePicker selectedDate:(NSDate *)selectedDate;
--(void)datePicker:(THDatePickerViewController *)datePicker deselectedDate:(NSDate *)deselectedDate;
--(void)datePickerDidHide:(THDatePickerViewController *)datePicker;
--(void)datePicker:(THDatePickerViewController *)datePicker changedMonth:(NSInteger)month year:(NSInteger)year;
+-(void)datePicker:(THDatePickerViewController * _Nonnull)datePicker selectedDate:(NSDate * _Nonnull)selectedDate;
+-(void)datePicker:(THDatePickerViewController * _Nonnull)datePicker deselectedDate:(NSDate * _Nonnull)deselectedDate;
+-(void)datePickerDidHide:(THDatePickerViewController * _Nonnull)datePicker;
+-(void)datePicker:(THDatePickerViewController * _Nonnull)datePicker changedMonth:(NSInteger)month year:(NSInteger)year;
 
 @end
 
 @interface THDatePickerViewController : UIViewController <THDateDayDelegate>
 
-+(THDatePickerViewController * __nonnull)datePicker;
++(THDatePickerViewController * _Nonnull)datePicker;
 
-@property (strong, nonatomic) NSDate * date;
-@property (weak, nonatomic) id<THDatePickerDelegate> delegate;
-@property (strong, nonatomic) UIColor *selectedBackgroundColor;
-@property (strong, nonatomic) UIColor *currentDateColor;
-@property (strong, nonatomic) UIColor *currentDateColorSelected;
+@property (strong, nonatomic) NSDate * _Nullable date;
+@property (weak, nonatomic) id<THDatePickerDelegate> _Nullable delegate;
+@property (strong, nonatomic) UIColor * _Nonnull selectedBackgroundColor;
+@property (strong, nonatomic) UIColor * _Nonnull currentDateColor;
+@property (strong, nonatomic) UIColor * _Nonnull currentDateColorSelected;
 @property (nonatomic) float autoCloseCancelDelay;
-@property (strong, nonatomic) NSTimeZone *dateTimeZone;
+@property (strong, nonatomic) NSTimeZone * _Nonnull dateTimeZone;
 @property (nonatomic, getter=isRounded) BOOL rounded;
 @property (nonatomic, getter=isHistoryFutureBasedOnInternal) BOOL historyFutureBasedOnInternal;
-@property (weak, nonatomic) IBOutlet UIView *toolbarBackgroundView;
+@property (weak, nonatomic) IBOutlet UIView * _Nullable toolbarBackgroundView;
 @property (nonatomic) float slideAnimationDuration;
-@property (strong, nonatomic) NSString* dateTitle;
-@property (strong, nonatomic) NSArray * selectedDates;
+@property (strong, nonatomic) NSString * _Nullable dateTitle;
+@property (strong, nonatomic) NSArray * _Nullable selectedDates;
 
-- (void)setDateHasItemsCallback:(BOOL (^)(NSDate * date))callback;
+- (void)setDateHasItemsCallback:(BOOL (^_Nullable)(NSDate * _Nonnull date))callback;
 
 /*! Enable Clear Date Button
  * \param allow should show "clear date" button
@@ -104,7 +104,7 @@ typedef NS_ENUM(NSInteger, THDatePickerSelectionType) {
  * \param name the name of the timezone to be used
  * \return successful?
  */
-- (BOOL)setDateTimeZoneWithName:(NSString *)name;
+- (BOOL)setDateTimeZoneWithName:(NSString * _Nonnull)name;
 
 /*! Should it be possible to fast switch the year
  * \param disableYearSwitch should it be possible?
@@ -115,12 +115,12 @@ typedef NS_ENUM(NSInteger, THDatePickerSelectionType) {
  * \param fromDate      range from
  * \param toDate        range to
  */
-- (void)setDateRangeFrom:(NSDate *)fromDate toDate:(NSDate *)toDate;
+- (void)setDateRangeFrom:(NSDate * _Nonnull)fromDate toDate:(NSDate * _Nonnull)toDate;
 
 /*! Set calendar title
  * \param dateTitle     calendar title
  */
-- (void)setDateTitle:(NSString*)dateTitle;
+- (void)setDateTitle:(NSString * _Nonnull)dateTitle;
 
 /*! Redraw the calendar to update the dot indicators
  */

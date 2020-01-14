@@ -1,15 +1,15 @@
 //
-//  THCalendarDatePickerExampleSwiftTests.swift
-//  THCalendarDatePickerExampleSwiftTests
+//  THCalendarDatePickerSwiftExampleTests.swift
+//  THCalendarDatePickerSwiftExampleTests
 //
-//  Created by Hannes Tribus on 27/05/15.
+//  Created by Hannes Tribus on 04/09/15.
 //  Copyright (c) 2015 3Bus. All rights reserved.
 //
 
 import UIKit
 import XCTest
 
-class THCalendarDatePickerExampleSwiftTests: XCTestCase {
+class THCalendarDatePickerSwiftExampleTests: XCTestCase {
     
     override func setUp() {
         super.setUp()

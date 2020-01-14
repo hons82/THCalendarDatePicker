@@ -1,0 +1,9 @@
+source 'https://cdn.cocoapods.org/'
+platform :ios, '8.0'
+
+target 'THCalendarDatePickerExample' do
+	pod 'THCalendarDatePicker', :path=> './../../'
+	target 'THCalendarDatePickerExampleTests' do
+		inherit! :search_paths
+	end
+end

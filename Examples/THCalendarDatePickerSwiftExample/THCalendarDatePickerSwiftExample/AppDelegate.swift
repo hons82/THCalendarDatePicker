@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  THCalendarDatePickerExampleSwift
+//  THCalendarDatePickerSwiftExample
 //
-//  Created by Hannes Tribus on 27/05/15.
+//  Created by Hannes Tribus on 04/09/15.
 //  Copyright (c) 2015 3Bus. All rights reserved.
 //
 
@@ -13,8 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
-    private func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         // Override point for customization after application launch.
         return true
     }
